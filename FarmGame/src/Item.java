@@ -18,9 +18,9 @@ public class Item {
 	/**
 	 * Item constructor
 	 * 
-	 * @param newName
-	 * @param newPrice
-	 * @param newBenefit
+	 * @param newName Name for the item.
+	 * @param newPrice Price for the item.
+	 * @param newBenefit Benefit of the item.
 	 */
 	public Item(String newName, double newPrice, double newBenefit) {
 		name = newName;
