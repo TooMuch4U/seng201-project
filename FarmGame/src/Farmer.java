@@ -1,7 +1,13 @@
 
 public class Farmer {
 	
+	/**
+	 * Farmers name
+	 */
 	private String name;
+	/**
+	 * Farmers age
+	 */
 	private int age;
 	
 	/**
