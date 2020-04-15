@@ -18,11 +18,7 @@ public class ItemForCrop extends Item {
 		daysBenefit = newBenefit;
 	}
 	
-	/**
-	 * Returns the day benefit.
-	 * 
-	 * @return double
-	 */
+	@Override
 	public double getBenefit() {
 		return(daysBenefit);
 	}
