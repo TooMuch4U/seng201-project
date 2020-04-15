@@ -20,7 +20,7 @@ public class Item {
 	 * 
 	 * @param newName Name for the item.
 	 * @param newPrice Price for the item.
-	 * @param newBenefit Benefit of the item.
+	 * @param newBenefit Benefit of the item
 	 */
 	public Item(String newName, double newPrice, double newBenefit) {
 		name = newName;
