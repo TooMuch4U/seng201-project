@@ -37,6 +37,13 @@ public class Farmer {
 	}
 	
 	/**
+	 * Returns the farmers age.
+	 */
+	public int getAge() {
+		return(age);
+	}
+	
+	/**
 	 * Sets the farmers name.
 	 * 
 	 * @param newName New name for the farmer. Must be at least 1 character.
