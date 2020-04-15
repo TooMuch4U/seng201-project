@@ -1,5 +1,5 @@
 
-public class ItemHoe extends Item {
+public class ItemHoe extends ItemForCrop {
 	
 	/**
 	 * Constructor for ItemHoe

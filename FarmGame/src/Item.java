@@ -1,5 +1,5 @@
 
-public class Item {
+public abstract class Item {
 	
 	/**
 	 * Items name
@@ -9,10 +9,6 @@ public class Item {
 	 * Items price
 	 */
 	private double price;
-	/**
-	 * Items benefit
-	 */
-	private double benefit;
 	
 	
 	/**
@@ -22,10 +18,9 @@ public class Item {
 	 * @param newPrice Price for the item.
 	 * @param newBenefit Benefit of the item
 	 */
-	public Item(String newName, double newPrice, double newBenefit) {
+	public Item(String newName, double newPrice) {
 		name = newName;
 		price = newPrice;
-		benefit = newBenefit;
 	}
 	
 	/**
@@ -51,9 +46,7 @@ public class Item {
 	 * 
 	 * @return double
 	 */
-	public double getBenefit() {
-		return(benefit);
-	}
+	public abstract double getBenefit();
 	
 	public static void main(String[] args) {
 
