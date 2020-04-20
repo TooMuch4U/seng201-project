@@ -22,15 +22,15 @@ public class Farm {
 	/**
 	 * ArrayList containing the farm's animals
 	 */
-	private ArrayList<Animal> animals;
+	private ArrayList<Animal> animals = new ArrayList<Animal>();
 	/**
 	 * ArrayList containing the farm's crops
 	 */
-	private ArrayList<Crop> crops;
+	private ArrayList<Crop> crops = new ArrayList<Crop>();
 	/**
 	 * ArrayList containing the farm's items
 	 */
-	public ArrayList<Item> items;
+	public ArrayList<Item> items = new ArrayList<Item>();
 	/**
 	 * Maximum amount of crops allowed on the farm
 	 */
@@ -127,8 +127,10 @@ public class Farm {
 	 * @param change - the desired change in money
 	 */
 	public void changeMoney(double change) {
-		if (money >= change) {
+		if (money >= Math.abs(change) && change < 0 || change >= 0) {
 			money += change;
+			//Ensures that the total money is always displayed to 2 d.p.
+			money = Math.round(money*100.0)/100.0;
 		} else {
 			throw new IllegalArgumentException("Not enough money");
 		}
@@ -157,7 +159,7 @@ public class Farm {
 	public void addCrop(Crop crop) {
 		if (crops.size() == cropLimit) {
 			throw new IllegalArgumentException("Farm is full of crops");
-		} else if (type == "cropBonus") {
+		} else if (type == "cropBonus" && crop.getHarvestTime() > 1) {
 			crop.changeHarvestTime(1);
 		}
 		crops.add(crop);

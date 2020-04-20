@@ -70,8 +70,10 @@ public class Crop {
 	 * @param change - the desired change in harvest time
 	 */
 	public void changeHarvestTime(int change) {
-		if (daysUntilHarvest < change) {
-			change = daysUntilHarvest; 
+		if (change < 0) {
+			throw new IllegalArgumentException("Crops can't grow backwards");
+		} else if (daysUntilHarvest < change) {
+			change = daysUntilHarvest - 1; 
 		}
 		daysUntilHarvest -= change;
 	}

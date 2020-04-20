@@ -2,6 +2,10 @@
 public class Animal {
 	
 	/**
+	 * The type of animal
+	 */
+	private String type;
+	/**
 	 * The purchase price of the animal
 	 */
 	private double price;
@@ -27,16 +31,39 @@ public class Animal {
 	/**
 	 * Constructor using parameters
 	 * Every animal will likely be different, so no need for basic constructor
+	 * Ensures the animals happiness and health will be between 0 and 100 inclusive
+	 * @param kind - the type of animal
 	 * @param cost - the desired price of the animal
 	 * @param earnings - the base income of the animal
 	 * @param fitness - the starting health of the animal
 	 * @param mood - the starting happiness of the animal
 	 */
-	public Animal(double cost, double earnings, double fitness, double mood) {
+	public Animal(String kind, double cost, double earnings, double fitness, double mood) {
+		if (fitness > 100) {
+			fitness = 100.00;
+		} else if (fitness < 0) {
+			fitness = 0.00;
+		}
+		
+		if (mood > 100) {
+			mood = 100.00;
+		} else if (mood < 0) {
+			mood = 0.00;
+		}
+		
+		type = kind;
 		price = cost;
 		income = earnings;
 		health = fitness;
 		happiness = mood;
+	}
+	
+	/**
+	 * Gets the type of the animal
+	 * @return type - type of the animal
+	 */
+	public String getType() {
+		return type;
 	}
 	
 	/**
@@ -55,7 +82,7 @@ public class Animal {
 	public double getIncome() {
 		double health_percent = health/100;
 		double happy_percent = happiness/100;
-		return income*health_percent*happy_percent;
+		return Math.round(income*health_percent*happy_percent*100.0)/100.0;
 	}
 	
 	/**
@@ -91,7 +118,7 @@ public class Animal {
 		}
 		else
 		{
-			health = newHealth;
+			health = Math.round(newHealth*100.0)/100.0;
 		}
 	}
 	
@@ -112,7 +139,7 @@ public class Animal {
 		}
 		else
 		{
-			happiness = newHappy;
+			happiness = Math.round(newHappy*100.0)/100.0;
 		}
 	}
 	
