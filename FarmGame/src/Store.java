@@ -40,7 +40,72 @@ public class Store {
 		availableCrops.add(new CropPotato());
 		availableCrops.add(new CropTomato());
 		availableCrops.add(new CropWheat());
-		
-
 	}
+	
+	/**
+	 * Returns the item from the availableItems array at the given index
+	 * 
+	 * @param index Index of the item to retrieve. Must not be larger than the ArrayList size
+	 * @return Item
+	 */
+	public Item purchaseItem(int index) {
+		int arraySize = availableItems.size();
+		Item returnItem;
+		
+		// Check that the index is valid
+		if (index < arraySize && index >= 0) {
+			returnItem = availableItems.get(index);
+		}
+		else {
+			throw new IllegalArgumentException("That item doesn't exist");
+		}
+		
+		return(returnItem);
+	}
+	
+	/**
+	 * Returns the Animal from the availableAnimals array at the given index
+	 * 
+	 * @param index Index of the animal wanted.
+	 * @return
+	 */
+	public Animal purchaseAnimal(int index) {
+		
+		int arraySize = availableAnimals.size();
+		Animal returnItem;
+		
+		// Check that the index is valid
+		if (index < arraySize && index >= 0) {
+			returnItem = availableAnimals.get(index);
+		}
+		else {
+			throw new IllegalArgumentException("That animal doesn't exist");
+		}
+		
+		return(returnItem);
+	}
+	
+	/**
+	 * Returns the Crop from the availableCrops array at the given index
+	 * 
+	 * @param index Index of the crop wanted.
+	 * @return
+	 */
+	public Crop purchaseCrop(int index) {
+		
+		int arraySize = availableCrops.size();
+		Crop returnItem;
+		
+		// Check that the index is valid
+		if (index < arraySize && index >= 0) {
+			returnItem = availableCrops.get(index);
+		}
+		else {
+			throw new IllegalArgumentException("That crop doesn't exist");
+		}
+		
+		return(returnItem);
+	}
+	
+	
 }
