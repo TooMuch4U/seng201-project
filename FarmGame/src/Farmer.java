@@ -3,10 +3,12 @@ public class Farmer {
 	
 	/**
 	 * Farmers name
+	 * Must be at least of length 1
 	 */
 	private String name;
 	/**
 	 * Farmers age
+	 * must be a positive integer
 	 */
 	private int age;
 	
@@ -26,7 +28,7 @@ public class Farmer {
 	 */
 	public Farmer(String newName, int newAge) {
 		this.setName(newName);
-		age = newAge;
+		this.setAge(newAge);
 	}
 	
 	/**
@@ -54,6 +56,20 @@ public class Farmer {
 		}
 		else {
 			throw new IllegalArgumentException("newName String must atleast be of length 1.");				
+		}
+	}
+	
+	/**
+	 * Sets the farmers age.
+	 * 
+	 * @param newAge age to set for farmer.
+	 */
+	private void setAge(int newAge) {
+		if (newAge >= 0) {
+			age = newAge;
+		}
+		else {
+			throw new IllegalArgumentException("newAge String must not be negative.");
 		}
 	}
 
