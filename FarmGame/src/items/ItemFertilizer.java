@@ -1,3 +1,4 @@
+package items;
 
 public class ItemFertilizer extends ItemForCrop {
 	
