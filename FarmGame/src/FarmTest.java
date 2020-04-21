@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import items.Item;
+import items.ItemApple;
+import items.ItemHoe;
+
 class FarmTest {
 	
 	private Farmer farmer;
