@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 import items.Item;
+import crops.Crop;
+import animals.Animal;
 
 public class Farm {
 	
