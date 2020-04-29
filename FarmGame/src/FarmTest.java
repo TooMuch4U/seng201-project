@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import items.Item;
 import items.ItemApple;
 import items.ItemHoe;
+import animals.*;
+import crops.*;
 
 class FarmTest {
 	
