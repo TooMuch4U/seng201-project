@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import items.*;
+import animals.*;
+import crops.*;
 
 public class EndScreen {
 	
@@ -9,7 +11,7 @@ public class EndScreen {
 	private double baseScore = 0.0;
 	
 	/**
-	 * Constructer for EndScreen
+	 * Constructor for EndScreen
 	 * @param farm farm to calculate score for.
 	 */
 	public EndScreen(Farm farm) {

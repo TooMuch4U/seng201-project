@@ -7,9 +7,36 @@ import items.*;
 
 public class GameEnviroBasic {
 	
-	Farmer farmer = new Farmer();
-	Farm farm = new FarmBasic("Test Farm", farmer);
-	Random rng = new Random();
+	private Farm farm;
+	private int requiredDays;
+	private Random rng = new Random();
+	private int currentDays = 0;
+	private int numActions = 2;
+	
+	public GameEnviroBasic(int days, Farm playerFarm) {
+		requiredDays = days;
+		farm = playerFarm;
+	}
+	
+	/**
+	 * Advances the number of days by one, and resets the action counter
+	 * If the current days is the number of days the player requested, the game is over
+	 * Generates and displays the score, and prompts the user to play again
+	 * This function is called directly when the player chooses to advance time
+	 */
+	public void advanceDays() {
+		currentDays += 1;
+		if (currentDays == requiredDays) {
+			EndScreen endScreen = new EndScreen(farm);
+			String score = endScreen.displayScore();
+			System.out.println("Final score = "+score);
+			System.out.println("Please reboot to play again");
+			//End the command line here
+			//Play again prompt
+		} else {
+			numActions = 2;
+		}
+	}
 	
 	/**
 	 * Adds details of the farm
@@ -49,6 +76,7 @@ public class GameEnviroBasic {
 	/**
 	 * Allows the user to view the status of all of their animals
 	 * Prints a string for each animal outlining their type, happiness, and health
+	 * This does not count as a daily action; it can thus be called if all actions are performed
 	 */
 	public void viewAnimalStatus() {
 		String returnString = "";
@@ -71,8 +99,11 @@ public class GameEnviroBasic {
 		String farmMoney = Double.toString(farm.getMoney());
 		String farmFarmer = farm.getFarmer().getName();
 		
+		
 		String returnString = "Your farm "+farmName+" has a farmer called "+farmFarmer+", with total money of "+farmMoney;
 		System.out.println(returnString);
+		viewAnimalStatus();
+		viewCropStatus();
 	}
 	
 	/**
@@ -80,7 +111,7 @@ public class GameEnviroBasic {
 	 * @param farm - the non-static player's farm
 	 * @param rng - the non_static random number generator used
 	 */
-	public static void removeHalfAnimals(Farm farm, Random rng) {
+	public void removeHalfAnimals(Farm farm, Random rng) {
 		ArrayList<Animal> animals = farm.getAnimals();
 		int num_required = animals.size()/2;
 		/**
@@ -103,7 +134,7 @@ public class GameEnviroBasic {
 	 * @param farm - the non-static user's farm passed into a static function
 	 * @param rng - the non_static number generator passed into a static function
 	 */
-	public static void removeHalfCrops(Farm farm, Random rng) {
+	public void removeHalfCrops(Farm farm, Random rng) {
 		ArrayList<Crop> crops = farm.getCrops();
 		int crop_num = crops.size();
 		int num_required = crop_num/2;
@@ -153,11 +184,53 @@ public class GameEnviroBasic {
 	}
 	
 	
-	public static void main(String[] args) {
-		GameEnviroBasic enviro = new GameEnviroBasic();
-		enviro.addDetails();
-		enviro.viewCropStatus();
-		enviro.viewAnimalStatus();
-		enviro.viewFarmStatus();
+	/**
+	 * Allows the user to feed all animals on their farm
+	 * 
+	 * Further implementation will allow the user to only choose one animal to feed - could pass in the animal index
+	 * 
+	 * @param feedItem - the Item that will be used to increase the animal's attributes
+	 * Counts as a daily action, and as such can't be performed if all actions are completed
+	 */
+	public void feedAnimals(ItemForAnimal feedItem, int animalIndex) {
+		if (numActions == 0) {
+			ArrayList<Animal> animals = farm.getAnimals();
+			double healthBonus = feedItem.getBenefit();
+			Animal chosenAnimal = animals.get(animalIndex);
+			chosenAnimal.changeHealth(healthBonus);
+			farm.setAnimals(animals);
+			numActions -= 1;
+		} else {
+			//Need to implement the action error
+			throw new ActionCountException("All actions performed for the day");
+		}
 	}
+	
+	/**
+	 * An overload method of tendToCrops that ensures the basic item is used if no item is specified
+	 * Please see tendToCrops documentation for more information
+	 */
+	public void tendToCrops(int cropIndex) {
+		tendToCrops(new ItemWater(), cropIndex);
+	}
+	
+	/**
+	 * Allows the player to tend to the crops on their farm, making them grow quicker
+	 * @param cropItem - the item to be used on the crops. If none is specified, the overload function passes in the base item
+	 * Counts towards the player's daily actions, and as such, can't be performed if the player has no more actions for the day
+	 */
+	public void tendToCrops(ItemForCrop cropItem, int cropIndex) {
+		if (numActions == 0) {
+			ArrayList<Crop> crops = farm.getCrops();
+			//Cast the given double to an integer
+			int growBonus = (int) cropItem.getBenefit();
+			Crop chosenCrop = crops.get(cropIndex);
+			chosenCrop.changeHarvestTime(growBonus);
+			farm.setCrops(crops);
+			numActions -= 1;
+		} else {
+			throw new ActionCountException("All actions performed for the day");
+		}
+	}
+	
 }

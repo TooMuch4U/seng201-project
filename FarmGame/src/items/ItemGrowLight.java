@@ -6,7 +6,7 @@ public class ItemGrowLight extends ItemForCrop {
 	 * Constructs the item with correct values
 	 */
 	public ItemGrowLight() {
-		super("Hydroponic Grow Lights", 24.99, 3.0);
+		super("Hydroponic Grow Lights", 24.99, 4.0);
 	}
 
 }

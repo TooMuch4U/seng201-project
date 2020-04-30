@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import items.*;
+import animals.*;
+import crops.*;
 
 public class Store {
 	
