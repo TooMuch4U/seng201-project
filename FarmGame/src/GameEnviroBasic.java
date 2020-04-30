@@ -19,6 +19,33 @@ public class GameEnviroBasic {
 	}
 	
 	/**
+	 * Returns the current value of numActions
+	 * @return numActions - the number of actions left in the day
+	 * Mainly used for testing purposes
+	 */
+	public int getNumActions() {
+		return numActions;
+	}
+	
+	/**
+	 * Returns the number of days currently surpassed
+	 * @return currentDays - the number of days the game has gone for so far
+	 * Mainly used for testing purposes
+	 */
+	public int getCurrentDays() {
+		return currentDays;
+	}
+	
+	/**
+	 * Sets the number of actions permittable in a single day
+	 * @param number - the number of actions that can be completed in one day
+	 * Mainly used for testing purposes
+	 */
+	public void setNumActions(int number) {
+		numActions = number;
+	}
+	
+	/**
 	 * Advances the number of days by one, and resets the action counter
 	 * If the current days is the number of days the player requested, the game is over
 	 * Generates and displays the score, and prompts the user to play again
@@ -37,27 +64,7 @@ public class GameEnviroBasic {
 			numActions = 2;
 		}
 	}
-	
-	/**
-	 * Adds details of the farm
-	 * Used as a basic debugging tool
-	 */
-	public void addDetails() {
-		ArrayList<Animal> animals = new ArrayList<Animal>();
-		ArrayList<Crop> crops = new ArrayList<Crop>();
-		
-		AnimalCow cow = new AnimalCow();
-		AnimalPig pig = new AnimalPig();
-		CropWheat wheat = new CropWheat();
-		CropCorn corn = new CropCorn();
-		
-		for(int i = 0; i < 10; i += 1) {
-			farm.addAnimal(cow);
-			farm.addCrop(wheat);
-			animals.add(pig);
-			crops.add(corn);
-		}
-	}
+
 	
 	/**
 	 * Allows the user to view the status of all of their crops
@@ -193,7 +200,7 @@ public class GameEnviroBasic {
 	 * Counts as a daily action, and as such can't be performed if all actions are completed
 	 */
 	public void feedAnimals(ItemForAnimal feedItem, int animalIndex) {
-		if (numActions == 0) {
+		if (numActions > 0) {
 			ArrayList<Animal> animals = farm.getAnimals();
 			double healthBonus = feedItem.getBenefit();
 			Animal chosenAnimal = animals.get(animalIndex);
@@ -220,7 +227,7 @@ public class GameEnviroBasic {
 	 * Counts towards the player's daily actions, and as such, can't be performed if the player has no more actions for the day
 	 */
 	public void tendToCrops(ItemForCrop cropItem, int cropIndex) {
-		if (numActions == 0) {
+		if (numActions > 0) {
 			ArrayList<Crop> crops = farm.getCrops();
 			//Cast the given double to an integer
 			int growBonus = (int) cropItem.getBenefit();
