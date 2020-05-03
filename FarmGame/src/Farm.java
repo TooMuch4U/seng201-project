@@ -169,4 +169,28 @@ public class Farm {
 		crops.add(crop);
 	}
 	
+	/**
+	 * Changes the farms crop limit
+	 * @param incr Integer to change the crop limit by
+	 */
+	public void changeCropLimit(int incr) {
+		if ((cropLimit + incr) < 0) {
+			cropLimit = 0;
+		} else {
+			cropLimit = cropLimit + incr;
+		}
+	}
+	
+	/**
+	 * Changes the farms animal limit
+	 * @param incr Integer to change the animal limit by
+	 */
+	public void changeAnimalLimit(int incr) {
+		if ((animalLimit + incr) < 0) {
+			animalLimit = 0;
+		} else {
+			animalLimit = animalLimit + incr;
+		}
+	}
+	
 }
