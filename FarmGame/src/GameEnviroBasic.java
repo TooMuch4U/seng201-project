@@ -58,10 +58,14 @@ public class GameEnviroBasic {
 			String score = endScreen.displayScore();
 			System.out.println("Final score = "+score);
 			System.out.println("Please reboot to play again");
-			//End the command line here
-			//Play again prompt
+			GetUserInput.endInput();
 		} else {
 			numActions = 2;
+			ArrayList<Crop> crops = farm.getCrops();
+			for (Crop crop: crops) {
+				crop.changeHarvestTime(1);
+			}
+			farm.setCrops(crops);
 		}
 	}
 
