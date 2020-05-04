@@ -59,8 +59,7 @@ public class GameEnviroBasic {
 			EndScreen endScreen = new EndScreen(farm);
 			String score = endScreen.displayScore();
 			System.out.println("Final score = "+score);
-			System.out.println("Please reboot to play again");
-			GetUserInput.endInput();
+			System.out.println("Thank you for playing!");
 		} else {
 			numActions = 2;
 			ArrayList<Crop> crops = farm.getCrops();
@@ -77,13 +76,17 @@ public class GameEnviroBasic {
 	 * Prints a string for each crop, outlining their type and the growing time left.
 	 */
 	public void viewCropStatus() {
-		String returnString = "";
 		ArrayList<Crop> crops = farm.getCrops();
-		for (Crop crop:crops) {
-			String cropTime = Integer.toString(crop.getHarvestTime());
-			returnString += "The crop " + crop.getType() + " has " + cropTime + " days left.\n";
+		if (crops.size() == 0) {
+			System.out.println("You don't seem to have any crops right now. Visit the store to buy some.");
+		} else {
+			String returnString = "";
+			for (Crop crop:crops) {
+				String cropTime = Integer.toString(crop.getHarvestTime());
+				returnString += "The crop " + crop.getType() + " has " + cropTime + " days left.\n";
+			}
+			System.out.println(returnString);
 		}
-		System.out.println(returnString);
 	}
 	
 	/**
@@ -92,16 +95,21 @@ public class GameEnviroBasic {
 	 * This does not count as a daily action; it can thus be called if all actions are performed
 	 */
 	public void viewAnimalStatus() {
-		String returnString = "";
 		ArrayList<Animal> animals = farm.getAnimals();
-		for (Animal animal: animals) {
-			String animalHealth = Double.toString(animal.getHealth());
-			String animalHappy = Double.toString(animal.getHappiness());
-			String animalType = animal.getType();
-			returnString += "This " + animalType + " has a health of " + animalHealth + " and happiness of " + animalHappy + ".\n";
+		if (animals.size() == 0) {
+			System.out.println("You don't have any animals right now. Visit the store to buy some.");
+		} else {
+			String returnString = "";
+			for (Animal animal: animals) {
+				String animalHealth = Double.toString(animal.getHealth());
+				String animalHappy = Double.toString(animal.getHappiness());
+				String animalType = animal.getType();
+				returnString += "This " + animalType + " has a health of " + animalHealth + " and happiness of " + animalHappy + ".\n";
+			}
+			System.out.println(returnString);
 		}
-		System.out.println(returnString);
 	}
+	
 	
 	/**
 	 * Allows the player to view the status of their farm
@@ -110,10 +118,9 @@ public class GameEnviroBasic {
 	public void viewFarmStatus() {
 		String farmName = farm.getName();
 		String farmMoney = Double.toString(farm.getMoney());
-		String farmFarmer = farm.getFarmer().getName();
+		String farmerName = farm.getFarmer().getName();
 		
-		
-		String returnString = "Your farm "+farmName+" has a farmer called "+farmFarmer+", with total money of "+farmMoney;
+		String returnString = "Your farm "+farmName+" has a farmer called "+farmerName+", with total money of "+farmMoney;
 		System.out.println(returnString);
 		viewAnimalStatus();
 		viewCropStatus();
@@ -168,7 +175,7 @@ public class GameEnviroBasic {
 	
 	/**
 	 * The triggering function for the random events
-	 * Utilises a random number generator to determine whether the events happen or not
+	 * Utilizes a random number generator to determine whether the events happen or not
 	 * County Fair - 10% chance of occurring - player gets a bonus sum of money depending on the numbers of crops and animals they have
 	 * Broken Fence - 5% chance of occurring - player loses half of their farm's animals. The animals are chose randomly using removeHalfAnimals()
 	 * Drought - 5% chance of occurring - player loses half of their farm's crops. The crops are chose randomly using removeHalfCrops()
