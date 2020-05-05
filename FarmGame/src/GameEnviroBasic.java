@@ -316,17 +316,25 @@ public class GameEnviroBasic {
 		
 	}
 	
+	/**
+	 * Processes the payment of a store item
+	 * The farm must have enough money to make the purchase price
+	 * @param price The price of the item being purchased
+	 */
 	private void processStoreItem(double price) {
 		if (farm.getMoney() >= price) {
 			// Farm can afford the item
 			farm.changeMoney(- price);
 			
 		} else{
-			throw new IllegalArgumentException("There is not enough money to purchase this");
+			throw new IllegalStateException("There is not enough money to purchase this");
 		}
 	}
 
-	
+	/**
+	 * Purchases an item from the store if the farm has enough money
+	 * @param item The item the store would like to purchase
+	 */
 	public void purchaseItem(Item item) {
 		double itemPrice = item.getPrice();
 		processStoreItem(itemPrice);
@@ -334,12 +342,20 @@ public class GameEnviroBasic {
 	
 	}
 	
+	/**
+	 * Purchases an animal from the store if the farm has enough money
+	 * @param animal The animal that is to be purchased
+	 */
 	public void purchaseAnimal(Animal animal) {
 		double price = animal.getPrice();
 		processStoreItem(price);
 		farm.addAnimal(animal);
 	}
 	
+	/**
+	 * Purchases a crop from the store if the farm has enough money
+	 * @param crop The crop that is to be purchased
+	 */
 	public void purchaseCrop(Crop crop) {
 		double price = crop.getPrice();
 		processStoreItem(price);

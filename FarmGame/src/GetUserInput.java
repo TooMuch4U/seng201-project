@@ -251,7 +251,7 @@ public class GetUserInput {
 				System.out.printf("You have sucessfully purchased a %s!\n", purchaseItem.getName());
 				System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
 				
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalStateException e) {
 				System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseItem.getName(), purchaseItem.getPrice(), farm.getMoney());
 			}	
 		}
@@ -279,9 +279,11 @@ public class GetUserInput {
 				System.out.printf("You have sucessfully purchased a %s!\n", purchaseAnimal.getType());
 				System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
 				
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalStateException e) {
 				System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseAnimal.getType(), purchaseAnimal.getPrice(), farm.getMoney());
-			}	
+			} catch (IllegalArgumentException e) {
+				System.out.println("Your farm has the maximum number of animals!");
+			}
 		}
 		
 		if (mainCat == 2) {
@@ -307,9 +309,11 @@ public class GetUserInput {
 				System.out.printf("You have sucessfully purchased a %s!\n", purchaseCrop.getType());
 				System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
 				
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalStateException e) {
 				System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseCrop.getType(), purchaseCrop.getPrice(), farm.getMoney());
-			}	
+			} catch (IllegalArgumentException e) {
+				System.out.println("Your farm has the maximum number of crops!");
+			}
 		}
 		
 		System.out.println();
