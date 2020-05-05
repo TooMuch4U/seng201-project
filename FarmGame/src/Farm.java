@@ -44,6 +44,11 @@ public class Farm {
 	 */
 	private int animalLimit = 10;
 	
+	/**
+	 * The farms current bonus score
+	 */
+	private int currentBonusScore = 0;
+	
 	
 	/**
 	 * Constructor using parameters
@@ -191,6 +196,22 @@ public class Farm {
 		} else {
 			animalLimit = animalLimit + incr;
 		}
+	}
+	
+	/**
+	 * Returns the farms current bonus score
+	 * @return currentbonusScore
+	 */
+	public int getBonusScore() {
+		return currentBonusScore;
+	}
+	
+	/**
+	 * Increases the farms current bonus score
+	 * @param incr Amount to increase the farms bonus score by
+	 */
+	public void incrBonus(int incr) {
+		currentBonusScore = currentBonusScore + incr;
 	}
 	
 }

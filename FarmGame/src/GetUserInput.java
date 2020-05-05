@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 import animals.Animal;
@@ -243,17 +246,22 @@ public class GetUserInput {
 			System.out.printf("%s. Back/Cancel", i);
 			
 			int itemIndex = verifyIntegerInput(0, i);
-			purchaseItem = items.get(itemIndex);
-			System.out.println();
 			
-			try {
-				game.purchaseItem(purchaseItem);
-				System.out.printf("You have sucessfully purchased a %s!\n", purchaseItem.getName());
-				System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
+			if (itemIndex != i) {
+				purchaseItem = items.get(itemIndex);
+				System.out.println();
 				
-			} catch (IllegalStateException e) {
-				System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseItem.getName(), purchaseItem.getPrice(), farm.getMoney());
-			}	
+				try {
+					game.purchaseItem(purchaseItem);
+					System.out.printf("You have sucessfully purchased a %s!\n", purchaseItem.getName());
+					System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
+					
+				} catch (IllegalStateException e) {
+					System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseItem.getName(), purchaseItem.getPrice(), farm.getMoney());
+				}	
+			}
+			
+			
 		}
 		
 		if (mainCat == 1) {
@@ -271,19 +279,24 @@ public class GetUserInput {
 			System.out.printf("%s. Back/Cancel\n", i);
 			
 			int itemIndex = verifyIntegerInput(0, i);
-			purchaseAnimal = animals.get(itemIndex);
-			System.out.println();
 			
-			try {
-				game.purchaseAnimal(purchaseAnimal);
-				System.out.printf("You have sucessfully purchased a %s!\n", purchaseAnimal.getType());
-				System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
+			if (itemIndex != i) {
+				purchaseAnimal = animals.get(itemIndex);
+				System.out.println();
 				
-			} catch (IllegalStateException e) {
-				System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseAnimal.getType(), purchaseAnimal.getPrice(), farm.getMoney());
-			} catch (IllegalArgumentException e) {
-				System.out.println("Your farm has the maximum number of animals!");
+				try {
+					game.purchaseAnimal(purchaseAnimal);
+					System.out.printf("You have sucessfully purchased a %s!\n", purchaseAnimal.getType());
+					System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
+					
+				} catch (IllegalStateException e) {
+					System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseAnimal.getType(), purchaseAnimal.getPrice(), farm.getMoney());
+				} catch (IllegalArgumentException e) {
+					System.out.println("Your farm has the maximum number of animals!");
+				}
 			}
+			
+			
 		}
 		
 		if (mainCat == 2) {
@@ -301,22 +314,77 @@ public class GetUserInput {
 			System.out.printf("%s. Back/Cancel\n", i);
 			
 			int itemIndex = verifyIntegerInput(0, i);
-			purchaseCrop = crops.get(itemIndex);
-			System.out.println();
 			
-			try {
-				game.purchaseCrop(purchaseCrop);
-				System.out.printf("You have sucessfully purchased a %s!\n", purchaseCrop.getType());
-				System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
+			if (itemIndex != i) {
+				purchaseCrop = crops.get(itemIndex);
+				System.out.println();
 				
-			} catch (IllegalStateException e) {
-				System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseCrop.getType(), purchaseCrop.getPrice(), farm.getMoney());
-			} catch (IllegalArgumentException e) {
-				System.out.println("Your farm has the maximum number of crops!");
-			}
+				try {
+					game.purchaseCrop(purchaseCrop);
+					System.out.printf("You have sucessfully purchased a %s!\n", purchaseCrop.getType());
+					System.out.printf("Your farm now has a balance of: $%s\n", farm.getMoney());
+					
+				} catch (IllegalStateException e) {
+					System.out.printf("You don't have enough money! A %s costs $%s and you only have $%s!\n", purchaseCrop.getType(), purchaseCrop.getPrice(), farm.getMoney());
+				} catch (IllegalArgumentException e) {
+					System.out.println("Your farm has the maximum number of crops!");
+				}
+			} 
+			
 		}
 		
 		System.out.println();
+	}
+	
+	/**
+	 * Allows the user to harvest crops that are ready to be harvested
+	 * Prompts the user with a list of crops
+	 * @param crops ArrayList of crops in the farm
+	 * @param game Game environment object
+	 */
+	public void activateHarvestCrops(ArrayList<Crop> crops, GameEnviroBasic game) {
+		
+		ArrayList<Crop> cropsReady = new ArrayList<Crop>();
+		Map<Integer, Integer> indexMap = new HashMap<Integer, Integer>();
+		int i = 0;
+		for (Crop crop : crops) {
+			if (crop.getHarvestTime() == 0) {
+				cropsReady.add(crop);
+				indexMap.put(cropsReady.size() - 1, i);
+			}
+			i++;
+		}
+		
+		if (cropsReady.size() > 0) {
+			System.out.println("What crop would you like to harvest?");
+			
+			i = 0;
+			for (Crop crop : cropsReady) {
+				System.out.printf("%s. %-15s  +$%s\n", i, crop.getType(), crop.getSalePrice());
+				i++;
+			}
+			
+			System.out.printf("%s. Back/Cancel\n", i);
+			int choice = verifyIntegerInput(0, i);
+			
+			if (choice != i) {
+				int cropIndex = indexMap.get(choice);
+				Crop harvestCrop = crops.get(cropIndex);
+				game.harvestCrops(cropIndex);
+				System.out.printf("Harvested %s for $%s.\n", harvestCrop.getType(), harvestCrop.getSalePrice());
+			}
+			
+		} else {
+			System.out.println("Your farm doesn't have any crops that are ready to be harvested!");
+		}
+		
+		System.out.println();
+		
+	}
+	
+	public void endGame(GameEnviroBasic game) {
+		EndScreen endScreen = game.endGame();
+		System.out.printf("Finished with a score of %s\n", endScreen.displayScore());
 	}
 	
 	/**
@@ -329,20 +397,23 @@ public class GetUserInput {
 	 */
 	public void playGame(GameEnviroBasic game, int numDays, Farm farm) {
 		
-		while (game.getCurrentDays() < numDays) {
+		while (game.getCurrentDays() < numDays && !(game.gameEnded)) {
 			System.out.println("Please select an activity you would like to perform:");
 			System.out.println("1. Go to the next day\n2. View the status of your crops\n3. View the status of your animals\n4. View the status of your farm");
 			System.out.println("5. Feed your animals\n6. Tend to your crops");
-			System.out.println("7. Play with your animals\n8. Harvest your crops\n9. Tend to your land\n10. Visit the store");
-			int activitySelect = verifyIntegerInput(1,10);
+			System.out.println("7. Play with an animal\n8. Harvest your crops\n9. Tend to your land\n10. Visit the store\n11. End game");
+			int activitySelect = verifyIntegerInput(1,11);
 			
 			ArrayList<Animal> animals = farm.getAnimals();
 			int animalNum = animals.size();
+			ArrayList<Crop> crops = farm.getCrops();
+			int numCrops = crops.size();
 			
 			switch(activitySelect)
 			{
 			case 1:
 				game.advanceDays();
+				game.endOfDay();
 				break;
 			case 2:
 				game.viewCropStatus();
@@ -369,8 +440,6 @@ public class GetUserInput {
 				
 				break;
 			case 6:
-				ArrayList<Crop> crops = farm.getCrops();
-				int numCrops = crops.size();
 				ArrayList<Item> itemsList = farm.items;
 				int numItems = itemsList.size();
 				if (numCrops == 0) {
@@ -390,15 +459,27 @@ public class GetUserInput {
 				activatePlayWithAnimals(animals, game);
 				break;
 			case 8:
-				// Harvest crops tbd
+				if (numCrops == 0) {
+					System.out.println("Sorry, you don't have any crops at the moment");
+					break;
+				}
+				
+				activateHarvestCrops(crops, game);
+				
 				break;
 			case 9:
-				// Tend to land tbd
-				break;
+				game.tendToLand();
 			case 10:
 				activateVisitStore(game, farm);
 				break;
+			case 11:
+				endGame(game);
+				break;
 			} //Closes switch
+			
+			if (game.getCurrentDays() >= numDays) {
+				endGame(game);
+			}
 			
 		} //Closes while loop
 		endInput();

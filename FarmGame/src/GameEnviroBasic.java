@@ -14,6 +14,7 @@ public class GameEnviroBasic {
 	private int currentDays = 0;
 	private int numActions = 2;
 	private Store store = new Store();
+	public boolean gameEnded = false;
 	
 	public GameEnviroBasic(int days, Farm playerFarm) {
 		requiredDays = days;
@@ -361,5 +362,31 @@ public class GameEnviroBasic {
 		processStoreItem(price);
 		farm.addCrop(crop);
 	}
+	
+	/**
+	 * Method that is run at the end of each day
+	 * Tally's up the farms score for the day
+	 */
+	public void endOfDay() {
+		int incr = 0;
+		
+		ArrayList<Animal> animals = farm.getAnimals();
+		
+		// Add score from animals
+		for (Animal animal : animals) {
+			int hap = (int) animal.getHappiness();
+			incr = incr + hap;
+		}
+		
+		farm.incrBonus(incr);
+
+	}
+	
+	public EndScreen endGame() {
+		gameEnded = true;
+		EndScreen end = new EndScreen(farm);
+		return end;
+	}
+	
 	
 }

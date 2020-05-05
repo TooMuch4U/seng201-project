@@ -24,7 +24,7 @@ public class EndScreen {
 	 * @param farm Farm to calculate score of
 	 * @return
 	 */
-	public double calculateScore(Farm farm) {
+	private double calculateScore(Farm farm) {
 		double score = 0.0;
 		ArrayList<Animal> animals = farm.getAnimals();
 		ArrayList<Crop> crops = farm.getCrops();
@@ -37,7 +37,7 @@ public class EndScreen {
 		
 		// Add score from crops
 		for (Crop crop : crops) {
-			score = score + crop.getPurchasePrice();
+			score = score + crop.getPrice();
 		}
 		
 		// Add score from items
@@ -46,6 +46,7 @@ public class EndScreen {
 		}
 		
 		score = score + farm.getMoney();
+		score = score + farm.getBonusScore();
 		
 		return(score);
 	}
