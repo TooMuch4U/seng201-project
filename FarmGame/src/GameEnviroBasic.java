@@ -39,6 +39,14 @@ public class GameEnviroBasic {
 	}
 	
 	/**
+	 * Returns the store object
+	 * @return
+	 */
+	public Store getStore() {
+		return store;
+	}
+	
+	/**
 	 * Sets the number of actions permittable in a single day
 	 * @param number - the number of actions that can be completed in one day
 	 * Mainly used for testing purposes
@@ -263,7 +271,7 @@ public class GameEnviroBasic {
 			ArrayList<Animal> Animals = farm.getAnimals();
 			Animal animal = Animals.get(animalIndex);
 			animal.changeHappiness(change);
-			
+			numActions -= 1;
 		} else {
 			throw new ActionCountException("All actions performed for the day");
 		}
@@ -284,6 +292,7 @@ public class GameEnviroBasic {
 			crops.remove(crop); // Remove the crop from the farm
 	
 			farm.changeMoney(income); // Add the money to the farm
+			numActions -= 1;
 		} else {
 			throw new ActionCountException("All actions performed for the day");
 		}
@@ -300,142 +309,41 @@ public class GameEnviroBasic {
 			
 			farm.changeCropLimit(cropIncrease);
 			farm.changeAnimalLimit(animalIncrease);
+			numActions -= 1;
 		} else {
 			throw new ActionCountException("All actions performed for the day");
 		}
 		
 	}
 	
-	public void visitStore() {
-		ArrayList<Item> items = store.availableItems;
-		ArrayList<Animal> animals = store.availableAnimals;
-		ArrayList<Crop> crops = store.availableCrops;
-		
-		Scanner in = new Scanner(System.in);
-		int option = 0;
-		int sub_option = 0;
-		
-		while (option != 4) {
-		
-			System.out.println("Visiting the store");
-			System.out.println("1. Items");
-			System.out.println("2. Animals");
-			System.out.println("3. Crops");
-			System.out.println("4. Back/Exit");
+	private void processStoreItem(double price) {
+		if (farm.getMoney() >= price) {
+			// Farm can afford the item
+			farm.changeMoney(- price);
 			
-			option = in.nextInt();
-			
-			if (option == 1) {
-				// Viewing items
-				int final_int = 1;
-				
-				// Print all options
-				System.out.println("Viewing the stores available items");
-				for (int i = 0; i < items.size(); i++) {
-					Item item = items.get(i);
-					System.out.printf("%s. %-30s $%s %n", i + 1, item.getName(), item.getPrice());
-					final_int = i + 2;
-				}
-				System.out.printf("%s. Back/Exit %n", final_int);	
-				
-				// Get users option
-				sub_option = in.nextInt();
-				
-				if (sub_option < final_int && sub_option > 0) {
-					// Check if they can afford the item
-					Item item = store.purchaseItem(sub_option - 1);
-					if (farm.getMoney() >= item.getPrice()) {
-						// Farm can afford the item
-						farm.changeMoney(- item.getPrice());
-						farm.items.add(item);
-						
-						System.out.printf("Sucessfully Purchased: %s %n", item.getName());
-						
-					} else {
-						// Can't afford it
-						System.out.println("You don't have enought money for this item!");
-					}
-					
-					System.out.println();
-				} 
-				
-
-			} else if (option == 2) {
-				// Viewing items
-				// Viewing items
-				int final_int = 1;
-				
-				// Print all options
-				System.out.println("Viewing the stores available Animals");
-				for (int i = 0; i < animals.size(); i++) {
-					Animal animal = animals.get(i);
-					System.out.printf("%s. %-30s $%s %n", i + 1, animal.getType(), animal.getPrice());
-					final_int = i + 2;
-				}
-				System.out.printf("%s. Back/Exit %n", final_int);	
-				
-				// Get users option
-				sub_option = in.nextInt();
-				
-				if (sub_option < final_int && sub_option > 0) {
-					// Check if they can afford the item
-					Animal animal = store.purchaseAnimal(sub_option - 1);
-					if (farm.getMoney() >= animal.getPrice()) {
-						// Farm can afford the item
-						farm.changeMoney(- animal.getPrice());
-						farm.addAnimal(animal);
-						
-						System.out.printf("Sucessfully Purchased: %s %n", animal.getType());
-						
-					} else {
-						// Can't afford it
-						System.out.println("You don't have enought money for this item!");
-					}
-					
-					System.out.println();
-				
-				}
-			} else if (option == 3) {
-				// Viewing Crops
-				int final_int = 1;
-				
-				// Print all options
-				System.out.println("Viewing the stores available Animals");
-				for (int i = 0; i < crops.size(); i++) {
-					Crop crop = crops.get(i);
-					System.out.printf("%s. %-30s $%s %n", i + 1, crop.getType(), crop.getSalePrice());
-					final_int = i + 2;
-				}
-				System.out.printf("%s. Back/Exit %n", final_int);	
-				
-				// Get users option
-				sub_option = in.nextInt();
-				
-				if (sub_option < final_int && sub_option > 0) {
-					// Check if they can afford the item
-					Crop crop = store.purchaseCrop(sub_option - 1);
-					if (farm.getMoney() >= crop.getSalePrice()) {
-						// Farm can afford the item
-						farm.changeMoney(- crop.getSalePrice());
-						farm.addCrop(crop);
-						
-						System.out.printf("Sucessfully Purchased: %s %n", crop.getType());
-						
-					} else {
-						// Can't afford it
-						System.out.println("You don't have enought money for this item!");
-					}
-					
-					System.out.println();
-				}
-			
-				
-			}
-			
+		} else{
+			throw new IllegalArgumentException("There is not enough money to purchase this");
 		}
-		
-		
-		
+	}
+
+	
+	public void purchaseItem(Item item) {
+		double itemPrice = item.getPrice();
+		processStoreItem(itemPrice);
+		farm.items.add(item);
+	
+	}
+	
+	public void purchaseAnimal(Animal animal) {
+		double price = animal.getPrice();
+		processStoreItem(price);
+		farm.addAnimal(animal);
+	}
+	
+	public void purchaseCrop(Crop crop) {
+		double price = crop.getPrice();
+		processStoreItem(price);
+		farm.addCrop(crop);
 	}
 	
 }
