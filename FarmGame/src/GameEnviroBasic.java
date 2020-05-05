@@ -254,33 +254,39 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Play with animals, increases the happiness of each animal in the farm
+	 * Play with animals, increases the happiness of an animal in the farm
+	 * @param animalIndex takes the integer of the position in the arrayList to get the animal
 	 */
-	public void playWithAnimals() {
-		double change = 2.0; // Change constant to increase each animals happiness by
-		ArrayList<Animal> Animals = farm.getAnimals();
-		
-		for (Animal animal : Animals) {
+	public void playWithAnimals(int animalIndex) {
+		if (numActions > 0) {
+			double change = 2.0; // Change constant to increase animals happiness by
+			ArrayList<Animal> Animals = farm.getAnimals();
+			Animal animal = Animals.get(animalIndex);
 			animal.changeHappiness(change);
+			
+		} else {
+			throw new ActionCountException("All actions performed for the day");
 		}
+		
 	}
 	
 	/**
-	 * Harvests all the crops in the farm and adds the money to the farm.
+	 * Harvests one crop in the farm and adds the money to the farm.
+	 * @param cropIndex index of the crop to harvest
 	 */
-	public void harvestCrops() {
-		ArrayList<Crop> crops = farm.getCrops();
-		double income = 0.0;
-		
-		for (Crop crop : crops) {
-			if (crop.getHarvestTime() == 0) {
-				income = income + crop.getSalePrice(); 
-				crops.remove(crop); // Remove the crop from the farm
-			}
+	public void harvestCrops(int cropIndex) {
+		if (numActions > 0) {
+			ArrayList<Crop> crops = farm.getCrops();
+			double income = 0.0;
+			
+			Crop crop = crops.get(cropIndex);
+			income = income + crop.getSalePrice(); 
+			crops.remove(crop); // Remove the crop from the farm
+	
+			farm.changeMoney(income); // Add the money to the farm
+		} else {
+			throw new ActionCountException("All actions performed for the day");
 		}
-		
-		// Add the money to the farm
-		farm.changeMoney(income);
 		
 	}
 	
@@ -288,11 +294,15 @@ public class GameEnviroBasic {
 	 * Tending to land increases the crop and animal limits on the farm
 	 */
 	public void tendToLand() {
-		int cropIncrease = 5;
-		int animalIncrease = 5;
-		
-		farm.changeCropLimit(cropIncrease);
-		farm.changeAnimalLimit(animalIncrease);
+		if (numActions > 0) {
+			int cropIncrease = 5;
+			int animalIncrease = 5;
+			
+			farm.changeCropLimit(cropIncrease);
+			farm.changeAnimalLimit(animalIncrease);
+		} else {
+			throw new ActionCountException("All actions performed for the day");
+		}
 		
 	}
 	
