@@ -152,7 +152,7 @@ public class GetUserInput {
 			game.tendToCrops(cropIndex);
 		} else {
 			System.out.println("Would you like to use an item?\nType 0 for No, or 1 for Yes.");
-			int confirmation = userInput.nextInt();
+			int confirmation = verifyIntegerInput(0,1);
 			if (confirmation == 0) {
 				game.tendToCrops(cropIndex);
 			} else {

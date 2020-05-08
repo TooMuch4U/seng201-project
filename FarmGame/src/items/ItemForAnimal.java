@@ -23,5 +23,11 @@ public class ItemForAnimal extends Item {
 	public double getBenefit() {
 		return(healthBenefit);
 	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("This %s increases animal health by %d%", super.getName(), getBenefit());
+	}
 
 }

@@ -15,9 +15,39 @@ public class GameEnviroBasic {
 	private int numActions = 2;
 	private Store store = new Store();
 	
+	/**
+	 * Construtor with parameters
+	 * Used with command line application
+	 * @param days - the amount of playable days specified by the player
+	 * @param playerFarm - The player's farm
+	 */
 	public GameEnviroBasic(int days, Farm playerFarm) {
 		requiredDays = days;
 		farm = playerFarm;
+	}
+	
+	/**
+	 * Constructor
+	 * Used with GUI implementation of the application
+	 */
+	public GameEnviroBasic() {}
+	
+	/**
+	 * Sets the value of the player's farm
+	 * Used only in the GUI implementation
+	 * @param playerFarm - the player's farm, created using information on the set-up screen
+	 */
+	public void setFarm(Farm playerFarm) {
+		farm = playerFarm;
+	}
+	
+	/**
+	 * Sets the desired amount of days for the player
+	 * Used only in the GUI implementation
+	 * @param desiredDays - the amount of days the player wants to play for
+	 */
+	public void setRequiredDays(int desiredDays) {
+		requiredDays = desiredDays;
 	}
 	
 	/**
@@ -32,10 +62,21 @@ public class GameEnviroBasic {
 	/**
 	 * Returns the number of days currently surpassed
 	 * @return currentDays - the number of days the game has gone for so far
-	 * Mainly used for testing purposes
 	 */
 	public int getCurrentDays() {
 		return currentDays;
+	}
+	
+	public int getRequiredDays() {
+		return requiredDays;
+	}
+	
+	/**
+	 * Returns the player's farm
+	 * @return farm - the player's farm
+	 */
+	public Farm getFarm() {
+		return farm;
 	}
 	
 	/**
@@ -47,15 +88,53 @@ public class GameEnviroBasic {
 		numActions = number;
 	}
 	
+	public void launchMainScreen() {
+		MainScreen mainWindow = new MainScreen(this);
+	}
+	
+	public void closeMainScreen(MainScreen mainWindow) {
+		mainWindow.closeWindow();
+	}
+	
+	public void launchFeedAnimalScreen(MainScreen mainWindow) {
+		closeMainScreen(mainWindow);
+		FeedAnimalScreen animalWindow = new FeedAnimalScreen(this);
+	}
+	
+	public void closeFeedAnimalScreen(FeedAnimalScreen animalWindow) {
+		animalWindow.closeWindow();
+		launchMainScreen();
+	}
+	
+	public void launchTendCropsScreen(MainScreen mainWindow) {
+		closeMainScreen(mainWindow);
+		TendCropsScreen cropsWindow = new TendCropsScreen(this);
+	}
+	
+	public void closeTendCropsScreen(TendCropsScreen cropsWindow) {
+		cropsWindow.closeWindow();
+	}
+	
+	public void launchSetupScreen() {
+		SetupScreen setupWindow = new SetupScreen(this);
+	}
+	
+	public void closeSetupScreen(SetupScreen setupWindow) {
+		setupWindow.closeWindow();
+		launchMainScreen();
+	}
+	
+	
 	/**
 	 * Advances the number of days by one, and resets the action counter
 	 * If the current days is the number of days the player requested, the game is over
 	 * Generates and displays the score, and prompts the user to play again
 	 * This function is called directly when the player chooses to advance time
 	 */
-	public void advanceDays() {
+	public void advanceDays(MainScreen screen) {
 		currentDays += 1;
 		if (currentDays == requiredDays) {
+			closeMainScreen(screen);
 			EndScreen endScreen = new EndScreen(farm);
 			String score = endScreen.displayScore();
 			System.out.println("Final score = "+score);
@@ -75,17 +154,16 @@ public class GameEnviroBasic {
 	 * Allows the user to view the status of all of their crops
 	 * Prints a string for each crop, outlining their type and the growing time left.
 	 */
-	public void viewCropStatus() {
+	public String viewCropStatus() {
 		ArrayList<Crop> crops = farm.getCrops();
 		if (crops.size() == 0) {
-			System.out.println("You don't seem to have any crops right now. Visit the store to buy some.");
+			return "You don't seem to have any crops right now. Visit the store to buy some.";
 		} else {
 			String returnString = "";
 			for (Crop crop:crops) {
-				String cropTime = Integer.toString(crop.getHarvestTime());
-				returnString += "The crop " + crop.getType() + " has " + cropTime + " days left.\n";
+				returnString += crop.toString() + "\n";
 			}
-			System.out.println(returnString);
+			return returnString;
 		}
 	}
 	
@@ -94,19 +172,16 @@ public class GameEnviroBasic {
 	 * Prints a string for each animal outlining their type, happiness, and health
 	 * This does not count as a daily action; it can thus be called if all actions are performed
 	 */
-	public void viewAnimalStatus() {
+	public String viewAnimalStatus() {
 		ArrayList<Animal> animals = farm.getAnimals();
 		if (animals.size() == 0) {
-			System.out.println("You don't have any animals right now. Visit the store to buy some.");
+			return "You don't have any animals right now. Visit the store to buy some.";
 		} else {
 			String returnString = "";
 			for (Animal animal: animals) {
-				String animalHealth = Double.toString(animal.getHealth());
-				String animalHappy = Double.toString(animal.getHappiness());
-				String animalType = animal.getType();
-				returnString += "This " + animalType + " has a health of " + animalHealth + " and happiness of " + animalHappy + ".\n";
+				returnString += animal.toString() + "\n";
 			}
-			System.out.println(returnString);
+			return returnString;
 		}
 	}
 	
@@ -115,15 +190,14 @@ public class GameEnviroBasic {
 	 * Allows the player to view the status of their farm
 	 * Prints a string containing their farm's name, farmer, and total current money
 	 */
-	public void viewFarmStatus() {
+	public String viewFarmStatus() {
 		String farmName = farm.getName();
 		String farmMoney = Double.toString(farm.getMoney());
 		String farmerName = farm.getFarmer().getName();
 		
-		String returnString = "Your farm "+farmName+" has a farmer called "+farmerName+", with total money of "+farmMoney;
-		System.out.println(returnString);
-		viewAnimalStatus();
-		viewCropStatus();
+		String returnString = "Your farm "+farmName+" has a farmer called "+farmerName+", with total money of "+farmMoney + ".\n";
+		returnString += viewAnimalStatus() + viewCropStatus();
+		return returnString;
 	}
 	
 	/**
@@ -221,7 +295,6 @@ public class GameEnviroBasic {
 			farm.setAnimals(animals);
 			numActions -= 1;
 		} else {
-			//Need to implement the action error
 			throw new ActionCountException("All actions performed for the day");
 		}
 	}
@@ -268,19 +341,25 @@ public class GameEnviroBasic {
 	/**
 	 * Harvests all the crops in the farm and adds the money to the farm.
 	 */
-	public void harvestCrops() {
+	public int harvestCrops() {
 		ArrayList<Crop> crops = farm.getCrops();
 		double income = 0.0;
+		int numCrops = 0;
 		
 		for (Crop crop : crops) {
 			if (crop.getHarvestTime() == 0) {
 				income = income + crop.getSalePrice(); 
 				crops.remove(crop); // Remove the crop from the farm
+				numCrops += 1; // Add a crop to the total crops harvested
 			}
 		}
 		
 		// Add the money to the farm
 		farm.changeMoney(income);
+		if (numCrops > 0) {
+			numActions -= 1;
+		}
+		return numCrops;
 		
 	}
 	
@@ -426,6 +505,11 @@ public class GameEnviroBasic {
 		
 		
 		
+	}
+	
+	public static void main(String[] args) {
+		GameEnviroBasic game = new GameEnviroBasic();
+		game.launchSetupScreen();
 	}
 	
 }

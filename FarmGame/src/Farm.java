@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 
 import items.Item;
+import items.ItemForAnimal;
+import items.ItemForCrop;
+import items.ItemWater;
 import crops.Crop;
 import animals.Animal;
 
@@ -105,6 +108,37 @@ public class Farm {
 	 */
 	public ArrayList<Crop> getCrops() {
 		return crops;
+	}
+	
+	/**
+	 * Returns a list containing all of the items owned by the player that can be used on animals
+	 * @return animalItems - an ArrayList that contains all items that could be used on an animal
+	 */
+	public ArrayList<ItemForAnimal> getAnimalItems() {
+		ArrayList<ItemForAnimal> animalItems = new ArrayList<>();
+		for (Item item:items) {
+			String name = item.getName();
+			if (name == "Apple" || name == "Steroids" || name == "Milk" ) {
+				animalItems.add((ItemForAnimal) item);
+			}
+		}
+		return animalItems;
+	}
+	
+	/**
+	 * Returns a list containing all of the items owned by the player that could be used on crops
+	 * @return cropItems - an ArrayList that contains all items that could be used on a crop
+	 */
+	public ArrayList<ItemForCrop> getCropItems() {
+		ArrayList<ItemForCrop> cropItems = new ArrayList<>();
+		cropItems.add(new ItemWater());
+		for (Item item:items) {
+			String name = item.getName();
+			if (name == "Hoe" || name == "Hydroponic Grow Lights" || name == "Fertilizer" ) {
+				cropItems.add((ItemForCrop) item);
+			}
+		}
+		return cropItems;
 	}
 	
 	/**

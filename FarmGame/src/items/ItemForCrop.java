@@ -23,5 +23,10 @@ public class ItemForCrop extends Item {
 	public double getBenefit() {
 		return(daysBenefit);
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("This %s decreases growing time by %d days", super.getName(), getBenefit());
+	}
 
 }

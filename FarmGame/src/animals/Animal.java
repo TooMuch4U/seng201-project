@@ -145,4 +145,9 @@ public class Animal {
 		}
 	}
 	
+	
+	@Override
+	public String toString() {
+		return String.format("This %s is %d% happy and %d healthy", getType(), getHappiness(), getHealth());
+	}
 }

@@ -79,4 +79,9 @@ public class Crop {
 		}
 		daysUntilHarvest -= change;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("This %s has %d days left to grow", getType(), getHarvestTime());
+	}
 }
