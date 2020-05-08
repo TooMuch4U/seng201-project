@@ -1,7 +1,8 @@
 package crops;
+import items.StoreItem;
 
 
-public class Crop {
+public class Crop implements StoreItem{
 	
 	/**
 	 * The type of crop
@@ -46,7 +47,7 @@ public class Crop {
 	 * Gets the purchasing price of the crop
 	 * @return purchasePrice
 	 */
-	public double getPurchasePrice() {
+	public double getPrice() {
 		return purchasePrice;
 	}
 	

@@ -1,7 +1,8 @@
 package animals;
+import items.StoreItem;
 
 
-public class Animal {
+public class Animal implements StoreItem{
 	
 	/**
 	 * The type of animal

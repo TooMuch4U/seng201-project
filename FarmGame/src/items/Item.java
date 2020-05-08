@@ -1,6 +1,6 @@
 package items;
 
-public abstract class Item {
+public abstract class Item implements StoreItem{
 	
 	/**
 	 * Items name
