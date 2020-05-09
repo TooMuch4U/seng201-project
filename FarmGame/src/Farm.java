@@ -54,11 +54,11 @@ public class Farm {
 	
 	
 	/**
-	 * Constructor using parameters
-	 * @param title - the desired name for the farm, having already been checked
-	 * @param kind - the type of farm to be made
-	 * @param owner - the Farmer created by the User
-	 * @param cash - the initial available money
+	 * Constructor using parameters.
+	 * @param title - the desired name for the farm, having already been checked.
+	 * @param kind - the type of farm to be made.
+	 * @param owner - the Farmer created by the player.
+	 * @param cash - the initial available money.
 	 */
 	public Farm(String title, String kind, Farmer owner, double cash) {
 		name = title;
@@ -92,7 +92,7 @@ public class Farm {
 	}
 	
 	/**
-	 * Gets the current money available to the user
+	 * Gets the current money available to the user.
 	 * @return money
 	 */
 	public double getMoney() {
@@ -100,24 +100,24 @@ public class Farm {
 	}
 	
 	/**
-	 * Gets the current animals on the farm
-	 * @return animals - ArrayList containing the farm's animals
+	 * Gets the current animals on the farm.
+	 * @return animals - ArrayList containing the farm's animals.
 	 */
 	public ArrayList<Animal> getAnimals() {
 		return animals;
 	}
 	
 	/**
-	 * Gets the current crops growing on the farm
-	 * @return crops - ArrayList containing the farm's crops
+	 * Gets the current crops growing on the farm.
+	 * @return crops - ArrayList containing the farm's crops.
 	 */
 	public ArrayList<Crop> getCrops() {
 		return crops;
 	}
 	
 	/**
-	 * Returns a list containing all of the items owned by the player that can be used on animals
-	 * @return animalItems - an ArrayList that contains all items that could be used on an animal
+	 * Returns a list containing all of the items owned by the player that can be used on animals.
+	 * @return animalItems - an ArrayList that contains all items that could be used on an animal.
 	 */
 	public ArrayList<ItemForAnimal> getAnimalItems() {
 		ArrayList<ItemForAnimal> animalItems = new ArrayList<>();
@@ -131,8 +131,8 @@ public class Farm {
 	}
 	
 	/**
-	 * Returns a list containing all of the items owned by the player that could be used on crops
-	 * @return cropItems - an ArrayList that contains all items that could be used on a crop
+	 * Returns a list containing all of the items owned by the player that could be used on crops.
+	 * @return cropItems - an ArrayList that contains all items that could be used on a crop.
 	 */
 	public ArrayList<ItemForCrop> getCropItems() {
 		ArrayList<ItemForCrop> cropItems = new ArrayList<>();
@@ -147,27 +147,25 @@ public class Farm {
 	}
 	
 	/**
-	 * Sets the ArrayList animals to a new list of Animals
-	 * Intended to be used only when animals are removed from the farm by an event
-	 * @param newAnimals - the ArrayList animals with some animals removed
+	 * Sets the ArrayList animals to a new or modified list of Animals.
+	 * @param newAnimals - the ArrayList animals with some animals removed.
 	 */
 	public void setAnimals(ArrayList<Animal> newAnimals) {
 		animals = newAnimals;
 	}
 	
 	/**
-	 * Sets the ArrayList crops to a new list of Crops
-	 * Intended to be used only when crops are harvested, or removed from the farm by an event
-	 * @param newCrops - the ArrayList crops with one or more crops removed or manipulated
+	 * Sets the ArrayList crops to a new or modified list of Crops.
+	 * @param newCrops - the ArrayList crops with one or more crops removed or manipulated.
 	 */
 	public void setCrops(ArrayList<Crop> newCrops) {
 		crops = newCrops;
 	}
 	
 	/**
-	 * Manipulates the total current money of the farm
-	 * Throws an illegal argument exception if the money goes below 0
-	 * @param change - the desired change in money
+	 * Manipulates the total current money of the farm.
+	 * Throws an illegal argument exception if the money goes below 0.
+	 * @param change - the desired change in money.
 	 */
 	public void changeMoney(double change) {
 		if (money >= Math.abs(change) && change < 0 || change >= 0) {

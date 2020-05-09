@@ -8,19 +8,40 @@ import items.*;
 
 public class GameEnviroBasic {
 	
+	/**
+	 * The player's farm
+	 */
 	private Farm farm;
+	/**
+	 * The number of days the player wishes to play for
+	 */
 	private int requiredDays;
+	/**
+	 * A random number generator used to determine random events
+	 */
 	private Random rng = new Random();
+	/**
+	 * The current day the player is on
+	 */
 	private int currentDays = 0;
+	/**
+	 * The number of actions permittable in a day
+	 */
 	private int numActions = 2;
+	/**
+	 * The store object
+	 */
 	private Store store = new Store();
+	/**
+	 * A boolean to determine whether the player can continue playing
+	 */
 	public boolean gameEnded = false;
 	
 	/**
-	 * Construtor with parameters
-	 * Used with command line application
-	 * @param days - the amount of playable days specified by the player
-	 * @param playerFarm - The player's farm
+	 * Construtor with parameters.
+	 * Used with command line application.
+	 * @param days - the amount of playable days specified by the player.
+	 * @param playerFarm - The player's farm.
 	 */
 	public GameEnviroBasic(int days, Farm playerFarm) {
 		requiredDays = days;
@@ -28,32 +49,32 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Constructor
-	 * Used with GUI implementation of the application
+	 * Constructor without parameters.
+	 * Used with GUI implementation of the application.
 	 */
 	public GameEnviroBasic() {}
 	
 	/**
-	 * Sets the value of the player's farm
-	 * Used only in the GUI implementation
-	 * @param playerFarm - the player's farm, created using information on the set-up screen
+	 * Sets the value of the player's farm.
+	 * Used only in the GUI implementation.
+	 * @param playerFarm - the player's farm, created using information on the set-up screen.
 	 */
 	public void setFarm(Farm playerFarm) {
 		farm = playerFarm;
 	}
 	
 	/**
-	 * Sets the desired amount of days for the player
-	 * Used only in the GUI implementation
-	 * @param desiredDays - the amount of days the player wants to play for
+	 * Sets the desired amount of days for the player.
+	 * Used only in the GUI implementation.
+	 * @param desiredDays - the amount of days the player wants to play for.
 	 */
 	public void setRequiredDays(int desiredDays) {
 		requiredDays = desiredDays;
 	}
 	
 	/**
-	 * Returns the store object
-	 * @return
+	 * Returns the store object.
+	 * @return store - the store object
 	 */
 	public Store getStore() {
 		return store;
@@ -62,74 +83,107 @@ public class GameEnviroBasic {
 
 	
 	/**
-	 * Returns the current value of numActions
-	 * @return numActions - the number of actions left in the day
-	 * Mainly used for testing purposes
+	 * Returns the current value of numActions.
+	 * @return numActions - the number of actions left in the day.
 	 */
 	public int getNumActions() {
 		return numActions;
 	}
 	
 	/**
-	 * Returns the number of days currently surpassed
-	 * @return currentDays - the number of days the game has gone for so far
+	 * Returns the number of days currently surpassed.
+	 * @return currentDays - the number of days the game has gone for so far.
 	 */
 	public int getCurrentDays() {
 		return currentDays;
 	}
 	
+	/**
+	 * Returns the number of days the game must continue for.
+	 * @return requiredDays - the number of days the player wanted the game to go for.
+	 */
 	public int getRequiredDays() {
 		return requiredDays;
 	}
 	
 	/**
-	 * Returns the player's farm
-	 * @return farm - the player's farm
+	 * Returns the player's farm object.
+	 * @return farm - the player's farm.
 	 */
 	public Farm getFarm() {
 		return farm;
 	}
 	
 	/**
-	 * Sets the number of actions permittable in a single day
-	 * @param number - the number of actions that can be completed in one day
-	 * Mainly used for testing purposes
+	 * Sets the number of actions permittable in a single day.
+	 * @param number - the number of actions that can be completed in one day.
 	 */
 	public void setNumActions(int number) {
 		numActions = number;
 	}
 	
+	/**
+	 * Launches the main GUI screen of the game.
+	 */
 	public void launchMainScreen() {
 		MainScreen mainWindow = new MainScreen(this);
 	}
 	
+	/**
+	 * Closes the main GUI screen of the game.
+	 * @param mainWindow - the main screen of the GUI.
+	 */
 	public void closeMainScreen(MainScreen mainWindow) {
 		mainWindow.closeWindow();
 	}
 	
+	/**
+	 * Closes the main game screen and opens the animal feeding GUI screen.
+	 * @param mainWindow - the main screen of the GUI. Passed in to close the screen.
+	 */
 	public void launchFeedAnimalScreen(MainScreen mainWindow) {
 		closeMainScreen(mainWindow);
 		FeedAnimalScreen animalWindow = new FeedAnimalScreen(this);
 	}
 	
+	/**
+	 * Closes the animal feeding screen and opens the main screen of the GUI.
+	 * @param animalWindow - the animal feeding screen of the GUI.
+	 */
 	public void closeFeedAnimalScreen(FeedAnimalScreen animalWindow) {
 		animalWindow.closeWindow();
 		launchMainScreen();
 	}
 	
+	/**
+	 * Closes the main game screen and opens the crop tending GUI screen.
+	 * @param mainWindow - the main screen of the GUI. Passed in to close the screen.
+	 */
 	public void launchTendCropsScreen(MainScreen mainWindow) {
 		closeMainScreen(mainWindow);
 		TendCropsScreen cropsWindow = new TendCropsScreen(this);
 	}
 	
+	/**
+	 * Closes the crop tending screen and opens the main game screen.
+	 * @param cropsWindow - the crop tending screen of the GUI.
+	 */
 	public void closeTendCropsScreen(TendCropsScreen cropsWindow) {
 		cropsWindow.closeWindow();
+		launchMainScreen();
 	}
 	
+	/**
+	 * Launches the setup screen of the GUI.
+	 */
 	public void launchSetupScreen() {
 		SetupScreen setupWindow = new SetupScreen(this);
 	}
 	
+	/**
+	 * Closes the setup screen of the GUI.
+	 * @param setupWindow - the setup screen of the GUI.
+	 */
 	public void closeSetupScreen(SetupScreen setupWindow) {
 		setupWindow.closeWindow();
 		launchMainScreen();
@@ -162,13 +216,16 @@ public class GameEnviroBasic {
 
 	
 	/**
-	 * Allows the user to view the status of all of their crops
-	 * Prints a string for each crop, outlining their type and the growing time left.
+	 * Allows the user to view the status of all of their crops.
+	 * Returns a string for each crop, outlining their type and the growing time left.
+	 * This does not count as a daily action; it can thus be called if all actions are performed.
+	 * If the user has no crops, the string prompts them to visit the store.
+	 * @return returnString - the string detailing the player's crops.
 	 */
 	public String viewCropStatus() {
 		ArrayList<Crop> crops = farm.getCrops();
 		if (crops.size() == 0) {
-			return "You don't seem to have any crops right now. Visit the store to buy some.";
+			return "You don't seem to have any crops right now. Visit the store to buy some.\n";
 		} else {
 			String returnString = "";
 			for (Crop crop:crops) {
@@ -179,14 +236,16 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Allows the user to view the status of all of their animals
-	 * Prints a string for each animal outlining their type, happiness, and health
-	 * This does not count as a daily action; it can thus be called if all actions are performed
+	 * Allows the user to view the status of all of their animals.
+	 * Returns a string for each animal outlining their type, happiness, and health.
+	 * This does not count as a daily action; it can thus be called if all actions are performed.
+	 * If the user has no animals, the string prompts them to visit the store.
+	 * @return returnString - the string detailing the player's animals.
 	 */
 	public String viewAnimalStatus() {
 		ArrayList<Animal> animals = farm.getAnimals();
 		if (animals.size() == 0) {
-			return "You don't have any animals right now. Visit the store to buy some.";
+			return "You don't have any animals right now. Visit the store to buy some.\n";
 		} else {
 			String returnString = "";
 			for (Animal animal: animals) {
@@ -198,8 +257,11 @@ public class GameEnviroBasic {
 	
 	
 	/**
-	 * Allows the player to view the status of their farm
-	 * Prints a string containing their farm's name, farmer, and total current money
+	 * Allows the player to view the status of their farm.
+	 * Returns a string containing their farm's name, farmer, and total current money.
+	 * Also returns strings containing information about the player's animals and crops.
+	 * This does not count towards daily actions.
+	 * @return returnString - a string containing information about the user's farm.
 	 */
 	public String viewFarmStatus() {
 		String farmName = farm.getName();
@@ -212,17 +274,13 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Removes half of the animals from the farm using a random number generator
-	 * @param farm - the non-static player's farm
-	 * @param rng - the non_static random number generator used
+	 * Removes half of the animals from the farm using the game environment's random number generator.
+	 * Utilises a while loop to ensure exactly half of the animals are removed.
+	 * If the rng generates an even number, or there are as many animals in the list as need to be removed, the next animal will be removed.
 	 */
-	public void removeHalfAnimals(Farm farm, Random rng) {
+	public void removeHalfAnimals() {
 		ArrayList<Animal> animals = farm.getAnimals();
 		int num_required = animals.size()/2;
-		/**
-		 * Utilises a while loop to ensure exactly half of the animals are removed
-		 * If the rng generates an even number, or there are as many animals in the list as need to be removed, remove the animal
-		 */
 		while(num_required > 0) {
 			for(int i = 0; i < animals.size(); i++) {
 				if (num_required == (animals.size() - i) || rng.nextInt()%2 == 0) {
@@ -235,18 +293,14 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Removes half of the crops from the farm using a random number generator
-	 * @param farm - the non-static user's farm passed into a static function
-	 * @param rng - the non_static number generator passed into a static function
+	 * Removes half of the crops from the farm using a random number generator.
+	 * Uses a while loop to ensure that the number of crops removed is adequate.
+	 * If the rng generates an odd number, or the remaining crops in the list need to be removed, the next crop will be removed.
 	 */
-	public void removeHalfCrops(Farm farm, Random rng) {
+	public void removeHalfCrops() {
 		ArrayList<Crop> crops = farm.getCrops();
 		int crop_num = crops.size();
 		int num_required = crop_num/2;
-		/**
-		 * Uses a while loop to ensure that the number of crops removed is adequate
-		 * If the rng generates an odd number, or the remaining crops in the list need to be removed, remove the next crop
-		 */
 		while(num_required > 0) {
 			for(int i = 0; i < crop_num; i++) {
 				if (num_required == (crop_num - i) || rng.nextInt()%2 == 1) {
@@ -259,43 +313,43 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * The triggering function for the random events
-	 * Utilizes a random number generator to determine whether the events happen or not
-	 * County Fair - 10% chance of occurring - player gets a bonus sum of money depending on the numbers of crops and animals they have
-	 * Broken Fence - 5% chance of occurring - player loses half of their farm's animals. The animals are chose randomly using removeHalfAnimals()
-	 * Drought - 5% chance of occurring - player loses half of their farm's crops. The crops are chose randomly using removeHalfCrops()
-	 * 
+	 * The triggering function for the random events.
+	 * Utilizes a random number generator to determine whether the events happen or not.
+	 * County Fair - 10% chance of occurring - player gets a bonus sum of money depending on the numbers of crops and animals they have.
+	 * Broken Fence - 5% chance of occurring - player loses half of their farm's animals. The animals are chose randomly using removeHalfAnimals().
+	 * Drought - 5% chance of occurring - player loses half of their farm's crops. The crops are chose randomly using removeHalfCrops().
+	 * @return eventInfo - a string detailing what event happened, if any.
 	 */
-	public void randomEvents() {
+	public String randomEvents() {
 		int randNum = rng.nextInt();
+		String eventInfo = "";
 		if(randNum%10 == 2) {
 			//County fair: win a bonus amount of money 
 			int animalNum = farm.getAnimals().size();
 			int cropNum = farm.getCrops().size();
 			double moneyGain = Math.round((25*animalNum + 10*cropNum)*100.0)/100.0;			
 			
-			System.out.println("Your farm won first prize at the county fair!\nYou gain an extra $"+ Double.toString(moneyGain)+".");
+			eventInfo = "Your farm won first prize at the county fair!\nYou gain an extra $"+ Double.toString(moneyGain)+".";
 			farm.changeMoney(moneyGain);
 			
 		} else if (randNum%20 == 5) {
 			//Broken fence: animals escape
-			System.out.println("Your fence broke, and half of your animals escaped.");
-			removeHalfAnimals(farm, rng);
+			eventInfo = "Your fence broke, and half of your animals escaped.";
+			removeHalfAnimals();
 		} else if (randNum%20 == 19 ) {
 			//Drought: crops die
-			System.out.println("A drought has struck, and your crops can't handle it.\nHalf of them die from lack of water.");
-			removeHalfCrops(farm, rng);
+			eventInfo = "A drought has struck, and your crops can't handle it.\nHalf of them die from lack of water.";
+			removeHalfCrops();
 		}
+		return eventInfo;
 	}
 	
 	
 	/**
-	 * Allows the user to feed all animals on their farm
-	 * 
-	 * Further implementation will allow the user to only choose one animal to feed - could pass in the animal index
-	 * 
-	 * @param feedItem - the Item that will be used to increase the animal's attributes
-	 * Counts as a daily action, and as such can't be performed if all actions are completed
+	 * Allows the user to feed an animal on their farm.
+	 * Counts as a daily action, and as such can't be performed if all actions are completed.
+	 * @param feedItem - the ItemForAnimal that will be used to increase the animal's health.
+	 * @param animalIndex - the index of the animal within the list that the user wishes to feed.
 	 */
 	public void feedAnimals(ItemForAnimal feedItem, int animalIndex) {
 		if (numActions > 0) {
@@ -311,17 +365,20 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * An overload method of tendToCrops that ensures the basic item is used if no item is specified
-	 * Please see tendToCrops documentation for more information
+	 * Allows the player to tend to the crops on their farm, making them grow quicker.
+	 * Counts towards the player's daily actions, and as such, can't be performed if the player has no more actions for the day.
+	 * An overload method of tendToCrops that ensures the basic item is used if no item is specified in the command line implementation.
+	 * @param cropIndex - the index of the crop within the list that the player wishes to tend to.
 	 */
 	public void tendToCrops(int cropIndex) {
 		tendToCrops(new ItemWater(), cropIndex);
 	}
 	
 	/**
-	 * Allows the player to tend to the crops on their farm, making them grow quicker
-	 * @param cropItem - the item to be used on the crops. If none is specified, the overload function passes in the base item
-	 * Counts towards the player's daily actions, and as such, can't be performed if the player has no more actions for the day
+	 * Allows the player to tend to the crops on their farm, making them grow quicker.
+	 * Counts towards the player's daily actions, and as such, can't be performed if the player has no more actions for the day.
+	 * @param cropItem - the ItemForCrop to be used on the crops.
+	 * @param cropIndex - the index of the crop within the list that the player wishes to tend to.
 	 */
 	public void tendToCrops(ItemForCrop cropItem, int cropIndex) {
 		if (numActions > 0) {

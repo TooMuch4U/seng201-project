@@ -26,22 +26,6 @@ public class SetupScreen {
 	private GameEnviroBasic game;
 
 	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					SetupScreen window = new SetupScreen();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
 	 * Create the application.
 	 */
 	public SetupScreen(GameEnviroBasic incomingGame) {
@@ -50,11 +34,17 @@ public class SetupScreen {
 		frame.setVisible(true);
 	}
 	
-	
+	/**
+	 * Closes the GUI setup window.
+	 * Called from the game environment.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Notifies the game environment that the screen must be closed.
+	 */
 	public void finishedWindow() {
 		game.closeSetupScreen(this);
 	}
