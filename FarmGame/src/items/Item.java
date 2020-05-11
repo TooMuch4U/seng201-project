@@ -49,8 +49,5 @@ public abstract class Item implements StoreItem{
 	 */
 	public abstract double getBenefit();
 	
-	public static void main(String[] args) {
-
-	}
 
 }

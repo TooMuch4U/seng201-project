@@ -75,9 +75,18 @@ public class StoreMainScreen {
 		btnNewButton_1.setBounds(311, 152, 117, 29);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Items");
-		btnNewButton_2.setBounds(311, 194, 117, 29);
-		frame.getContentPane().add(btnNewButton_2);
+		/*
+		 * Item button
+		 */
+		JButton itemsButton = new JButton("Items");
+		itemsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				closeWindow();
+				game.launchStoreItemScreen();
+			}
+		});
+		itemsButton.setBounds(311, 194, 117, 29);
+		frame.getContentPane().add(itemsButton);
 		
 		/*
 		 * Back Button

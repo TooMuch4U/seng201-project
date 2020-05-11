@@ -27,7 +27,7 @@ public class ItemForAnimal extends Item {
 	
 	@Override
 	public String toString() {
-		return String.format("This %s increases animal health by %d%", super.getName(), getBenefit());
+		return String.format("This %s increases animal health by %s", super.getName(), getBenefit());
 	}
 
 }

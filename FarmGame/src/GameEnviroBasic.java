@@ -239,6 +239,15 @@ public class GameEnviroBasic {
 		launchMainScreen();
 	}
 	
+	public void launchStoreItemScreen() {
+		StoreItemScreen itemScreen = new StoreItemScreen(this);
+	}
+	
+	public void closeStoreItemScreen(StoreItemScreen itemScreen) {
+		itemScreen.closeWindow();
+		launchMainScreen();
+	}
+	
 	
 	/**
 	 * Advances the number of days by one, and resets the action counter

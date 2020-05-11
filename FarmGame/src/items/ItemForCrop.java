@@ -26,7 +26,7 @@ public class ItemForCrop extends Item {
 	
 	@Override
 	public String toString() {
-		return String.format("This %s decreases growing time by %d days", super.getName(), getBenefit());
+		return String.format("This %s decreases growing time by %s days", super.getName(), getBenefit());
 	}
 
 }
