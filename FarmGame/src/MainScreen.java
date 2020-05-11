@@ -150,5 +150,18 @@ public class MainScreen {
 		});
 		viewCropButton.setBounds(228, 289, 128, 23);
 		frame.getContentPane().add(viewCropButton);
+		
+		/*
+		 * Visit Store Button
+		 */
+		JButton visitStoreButton = new JButton("Visit Store");
+		visitStoreButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.closeMainScreen(screen);
+				game.launchStoreMainScreen();
+			}
+		});
+		visitStoreButton.setBounds(401, 136, 117, 29);
+		frame.getContentPane().add(visitStoreButton);
 	}
 }

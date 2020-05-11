@@ -149,6 +149,6 @@ public class Animal implements StoreItem{
 	
 	@Override
 	public String toString() {
-		return String.format("This %s is %d% happy and %d healthy", getType(), getHappiness(), getHealth());
+		return String.format("This %s is %s happy and %s healthy", getType(), getHappiness(), getHealth());
 	}
 }

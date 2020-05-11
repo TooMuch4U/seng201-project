@@ -189,6 +189,56 @@ public class GameEnviroBasic {
 		launchMainScreen();
 	}
 	
+	/**
+	 * Launches the stores main screen GUI
+	 */
+	public void launchStoreMainScreen() {
+		StoreMainScreen storeMain = new StoreMainScreen(this);
+		
+	}
+	
+	/**
+	 * Closes the store main screen
+	 * @param storeMain - The store main screen
+	 */
+	public void closeStoreMainScreen(StoreMainScreen storeMain) {
+		storeMain.closeWindow();
+		launchMainScreen();
+	}
+	
+	/**
+	 * Launches the stores animal screen GUI
+	 * @param storeMain - The store main screen GUI
+	 */
+	public void launchStoreAnimalScreen() {
+		StoreAnimalScreen storeAnimal = new StoreAnimalScreen(this);
+	}
+	
+	/**
+	 * Closes the store animal screen GUI
+	 * @param storeAnimal - Store animal GUI to be closed
+	 */
+	public void closeStoreAnimalScreen(StoreAnimalScreen storeAnimal) {
+		storeAnimal.closeWindow();
+		launchMainScreen();
+	}
+	
+	/**
+	 * Launches the store crop screen GUI
+	 */
+	public void launchStoreCropScreen() {
+		StoreCropScreen cropScreen = new StoreCropScreen(this);
+	}
+	
+	/**
+	 * Closes the store crop screen GUI
+	 * @param cropScreen - store crop screen GUI object to be closed
+	 */
+	public void closeStoreCropScreen(StoreCropScreen cropScreen) {
+		cropScreen.closeWindow();
+		launchMainScreen();
+	}
+	
 	
 	/**
 	 * Advances the number of days by one, and resets the action counter
