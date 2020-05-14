@@ -18,11 +18,11 @@ class CropTest {
 	@Test
 	void testGetters() {
 		assertEquals(testCropA.getHarvestTime(), 4);
-		assertEquals(testCropA.getPurchasePrice(), 12.21);
+		assertEquals(testCropA.getPrice(), 12.21);
 		assertEquals(testCropA.getSalePrice(), 29.24);
 		assertEquals(testCropA.getType(), "Test Crop");
 		assertEquals(testCropB.getType(), "Beans");
-		assertEquals(testCropB.getPurchasePrice(), 0.02);
+		assertEquals(testCropB.getPrice(), 0.02);
 	}
 	
 	@Test

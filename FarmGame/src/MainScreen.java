@@ -6,11 +6,19 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 
 public class MainScreen {
 
 	private JFrame frame;
+	/**
+	 * The game environment
+	 */
 	private GameEnviroBasic game;
+	/**
+	 * A variable that allows the current screen to be passed in action listeners.
+	 */
+	private MainScreen screen = this;
 
 	/**
 	 * Create the application.
@@ -44,7 +52,6 @@ public class MainScreen {
 		frame.setBounds(100, 100, 750, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		MainScreen screen = this;
 		
 		JTextPane infoBox = new JTextPane();
 		infoBox.setBounds(65, 359, 291, 93);
@@ -54,7 +61,8 @@ public class MainScreen {
 		String farmerName = game.getFarm().getFarmer().getName();
 		String farmLabelString = String.format("%s, owned by %s", farmName, farmerName);
 		JLabel farmNameLabel = new JLabel(farmLabelString);
-		farmNameLabel.setBounds(271, 11, 214, 14);
+		farmNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		farmNameLabel.setBounds(10, 11, 716, 14);
 		frame.getContentPane().add(farmNameLabel);
 		
 		String currentDayString = String.format("Current Day : %d", 0);
@@ -75,7 +83,11 @@ public class MainScreen {
 		JButton nextDayButton = new JButton("Next Day");
 		nextDayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.advanceDays(screen);
+				game.advanceDays();
+				int daysLeft = game.getRequiredDays()-game.getCurrentDays();
+				if (daysLeft == 0) {
+					finishedWindow();
+				}
 				currentDayLabel.setText(String.format("Current Day : %d", game.getCurrentDays()));
 				daysLeftLabel.setText(String.format("Days Left: %d", game.getRequiredDays()-game.getCurrentDays()));
 				infoBox.setText("Advanced one day");
@@ -102,6 +114,11 @@ public class MainScreen {
 		JButton playAnimalsButton = new JButton("Play with Animals");
 		playAnimalsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (game.getFarm().getAnimals().size() != 0) {
+					game.launchSelectAnimalScreen(screen);
+				} else {
+					infoBox.setText("Sorry, you don't have any animals to play with. Please visit the store to buy some.");
+				}
 			}
 		});
 		playAnimalsButton.setBounds(65, 215, 127, 23);
@@ -122,7 +139,7 @@ public class MainScreen {
 			public void actionPerformed(ActionEvent e) {
 				if (game.getFarm().getCrops().size() != 0) {
 					game.launchTendCropsScreen(screen);
-				} else if (game.getFarm().getCrops().size() == 0) {
+				} else {
 					infoBox.setText("Sorry, you don't have any crops currently. Please visit the store to buy some.");
 				}
 			}
@@ -133,9 +150,11 @@ public class MainScreen {
 		JButton harvestCropsButton = new JButton("Harvest Crops");
 		harvestCropsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Create a crop selector screen
-				int numCrops = game.harvestCrops();
-				infoBox.setText(String.format("%d crops harvested", numCrops));
+				if (game.getFarm().getHarvestableCrops().size() != 0) {
+					game.launchSelectCropScreen(screen);
+				} else {
+					infoBox.setText("Sorry, you don't have any crops that are ready to harvest. Please view their status to see how many days are left.");
+				}
 			}
 		});
 		harvestCropsButton.setBounds(228, 215, 128, 23);
@@ -161,7 +180,37 @@ public class MainScreen {
 				game.launchStoreMainScreen();
 			}
 		});
-		visitStoreButton.setBounds(401, 136, 117, 29);
+		visitStoreButton.setBounds(401, 139, 117, 23);
 		frame.getContentPane().add(visitStoreButton);
+		
+		JButton viewItemButton = new JButton("View Items");
+		viewItemButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.viewItems();
+			}
+		});
+		viewItemButton.setBounds(401, 215, 117, 23);
+		frame.getContentPane().add(viewItemButton);
+		
+		JButton viewFarmButton = new JButton("View Farm");
+		viewFarmButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String farmString = game.viewFarmStatus();
+				infoBox.setText(farmString);
+			}
+		});
+		viewFarmButton.setBounds(559, 139, 117, 23);
+		frame.getContentPane().add(viewFarmButton);
+		
+		JButton tendLandButton = new JButton("Tend to Farmland");
+		tendLandButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.tendToLand();
+				infoBox.setText("Tended to land; more crops and animals can be bought!");
+			}
+		});
+		tendLandButton.setVerticalAlignment(SwingConstants.BOTTOM);
+		tendLandButton.setBounds(559, 215, 117, 23);
+		frame.getContentPane().add(tendLandButton);
 	}
 }

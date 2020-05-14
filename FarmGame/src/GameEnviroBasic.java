@@ -248,6 +248,26 @@ public class GameEnviroBasic {
 		launchMainScreen();
 	}
 	
+	public void launchSelectCropScreen(MainScreen main) {
+		main.closeWindow();
+		SelectCropScreen cropScreen = new SelectCropScreen(this);
+	}
+	
+	public void closeSelectCropScreen(SelectCropScreen cropScreen) {
+		cropScreen.closeWindow();
+		launchMainScreen();
+	}
+	
+	public void launchSelectAnimalScreen(MainScreen main) {
+		main.closeWindow();
+		SelectAnimalScreen animalScreen = new SelectAnimalScreen(this);
+	}
+	
+	public void closeSelectAnimalScreen(SelectAnimalScreen animalScreen) {
+		animalScreen.closeWindow();
+		launchMainScreen();
+	}
+	
 	
 	/**
 	 * Advances the number of days by one, and resets the action counter
@@ -255,10 +275,9 @@ public class GameEnviroBasic {
 	 * Generates and displays the score, and prompts the user to play again
 	 * This function is called directly when the player chooses to advance time
 	 */
-	public void advanceDays(MainScreen screen) {
+	public void advanceDays() {
 		currentDays += 1;
 		if (currentDays == requiredDays) {
-			closeMainScreen(screen);
 			EndScreen endScreen = new EndScreen(farm);
 			String score = endScreen.displayScore();
 			System.out.println("Final score = "+score);
@@ -272,7 +291,30 @@ public class GameEnviroBasic {
 			farm.setCrops(crops);
 		}
 	}
-
+	
+	/**
+	 * Allows the user to view what items they currently have on their farm.
+	 * Returns the String representation of each item owned by the player.
+	 * This does not decrease daily actions.
+	 * If the user has no items, the string prompts them to visit the store.
+	 * @return String - either textual representations of each of the player's items, or a prompt to buy items from the store.
+	 */
+	public String viewItems() {
+		ArrayList<ItemForAnimal> animalItems = farm.getAnimalItems();
+		ArrayList<ItemForCrop> cropItems = farm.getCropItems();
+		if (animalItems.size() == 0 && cropItems.size() == 0) {
+			return "You don't have any items right now. Please visit the store to buy some.\n";
+		} else {
+			String returnString = "";
+			for (ItemForAnimal item: animalItems) {
+				returnString += item.toString() + "\n";
+			}
+			for (ItemForCrop item: cropItems) {
+				returnString += item.toString() + "\n";
+			}
+			return returnString;
+		}
+	}
 	
 	/**
 	 * Allows the user to view the status of all of their crops.
@@ -328,7 +370,7 @@ public class GameEnviroBasic {
 		String farmerName = farm.getFarmer().getName();
 		
 		String returnString = "Your farm "+farmName+" has a farmer called "+farmerName+", with total money of "+farmMoney + ".\n";
-		returnString += viewAnimalStatus() + viewCropStatus();
+		returnString += viewAnimalStatus() + viewCropStatus() + viewItems();
 		return returnString;
 	}
 	

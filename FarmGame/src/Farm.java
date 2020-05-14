@@ -115,6 +115,16 @@ public class Farm {
 		return crops;
 	}
 	
+	public ArrayList<Crop> getHarvestableCrops() {
+		ArrayList<Crop> harvestableCrops = new ArrayList<Crop>();
+		for (Crop crop: crops) {
+			if (crop.getHarvestTime() == 0) {
+				harvestableCrops.add(crop);
+			}
+		}
+		return harvestableCrops;
+	}
+	
 	/**
 	 * Returns a list containing all of the items owned by the player that can be used on animals.
 	 * @return animalItems - an ArrayList that contains all items that could be used on an animal.
