@@ -85,11 +85,16 @@ public class SelectCropScreen {
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selectedCrop = cropList.getSelectedIndex();
-				String confirmString = "You have selected this crop:\n" + crops.get(selectedCrop);
-				int choice = JOptionPane.showConfirmDialog(frame, confirmString,  "Confirmation", JOptionPane.YES_NO_OPTION);
-				if (choice == JOptionPane.YES_OPTION) {
-					game.harvestCrops(selectedCrop);
-					finishedWindow();
+				if (selectedCrop == -1) {
+					JOptionPane.showMessageDialog(frame, "Please select a crop to harvest.", "Warning: No Crop Selected", JOptionPane.ERROR_MESSAGE);
+				} else {
+					Crop crop = crops.get(selectedCrop);
+					String confirmString = String.format("You have selected this crop:\nA %s with remaining grow time of %d", crop.getType(), crop.getHarvestTime());
+					int choice = JOptionPane.showConfirmDialog(frame, confirmString,  "Confirmation", JOptionPane.YES_NO_OPTION);
+					if (choice == JOptionPane.YES_OPTION) {
+						game.harvestCrops(selectedCrop);
+						finishedWindow();
+					}
 				}
 			}
 		});

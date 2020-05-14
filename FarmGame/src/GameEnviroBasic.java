@@ -305,14 +305,15 @@ public class GameEnviroBasic {
 		if (animalItems.size() == 0 && cropItems.size() == 0) {
 			return "You don't have any items right now. Please visit the store to buy some.\n";
 		} else {
-			String returnString = "";
+			String returnString = "Items for your animals:\n";
 			for (ItemForAnimal item: animalItems) {
 				returnString += item.toString() + "\n";
 			}
+			returnString += "\nItems for your crops:\n";
 			for (ItemForCrop item: cropItems) {
 				returnString += item.toString() + "\n";
 			}
-			return returnString;
+			return returnString+"\n";
 		}
 	}
 	
@@ -459,6 +460,7 @@ public class GameEnviroBasic {
 			Animal chosenAnimal = animals.get(animalIndex);
 			chosenAnimal.changeHealth(healthBonus);
 			farm.setAnimals(animals);
+			farm.items.remove(feedItem);
 			numActions -= 1;
 		} else {
 			throw new ActionCountException("All actions performed for the day");
@@ -489,6 +491,9 @@ public class GameEnviroBasic {
 			Crop chosenCrop = crops.get(cropIndex);
 			chosenCrop.changeHarvestTime(growBonus);
 			farm.setCrops(crops);
+			if (cropItem.getName() != "Water") {
+				farm.items.remove(cropItem);
+			}
 			numActions -= 1;
 		} else {
 			throw new ActionCountException("All actions performed for the day");

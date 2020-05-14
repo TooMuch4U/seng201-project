@@ -73,11 +73,16 @@ public class SelectAnimalScreen {
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selectedAnimal = animalList.getSelectedIndex();
-				String confirmString = "You have selected this animal:\n" + animals.get(selectedAnimal);
-				int choice = JOptionPane.showConfirmDialog(frame, confirmString,  "Confirmation", JOptionPane.YES_NO_OPTION);
-				if (choice == JOptionPane.YES_OPTION) {
-					game.playWithAnimals(selectedAnimal);
-					finishedWindow();
+				if (selectedAnimal == -1) {
+					JOptionPane.showMessageDialog(frame, "Please select an animal to play with.", "Error: No Animal Selected.", JOptionPane.ERROR_MESSAGE);
+				} else {
+					Animal animal = animals.get(selectedAnimal);
+					String confirmString = String.format("You have selected this animal:\nA %s with %d\\% health and %d\\% happiness", animal.getType(), animal.getHealth(), animal.getHappiness());
+					int choice = JOptionPane.showConfirmDialog(frame, confirmString,  "Confirmation", JOptionPane.YES_NO_OPTION);
+					if (choice == JOptionPane.YES_OPTION) {
+						game.playWithAnimals(selectedAnimal);
+						finishedWindow();
+					}
 				}
 			}
 		});

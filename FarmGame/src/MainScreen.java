@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -53,10 +54,16 @@ public class MainScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		/**
+		 * Information Box
+		 */
 		JTextPane infoBox = new JTextPane();
 		infoBox.setBounds(65, 359, 291, 93);
 		frame.getContentPane().add(infoBox);
 		
+		/**
+		 * Main label of Screen
+		 */
 		String farmName = game.getFarm().getName();
 		String farmerName = game.getFarm().getFarmer().getName();
 		String farmLabelString = String.format("%s, owned by %s", farmName, farmerName);
@@ -65,13 +72,20 @@ public class MainScreen {
 		farmNameLabel.setBounds(10, 11, 716, 14);
 		frame.getContentPane().add(farmNameLabel);
 		
-		String currentDayString = String.format("Current Day : %d", 0);
+		/**
+		 * Current Day Label
+		 */
+		String currentDayString = String.format("Current Day : %d", game.getCurrentDays());
 		JLabel currentDayLabel = new JLabel(currentDayString);
 		currentDayLabel.setBounds(10, 56, 106, 14);
 		frame.getContentPane().add(currentDayLabel);
 		
-		int daysLeft = game.getRequiredDays();
-		String daysLeftString = String.format("Days Left: %d", daysLeft);
+		/**
+		 * Remianing Days Label
+		 * Determines how many days are left, and displays it
+		 */
+		int daysLeft = game.getRequiredDays() - game.getCurrentDays();
+		String daysLeftString = String.format("Days Left : %d", daysLeft);
 		JLabel daysLeftLabel = new JLabel(daysLeftString);
 		daysLeftLabel.setBounds(609, 56, 89, 14);
 		frame.getContentPane().add(daysLeftLabel);
@@ -186,7 +200,8 @@ public class MainScreen {
 		JButton viewItemButton = new JButton("View Items");
 		viewItemButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.viewItems();
+				String itemString = game.viewItems();
+				infoBox.setText(itemString);
 			}
 		});
 		viewItemButton.setBounds(401, 215, 117, 23);
@@ -196,7 +211,7 @@ public class MainScreen {
 		viewFarmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String farmString = game.viewFarmStatus();
-				infoBox.setText(farmString);
+				JOptionPane.showMessageDialog(frame, farmString, "Farm Information.", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		viewFarmButton.setBounds(559, 139, 117, 23);
