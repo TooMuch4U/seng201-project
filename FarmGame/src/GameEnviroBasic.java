@@ -142,8 +142,12 @@ public class GameEnviroBasic {
 	 * @param mainWindow - the main screen of the GUI. Passed in to close the screen.
 	 */
 	public void launchFeedAnimalScreen(MainScreen mainWindow) {
-		closeMainScreen(mainWindow);
-		FeedAnimalScreen animalWindow = new FeedAnimalScreen(this);
+		if (numActions == 0) {
+			throw new ActionCountException("All actions performed for the day");
+		} else {
+			closeMainScreen(mainWindow);
+			FeedAnimalScreen animalWindow = new FeedAnimalScreen(this);
+		}
 	}
 	
 	/**
@@ -160,8 +164,12 @@ public class GameEnviroBasic {
 	 * @param mainWindow - the main screen of the GUI. Passed in to close the screen.
 	 */
 	public void launchTendCropsScreen(MainScreen mainWindow) {
-		closeMainScreen(mainWindow);
-		TendCropsScreen cropsWindow = new TendCropsScreen(this);
+		if (numActions == 0) {
+			throw new ActionCountException("All actions performed for the day");
+		} else {
+			closeMainScreen(mainWindow);
+			TendCropsScreen cropsWindow = new TendCropsScreen(this);
+		}
 	}
 	
 	/**
@@ -249,8 +257,12 @@ public class GameEnviroBasic {
 	}
 	
 	public void launchSelectCropScreen(MainScreen main) {
-		main.closeWindow();
-		SelectCropScreen cropScreen = new SelectCropScreen(this);
+		if (numActions == 0) {
+			throw new ActionCountException("All actions performed for the day");
+		} else {
+			main.closeWindow();
+			SelectCropScreen cropScreen = new SelectCropScreen(this);
+		}
 	}
 	
 	public void closeSelectCropScreen(SelectCropScreen cropScreen) {
@@ -259,8 +271,12 @@ public class GameEnviroBasic {
 	}
 	
 	public void launchSelectAnimalScreen(MainScreen main) {
-		main.closeWindow();
-		SelectAnimalScreen animalScreen = new SelectAnimalScreen(this);
+		if (numActions == 0) {
+			throw new ActionCountException("All actions performed for the day");
+		} else {
+			main.closeWindow();
+			SelectAnimalScreen animalScreen = new SelectAnimalScreen(this);
+		}
 	}
 	
 	public void closeSelectAnimalScreen(SelectAnimalScreen animalScreen) {
