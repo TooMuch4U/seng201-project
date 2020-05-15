@@ -69,7 +69,7 @@ public class SelectCropScreen {
 		
 		JList<Crop> cropList = new JList<Crop>(cropListModel);
 		cropList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		cropList.setBounds(215, 75, 320, 320);
+		cropList.setBounds(140, 70, 470, 320);
 		frame.getContentPane().add(cropList);
 		
 		JButton cancelButton = new JButton("Cancel");
@@ -78,7 +78,7 @@ public class SelectCropScreen {
 				finishedWindow();
 			}
 		});
-		cancelButton.setBounds(590, 300, 105, 35);
+		cancelButton.setBounds(45, 400, 105, 35);
 		frame.getContentPane().add(cancelButton);
 		
 		JButton confirmButton = new JButton("Confirm");
@@ -98,7 +98,7 @@ public class SelectCropScreen {
 				}
 			}
 		});
-		confirmButton.setBounds(590, 360, 105, 35);
+		confirmButton.setBounds(600, 400, 105, 35);
 		frame.getContentPane().add(confirmButton);
 	}
 

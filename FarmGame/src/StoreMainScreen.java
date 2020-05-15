@@ -58,8 +58,7 @@ public class StoreMainScreen {
 		JButton btnNewButton = new JButton("Animals");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.closeStoreMainScreen(screen);
-				game.launchStoreAnimalScreen();
+				game.launchStoreAnimalScreen(screen);
 			}
 		});
 		btnNewButton.setBounds(311, 111, 117, 29);

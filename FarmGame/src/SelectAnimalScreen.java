@@ -66,7 +66,7 @@ public class SelectAnimalScreen {
 		animalListModel.addAll(animals);
 		
 		JList<Animal> animalList = new JList<Animal>(animalListModel);
-		animalList.setBounds(215, 74, 320, 320);
+		animalList.setBounds(140, 70, 470, 320);
 		frame.getContentPane().add(animalList);
 		
 		JButton confirmButton = new JButton("Confirm");
@@ -77,7 +77,7 @@ public class SelectAnimalScreen {
 					JOptionPane.showMessageDialog(frame, "Please select an animal to play with.", "Error: No Animal Selected.", JOptionPane.ERROR_MESSAGE);
 				} else {
 					Animal animal = animals.get(selectedAnimal);
-					String confirmString = String.format("You have selected this animal:\nA %s with %d\\% health and %d\\% happiness", animal.getType(), animal.getHealth(), animal.getHappiness());
+					String confirmString = "You have selected this animal:\n"+animal.toString()+"\nDo you want to play with it?";
 					int choice = JOptionPane.showConfirmDialog(frame, confirmString,  "Confirmation", JOptionPane.YES_NO_OPTION);
 					if (choice == JOptionPane.YES_OPTION) {
 						game.playWithAnimals(selectedAnimal);
@@ -86,7 +86,7 @@ public class SelectAnimalScreen {
 				}
 			}
 		});
-		confirmButton.setBounds(591, 359, 105, 35);
+		confirmButton.setBounds(600, 400, 105, 35);
 		frame.getContentPane().add(confirmButton);
 		
 		JButton cancelButton = new JButton("Cancel");
@@ -95,7 +95,7 @@ public class SelectAnimalScreen {
 				finishedWindow();
 			}
 		});
-		cancelButton.setBounds(591, 300, 105, 35);
+		cancelButton.setBounds(45, 400, 105, 35);
 		frame.getContentPane().add(cancelButton);
 	}
 }

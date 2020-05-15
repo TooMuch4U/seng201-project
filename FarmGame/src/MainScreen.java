@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class MainScreen {
 
@@ -58,7 +59,11 @@ public class MainScreen {
 		 * Information Box
 		 */
 		JTextPane infoBox = new JTextPane();
-		infoBox.setBounds(65, 359, 291, 93);
+		infoBox.setEditable(false);
+		String introText = "Hi there! Welcome to your new farm! Here are all the activities you can do during the day. You can perform two important tasks a day before you get tired.";
+		introText += "To learn more about a particular activity, please click the information button next to it!";
+		infoBox.setText(introText);
+		infoBox.setBounds(65, 359, 450, 93);
 		frame.getContentPane().add(infoBox);
 		
 		/**
@@ -106,14 +111,14 @@ public class MainScreen {
 				game.advanceDays();
 				int daysLeft = game.getRequiredDays()-game.getCurrentDays();
 				if (daysLeft == 0) {
-					finishedWindow();
+					game.launchScoreScreen(screen);
 				}
 				currentDayLabel.setText(String.format("Current Day : %d", game.getCurrentDays()));
 				daysLeftLabel.setText(String.format("Days Left: %d", game.getRequiredDays()-game.getCurrentDays()));
 				infoBox.setText("Advanced one day");
 			}
 		});
-		nextDayButton.setBounds(593, 406, 106, 23);
+		nextDayButton.setBounds(573, 373, 125, 45);
 		frame.getContentPane().add(nextDayButton);
 		
 		/**
@@ -287,7 +292,7 @@ public class MainScreen {
 		 * Calls the tendToLand method of GameEnviroBasic
 		 * Catches a thrown ActionCountException if the player has no actions left for the day
 		 */
-		JButton tendLandButton = new JButton("Tend to Farmland");
+		JButton tendLandButton = new JButton("Tend to Land");
 		tendLandButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -298,8 +303,147 @@ public class MainScreen {
 				}
 			}
 		});
-		tendLandButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		tendLandButton.setBounds(559, 215, 117, 23);
 		frame.getContentPane().add(tendLandButton);
+		
+		/**
+		 * Each of the following buttons provided information about the main buttons
+		 * 
+		 */
+		JButton tendLandInfo = new JButton("i");
+		tendLandInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This allows you to tend to your farmland. Tending to your farmland increases the amount of crop and animals "
+						+ "that can be placed on your land. It also keeps your animals happier for longer.\nDoing this counts as one of your two "
+						+ "important activities.";
+				infoBox.setText(infoText);
+			}
+		});
+		tendLandInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		tendLandInfo.setBounds(639, 249, 37, 23);
+		frame.getContentPane().add(tendLandInfo);
+		
+		JButton viewFarmInfo = new JButton("i");
+		viewFarmInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This allows you to have a look at everything you need to know about your farm: current money, crops growing, your animals, "
+						+ "and the items you own.\nThis does not count as an important activity - you can do this as many times a day as you want.";
+				infoBox.setText(infoText);
+			}
+		});
+		viewFarmInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		viewFarmInfo.setBounds(639, 173, 37, 23);
+		frame.getContentPane().add(viewFarmInfo);
+		
+		JButton visitStoreInfo = new JButton("i");
+		visitStoreInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This allows you to visit the county store. Here, you can buy anything your farm might need: crops, animals, and items are "
+						+ "all on sale here.\nThis does not count as an important activity, so you can do this as many times as you want, as long as you have the money!";
+				infoBox.setText(infoText);
+			}
+		});
+		visitStoreInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		visitStoreInfo.setBounds(481, 173, 37, 23);
+		frame.getContentPane().add(visitStoreInfo);
+		
+		JButton viewItemInfo = new JButton("i");
+		viewItemInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This allows you to view the information about all the items you currently own: what you have, and how much it'll help your "
+						+ "animals or crops be healthy.\nThis does not count as one of your important activities.";
+				infoBox.setText(infoText);
+			}
+		});
+		viewItemInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		viewItemInfo.setBounds(481, 249, 37, 23);
+		frame.getContentPane().add(viewItemInfo);
+		
+		JButton harvestCropInfo = new JButton("i");
+		harvestCropInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This allows you to harvest any crops you currently have, provided that they have been growing for long enough."
+						+ " You can sell these crops for additional income for your farm."
+						+ ".\nThis counts as one of your two important activities of the day.";
+				infoBox.setText(infoText);
+			}
+		});
+		harvestCropInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		harvestCropInfo.setBounds(319, 249, 37, 23);
+		frame.getContentPane().add(harvestCropInfo);
+		
+		JButton tendCropInfo = new JButton("i");
+		tendCropInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This allows you to feed your crops with any items you may have. This will allow the crops to grow faster than before. "
+						+ "You always have water available, so you can always water them if you don't have an item."
+						+ "\nThis counts as one of your two important daily activities.";
+				infoBox.setText(infoText);
+			}
+		});
+		tendCropInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		tendCropInfo.setBounds(319, 173, 37, 23);
+		frame.getContentPane().add(tendCropInfo);
+		
+		JButton feedAnimalInfo = new JButton("i");
+		feedAnimalInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This allows you to feed your animals with any suitable items you may have. This will keep your animals healthy, which helps you"
+						+ "earn more money. You need both an animal, and an item to feed it with, in order to perform this action."
+						+ "\nThis counts as one of your two important daily activities.";
+				infoBox.setText(infoText);
+			}
+		});
+		feedAnimalInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		feedAnimalInfo.setBounds(155, 173, 37, 23);
+		frame.getContentPane().add(feedAnimalInfo);
+		
+		JButton playAnimalInfo = new JButton("i");
+		playAnimalInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "Here, you can play with any animals that you might have. Playing with animals increases their happiness, and a happy "
+						+ "animal means a happy wallet!\nThis counts as one of your two important daily activities.";
+				infoBox.setText(infoText);
+			}
+		});
+		playAnimalInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		playAnimalInfo.setBounds(155, 249, 37, 23);
+		frame.getContentPane().add(playAnimalInfo);
+		
+		JButton viewAnimalInfo = new JButton("i");
+		viewAnimalInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "Here you can see the information about all of the animals on your farm; what you have, how happy they are, and how healthy they are."
+						+ "\nThis does not count as one of your important activities for the day.";
+				infoBox.setText(infoText);
+			}
+		});
+		viewAnimalInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		viewAnimalInfo.setBounds(155, 323, 37, 23);
+		frame.getContentPane().add(viewAnimalInfo);
+		
+		JButton viewCropInfo = new JButton("i");
+		viewCropInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This button allows you to view the information of all the crops currently on your farm; whether they are ready for harvest,"
+						+ "or how many days you have to wait until they are." 
+						+ "\nThis does not count as one of your important activities for the day.";
+				infoBox.setText(infoText);
+			}
+		});
+		viewCropInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		viewCropInfo.setBounds(319, 323, 37, 23);
+		frame.getContentPane().add(viewCropInfo);
+		
+		JButton nextDayInfo = new JButton("i");
+		nextDayInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String infoText = "This advances you to the next day. Useful when you've run out of things to do today.";
+				infoBox.setText(infoText);
+			}
+		});
+		nextDayInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
+		nextDayInfo.setBounds(661, 429, 37, 23);
+		frame.getContentPane().add(nextDayInfo);
 	}
 }

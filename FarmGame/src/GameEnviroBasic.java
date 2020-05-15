@@ -36,6 +36,10 @@ public class GameEnviroBasic {
 	 * A boolean to determine whether the player can continue playing
 	 */
 	public boolean gameEnded = false;
+	/**
+	 * An int that dictates how many days will pass before animal happiness decreases
+	 */
+	private int decreaseHappinessDays = 1;
 	
 	/**
 	 * Construtor with parameters.
@@ -79,8 +83,6 @@ public class GameEnviroBasic {
 	public Store getStore() {
 		return store;
 	}
-
-
 	
 	/**
 	 * Returns the current value of numActions.
@@ -218,7 +220,8 @@ public class GameEnviroBasic {
 	 * Launches the stores animal screen GUI
 	 * @param storeMain - The store main screen GUI
 	 */
-	public void launchStoreAnimalScreen() {
+	public void launchStoreAnimalScreen(StoreMainScreen storeMain) {
+		storeMain.closeWindow();
 		StoreAnimalScreen storeAnimal = new StoreAnimalScreen(this);
 	}
 	
@@ -272,7 +275,7 @@ public class GameEnviroBasic {
 	
 	public void launchSelectAnimalScreen(MainScreen main) {
 		if (numActions == 0) {
-			throw new ActionCountException("All actions performed for the day");
+			throw new ActionCountException("Sorry, you've performed all actions for the day");
 		} else {
 			main.closeWindow();
 			SelectAnimalScreen animalScreen = new SelectAnimalScreen(this);
@@ -285,6 +288,17 @@ public class GameEnviroBasic {
 	}
 	
 	
+	public void launchScoreScreen(MainScreen main) {
+		main.closeWindow();
+		ScoreScreen scoreScreen = new ScoreScreen(this);
+	}
+	
+	public void closeScoreScreen(ScoreScreen score) {
+		score.closeWindow();
+		launchSetupScreen();
+	}
+	
+	
 	/**
 	 * Advances the number of days by one, and resets the action counter
 	 * If the current days is the number of days the player requested, the game is over
@@ -293,18 +307,25 @@ public class GameEnviroBasic {
 	 */
 	public void advanceDays() {
 		currentDays += 1;
-		if (currentDays == requiredDays) {
-			EndScreen endScreen = new EndScreen(farm);
-			String score = endScreen.displayScore();
-			System.out.println("Final score = "+score);
-			System.out.println("Thank you for playing!");
-		} else {
+		decreaseHappinessDays -= 1;
+		if (currentDays != requiredDays) {
 			numActions = 2;
 			ArrayList<Crop> crops = farm.getCrops();
+			ArrayList<Animal> animals = farm.getAnimals();
 			for (Crop crop: crops) {
 				crop.changeHarvestTime(1);
 			}
+			for (Animal animal: animals) {
+				double income = animal.getIncome();
+				farm.changeMoney(income);
+				animal.changeHealth(-2);
+				if (decreaseHappinessDays == 0) {
+					animal.changeHappiness(-2);
+					decreaseHappinessDays = 1;
+				}
+			}
 			farm.setCrops(crops);
+			farm.setAnimals(animals);
 		}
 	}
 	
@@ -563,6 +584,7 @@ public class GameEnviroBasic {
 
 			farm.changeCropLimit(cropIncrease);
 			farm.changeAnimalLimit(animalIncrease);
+			decreaseHappinessDays += 1;
 			numActions -= 1;
 		} else {
 			throw new ActionCountException("All actions performed for the day");
