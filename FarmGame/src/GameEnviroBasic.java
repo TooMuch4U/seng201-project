@@ -200,7 +200,7 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Launches the stores main screen GUI
+	 * Launches the stores main screen GUI.
 	 */
 	public void launchStoreMainScreen() {
 		StoreMainScreen storeMain = new StoreMainScreen(this);
@@ -208,8 +208,8 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Closes the store main screen
-	 * @param storeMain - The store main screen
+	 * Closes the store main screen.
+	 * @param storeMain - The store main screen.
 	 */
 	public void closeStoreMainScreen(StoreMainScreen storeMain) {
 		storeMain.closeWindow();
@@ -217,8 +217,8 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Launches the stores animal screen GUI
-	 * @param storeMain - The store main screen GUI
+	 * Launches the stores animal screen GUI.
+	 * @param storeMain - The store main screen GUI.
 	 */
 	public void launchStoreAnimalScreen(StoreMainScreen storeMain) {
 		storeMain.closeWindow();
@@ -226,8 +226,8 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Closes the store animal screen GUI
-	 * @param storeAnimal - Store animal GUI to be closed
+	 * Closes the store animal screen GUI.
+	 * @param storeAnimal - Store animal GUI to be closed.
 	 */
 	public void closeStoreAnimalScreen(StoreAnimalScreen storeAnimal) {
 		storeAnimal.closeWindow();
@@ -235,30 +235,42 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Launches the store crop screen GUI
+	 * Launches the store crop screen GUI.
 	 */
 	public void launchStoreCropScreen() {
 		StoreCropScreen cropScreen = new StoreCropScreen(this);
 	}
 	
 	/**
-	 * Closes the store crop screen GUI
-	 * @param cropScreen - store crop screen GUI object to be closed
+	 * Closes the store crop screen GUI.
+	 * @param cropScreen - store crop screen GUI object to be closed.
 	 */
 	public void closeStoreCropScreen(StoreCropScreen cropScreen) {
 		cropScreen.closeWindow();
 		launchMainScreen();
 	}
 	
+	/**
+	 * Launches the Store Item Screen of the GUI.
+	 */
 	public void launchStoreItemScreen() {
 		StoreItemScreen itemScreen = new StoreItemScreen(this);
 	}
 	
+	/**
+	 * Closes the Store Item screen of the GUI.
+	 * @param itemScreen - the item screen GUI object to be closed.
+	 */
 	public void closeStoreItemScreen(StoreItemScreen itemScreen) {
 		itemScreen.closeWindow();
 		launchMainScreen();
 	}
 	
+	/**
+	 * Launches the select crop screen object of the GUI, and closes the main screen.
+	 * Throws an action count exception if the player has no actions left for the day.
+	 * @param main - the main screen GUI object that needs to be closed.
+	 */
 	public void launchSelectCropScreen(MainScreen main) {
 		if (numActions == 0) {
 			throw new ActionCountException("All actions performed for the day");
@@ -268,11 +280,20 @@ public class GameEnviroBasic {
 		}
 	}
 	
+	/**.
+	 * Closes the select crop screen object of the GUI, and relaunches the main screen.
+	 * @param cropScreen - the crop select GUI object that needs to be closed.
+	 */
 	public void closeSelectCropScreen(SelectCropScreen cropScreen) {
 		cropScreen.closeWindow();
 		launchMainScreen();
 	}
 	
+	/**
+	 * Launches the select animal screen object of the GUI, and closes the main screen.
+	 * Throws an ActionCountException if the player has performed all tasks for the day.
+	 * @param main - the main screen GUI object that needs to be closed.
+	 */
 	public void launchSelectAnimalScreen(MainScreen main) {
 		if (numActions == 0) {
 			throw new ActionCountException("Sorry, you've performed all actions for the day");
@@ -282,17 +303,29 @@ public class GameEnviroBasic {
 		}
 	}
 	
+	/**
+	 * Closes the select animal screen object of the GUI, and relaunches the main screen of the game.
+	 * @param animalScreen - the select animal screen GUI object that needs to be closed.
+	 */
 	public void closeSelectAnimalScreen(SelectAnimalScreen animalScreen) {
 		animalScreen.closeWindow();
 		launchMainScreen();
 	}
 	
-	
+	/**
+	 * Closes the main screen of the game, and launches the final score screen.
+	 * @param main - the main screen GUI object that needs to be closed.
+	 */
 	public void launchScoreScreen(MainScreen main) {
 		main.closeWindow();
 		ScoreScreen scoreScreen = new ScoreScreen(this);
 	}
 	
+	/**
+	 * Closes the final score screen, and launches a new set-up screen for the player.
+	 * Called if the player chooses to start a new game.
+	 * @param score - The score screen GUI object that needs to be closed.
+	 */
 	public void closeScoreScreen(ScoreScreen score) {
 		score.closeWindow();
 		launchSetupScreen();
@@ -300,14 +333,15 @@ public class GameEnviroBasic {
 	
 	
 	/**
-	 * Advances the number of days by one, and resets the action counter
-	 * If the current days is the number of days the player requested, the game is over
-	 * Generates and displays the score, and prompts the user to play again
-	 * This function is called directly when the player chooses to advance time
+	 * Advances the number of days by one, and resets the action counter.
+	 * If the current days is the number of days the player requested, the game is over.
+	 * Generates and displays the score, and prompts the user to play again.
+	 * This function is called directly when the player chooses to advance time.
 	 */
-	public void advanceDays() {
+	public String advanceDays() {
 		currentDays += 1;
 		decreaseHappinessDays -= 1;
+		String event = "";
 		if (currentDays != requiredDays) {
 			numActions = 2;
 			ArrayList<Crop> crops = farm.getCrops();
@@ -326,7 +360,9 @@ public class GameEnviroBasic {
 			}
 			farm.setCrops(crops);
 			farm.setAnimals(animals);
+			event = randomEvents();
 		}
+		return event;
 	}
 	
 	/**
@@ -462,18 +498,19 @@ public class GameEnviroBasic {
 	public String randomEvents() {
 		int randNum = rng.nextInt();
 		String eventInfo = "";
+		System.out.println(randNum);
 		if(randNum%10 == 2) {
 			//County fair: win a bonus amount of money 
 			int animalNum = farm.getAnimals().size();
 			int cropNum = farm.getCrops().size();
 			double moneyGain = Math.round((25*animalNum + 10*cropNum)*100.0)/100.0;			
 			
-			eventInfo = "Your farm won first prize at the county fair!\nYou gain an extra $"+ Double.toString(moneyGain)+".";
+			eventInfo = "Your farm won first prize at the county fair!\nYou gain an extra $"+ Double.toString(moneyGain)+" for your spectacular animals and crops.";
 			farm.changeMoney(moneyGain);
 			
 		} else if (randNum%20 == 5) {
 			//Broken fence: animals escape
-			eventInfo = "Your fence broke, and half of your animals escaped.";
+			eventInfo = "Overnight, your fence broke, and half of your animals escaped.";
 			removeHalfAnimals();
 		} else if (randNum%20 == 19 ) {
 			//Drought: crops die
@@ -538,8 +575,8 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Play with animals, increases the happiness of an animal in the farm
-	 * @param animalIndex takes the integer of the position in the arrayList to get the animal
+	 * Play with animals, increases the happiness of an animal in the farm.
+	 * @param animalIndex takes the integer of the position in the arrayList to get the animal.
 	 */
 	public void playWithAnimals(int animalIndex) {
 		if (numActions > 0) {
@@ -555,7 +592,7 @@ public class GameEnviroBasic {
 	
 	/**
 	 * Harvests one crop in the farm and adds the money to the farm.
-	 * @param cropIndex index of the crop to harvest
+	 * @param cropIndex index of the crop to harvest.
 	 */
 	public void harvestCrops(int cropIndex) {
 		if (numActions > 0) {
@@ -575,7 +612,7 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Tending to land increases the crop and animal limits on the farm
+	 * Tending to land increases the crop and animal limits on the farm.
 	 */
 	public void tendToLand() {
 		if (numActions > 0) {
@@ -593,9 +630,9 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Processes the payment of a store item
-	 * The farm must have enough money to make the purchase price
-	 * @param price The price of the item being purchased
+	 * Processes the payment of a store item.
+	 * The farm must have enough money to make the purchase price.
+	 * @param price The price of the item being purchased.
 	 */
 	private void processStoreItem(double price) {
 		if (farm.getMoney() >= price) {
@@ -608,8 +645,8 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Purchases an item from the store if the farm has enough money
-	 * @param item The item the store would like to purchase
+	 * Purchases an item from the store if the farm has enough money.
+	 * @param item The item the store would like to purchase.
 	 */
 	public void purchaseItem(Item item) {
 		double itemPrice = item.getPrice();
@@ -619,8 +656,8 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Purchases an animal from the store if the farm has enough money
-	 * @param animal The animal that is to be purchased
+	 * Purchases an animal from the store if the farm has enough money.
+	 * @param animal The animal that is to be purchased.
 	 */
 	public void purchaseAnimal(Animal animal) {
 		double price = animal.getPrice();
@@ -629,8 +666,8 @@ public class GameEnviroBasic {
 	}
 
 	/**
-	 * Purchases a crop from the store if the farm has enough money
-	 * @param crop The crop that is to be purchased
+	 * Purchases a crop from the store if the farm has enough money.
+	 * @param crop The crop that is to be purchased.
 	 */
 	public void purchaseCrop(Crop crop) {
 		double price = crop.getPrice();
@@ -640,8 +677,8 @@ public class GameEnviroBasic {
 		
 		
 	/**
-	 * Method that is run at the end of each day
-	 * Tally's up the farms score for the day
+	 * Method that is run at the end of each day.
+	 * Tally's up the farms score for the day.
 	 */
 	public void endOfDay() {
 		int incr = 0;
@@ -664,6 +701,10 @@ public class GameEnviroBasic {
 		return end;
 	}
 	
+	/**
+	 * Main method of the game object.
+	 * Calls the setup screen launcher when triggered.
+	 */
 	public static void main(String[] args) {
 		GameEnviroBasic game = new GameEnviroBasic();
 		game.launchSetupScreen();

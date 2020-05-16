@@ -188,9 +188,9 @@ public class Farm {
 	}
 
 	/**
-	 * Adds an animal into the ArrayList animals
-	 * If the farm's type allows it, adds a bonus to the animal's happiness and health
-	 * @param animal - the animal to be added to the ArrayList
+	 * Adds an animal into the ArrayList animals.
+	 * If the farm's type allows it, adds a bonus to the animal's happiness and health.
+	 * @param animal - the animal to be added to the ArrayList.
 	 */
 	public void addAnimal(Animal animal) {
 		if (animals.size() == animalLimit) {
@@ -203,9 +203,9 @@ public class Farm {
 	}
 	
 	/**
-	 * Adds a crop into the ArrayList crops
-	 * If the farm's type allows it, decreases the crop's harvest time by a day
-	 * @param crop
+	 * Adds a crop into the ArrayList crops.
+	 * If the farm's type allows it, decreases the crop's harvest time by a day.
+	 * @param crop - the crop to be added to the farm's current crops.
 	 */
 	public void addCrop(Crop crop) {
 		if (crops.size() == cropLimit) {
@@ -217,8 +217,8 @@ public class Farm {
 	}
 	
 	/**
-	 * Changes the farms crop limit
-	 * @param incr Integer to change the crop limit by
+	 * Changes the farms crop limit.
+	 * @param incr Integer to change the crop limit by.
 	 */
 	public void changeCropLimit(int incr) {
 		if ((cropLimit + incr) < 0) {
@@ -229,8 +229,8 @@ public class Farm {
 	}
 	
 	/**
-	 * Changes the farms animal limit
-	 * @param incr Integer to change the animal limit by
+	 * Changes the farms animal limit.
+	 * @param incr Integer to change the animal limit by.
 	 */
 	public void changeAnimalLimit(int incr) {
 		if ((animalLimit + incr) < 0) {
@@ -241,16 +241,16 @@ public class Farm {
 	}
 	
 	/**
-	 * Returns the farms current bonus score
-	 * @return currentbonusScore
+	 * Returns the farms current bonus score.
+	 * @return currentbonusScore.
 	 */
 	public int getBonusScore() {
 		return currentBonusScore;
 	}
 	
 	/**
-	 * Increases the farms current bonus score
-	 * @param incr Amount to increase the farms bonus score by
+	 * Increases the farms current bonus score.
+	 * @param incr Amount to increase the farms bonus score by.
 	 */
 	public void incrBonus(int incr) {
 		currentBonusScore = currentBonusScore + incr;

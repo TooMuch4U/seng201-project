@@ -108,14 +108,14 @@ public class MainScreen {
 		JButton nextDayButton = new JButton("Next Day");
 		nextDayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.advanceDays();
+				String event = game.advanceDays();
 				int daysLeft = game.getRequiredDays()-game.getCurrentDays();
 				if (daysLeft == 0) {
 					game.launchScoreScreen(screen);
 				}
 				currentDayLabel.setText(String.format("Current Day : %d", game.getCurrentDays()));
 				daysLeftLabel.setText(String.format("Days Left: %d", game.getRequiredDays()-game.getCurrentDays()));
-				infoBox.setText("Advanced one day");
+				infoBox.setText("Advanced one day\n" + event);
 			}
 		});
 		nextDayButton.setBounds(573, 373, 125, 45);
@@ -166,7 +166,7 @@ public class MainScreen {
 				}
 			}
 		});
-		playAnimalsButton.setBounds(65, 215, 127, 23);
+		playAnimalsButton.setBounds(65, 215, 140, 23);
 		frame.getContentPane().add(playAnimalsButton);
 		
 		/**
@@ -306,8 +306,9 @@ public class MainScreen {
 		tendLandButton.setBounds(559, 215, 117, 23);
 		frame.getContentPane().add(tendLandButton);
 		
+		
 		/**
-		 * Each of the following buttons provided information about the main buttons
+		 * Each of the following buttons provides information about the main buttons
 		 * 
 		 */
 		JButton tendLandInfo = new JButton("i");

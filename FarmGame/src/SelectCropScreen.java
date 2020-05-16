@@ -57,12 +57,18 @@ public class SelectCropScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		/**
+		 * The header label of the screen
+		 */
 		JLabel promptLabel = new JLabel("Please select the crop you would like to harvest");
 		promptLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		promptLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		promptLabel.setBounds(10, 11, 716, 45);
 		frame.getContentPane().add(promptLabel);
 		
+		/**
+		 * Create a list model to display the crop list.
+		 */
 		DefaultListModel<Crop> cropListModel = new DefaultListModel<Crop>();
 		ArrayList<Crop> crops = game.getFarm().getHarvestableCrops();
 		cropListModel.addAll(crops);
@@ -72,6 +78,9 @@ public class SelectCropScreen {
 		cropList.setBounds(140, 70, 470, 320);
 		frame.getContentPane().add(cropList);
 		
+		/**
+		 * Go back to the main screen without doing anything if the player wishes to cancel.
+		 */
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,6 +90,10 @@ public class SelectCropScreen {
 		cancelButton.setBounds(45, 400, 105, 35);
 		frame.getContentPane().add(cancelButton);
 		
+		/**
+		 * Confirm the player's selection
+		 * If the player hasn't selected a crop, display an error message. Otherwise, display a Yes/No option.
+		 */
 		JButton confirmButton = new JButton("Confirm");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
