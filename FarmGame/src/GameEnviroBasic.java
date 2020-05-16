@@ -360,7 +360,8 @@ public class GameEnviroBasic {
 			}
 			farm.setCrops(crops);
 			farm.setAnimals(animals);
-			event = randomEvents();
+			int randNum = rng.nextInt();
+			event = randomEvents(randNum);
 		}
 		return event;
 	}
@@ -495,10 +496,8 @@ public class GameEnviroBasic {
 	 * Drought - 5% chance of occurring - player loses half of their farm's crops. The crops are chose randomly using removeHalfCrops().
 	 * @return eventInfo - a string detailing what event happened, if any.
 	 */
-	public String randomEvents() {
-		int randNum = rng.nextInt();
+	public String randomEvents(int randNum) {
 		String eventInfo = "";
-		System.out.println(randNum);
 		if(randNum%10 == 2) {
 			//County fair: win a bonus amount of money 
 			int animalNum = farm.getAnimals().size();

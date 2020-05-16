@@ -60,11 +60,11 @@ public class FeedAnimalScreen {
 		animalListModel.addAll(game.getFarm().getAnimals());
 		
 		JList<Animal> animalList = new JList<Animal>(animalListModel);
-		animalList.setBounds(50, 67, 275, 300);
+		animalList.setBounds(25, 67, 325, 300);
 		frame.getContentPane().add(animalList);
 		
 		JList<ItemForAnimal> itemList = new JList<ItemForAnimal>(itemListModel);
-		itemList.setBounds(400, 67, 275, 300);
+		itemList.setBounds(400, 67, 325, 300);
 		frame.getContentPane().add(itemList);
 		
 		JButton confirmSelectButton = new JButton("Confirm Selection");
@@ -82,7 +82,7 @@ public class FeedAnimalScreen {
 				}
 			}
 		});
-		confirmSelectButton.setBounds(530, 400, 145, 35);
+		confirmSelectButton.setBounds(580, 400, 145, 35);
 		frame.getContentPane().add(confirmSelectButton);
 		
 		JLabel greetingLabel = new JLabel("Please select which animal you would like to feed, with which item");
@@ -97,7 +97,7 @@ public class FeedAnimalScreen {
 				game.closeFeedAnimalScreen(screen);
 			}
 		});
-		cancelButton.setBounds(50, 400, 145, 35);
+		cancelButton.setBounds(25, 400, 145, 35);
 		frame.getContentPane().add(cancelButton);
 		
 	}

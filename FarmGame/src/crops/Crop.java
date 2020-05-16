@@ -84,7 +84,7 @@ public class Crop implements StoreItem{
 	@Override
 	public String toString() {
 		if (daysUntilHarvest == 0) {
-			return String.format("This %s is ready, and will sell for $" + getSalePrice(), getType());
+			return String.format("This %s is ready, and will sell for $%.2f", getType(), getSalePrice());
 		} else {
 			return String.format("A %s: has %d days left to grow", getType(), getHarvestTime());
 		}

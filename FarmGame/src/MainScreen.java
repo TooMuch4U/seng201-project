@@ -99,7 +99,8 @@ public class MainScreen {
 		 * Main greeting label of screen
 		 */
 		JLabel greetingLabel = new JLabel("What would you like to do today?");
-		greetingLabel.setBounds(257, 71, 228, 14);
+		greetingLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		greetingLabel.setBounds(260, 71, 230, 14);
 		frame.getContentPane().add(greetingLabel);
 		
 		/**
@@ -143,7 +144,7 @@ public class MainScreen {
 				}
 			}
 		});
-		feedAnimalButton.setBounds(65, 139, 127, 23);
+		feedAnimalButton.setBounds(45, 139, 140, 23);
 		frame.getContentPane().add(feedAnimalButton);
 		
 		/**
@@ -166,7 +167,7 @@ public class MainScreen {
 				}
 			}
 		});
-		playAnimalsButton.setBounds(65, 215, 140, 23);
+		playAnimalsButton.setBounds(45, 215, 140, 23);
 		frame.getContentPane().add(playAnimalsButton);
 		
 		/**
@@ -181,7 +182,7 @@ public class MainScreen {
 				JOptionPane.showMessageDialog(frame, str, "Animal Information", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		viewAnimalButton.setBounds(65, 289, 127, 23);
+		viewAnimalButton.setBounds(45, 289, 140, 23);
 		frame.getContentPane().add(viewAnimalButton);
 		
 		/**
@@ -204,7 +205,7 @@ public class MainScreen {
 				}
 			}
 		});
-		tendCropsButton.setBounds(228, 139, 128, 23);
+		tendCropsButton.setBounds(210, 139, 140, 23);
 		frame.getContentPane().add(tendCropsButton);
 		
 		/**
@@ -226,7 +227,7 @@ public class MainScreen {
 				}
 			}
 		});
-		harvestCropsButton.setBounds(228, 215, 128, 23);
+		harvestCropsButton.setBounds(210, 215, 140, 23);
 		frame.getContentPane().add(harvestCropsButton);
 		
 		/**
@@ -241,7 +242,7 @@ public class MainScreen {
 				JOptionPane.showMessageDialog(frame, str, "Crop Information", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		viewCropButton.setBounds(228, 289, 128, 23);
+		viewCropButton.setBounds(210, 289, 140, 23);
 		frame.getContentPane().add(viewCropButton);
 		
 		/*
@@ -254,7 +255,7 @@ public class MainScreen {
 				game.launchStoreMainScreen();
 			}
 		});
-		visitStoreButton.setBounds(401, 139, 117, 23);
+		visitStoreButton.setBounds(375, 139, 140, 23);
 		frame.getContentPane().add(visitStoreButton);
 		
 		/**
@@ -269,7 +270,7 @@ public class MainScreen {
 				JOptionPane.showMessageDialog(frame, itemString, "Your Items", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		viewItemButton.setBounds(401, 215, 117, 23);
+		viewItemButton.setBounds(375, 215, 140, 23);
 		frame.getContentPane().add(viewItemButton);
 		
 		/**
@@ -284,7 +285,7 @@ public class MainScreen {
 				JOptionPane.showMessageDialog(frame, farmString, "Farm Information.", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		viewFarmButton.setBounds(559, 139, 117, 23);
+		viewFarmButton.setBounds(540, 139, 140, 23);
 		frame.getContentPane().add(viewFarmButton);
 		
 		/**
@@ -303,7 +304,7 @@ public class MainScreen {
 				}
 			}
 		});
-		tendLandButton.setBounds(559, 215, 117, 23);
+		tendLandButton.setBounds(540, 215, 140, 23);
 		frame.getContentPane().add(tendLandButton);
 		
 		
@@ -321,7 +322,7 @@ public class MainScreen {
 			}
 		});
 		tendLandInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		tendLandInfo.setBounds(639, 249, 37, 23);
+		tendLandInfo.setBounds(643, 249, 37, 23);
 		frame.getContentPane().add(tendLandInfo);
 		
 		JButton viewFarmInfo = new JButton("i");
@@ -333,7 +334,7 @@ public class MainScreen {
 			}
 		});
 		viewFarmInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		viewFarmInfo.setBounds(639, 173, 37, 23);
+		viewFarmInfo.setBounds(643, 173, 37, 23);
 		frame.getContentPane().add(viewFarmInfo);
 		
 		JButton visitStoreInfo = new JButton("i");
@@ -345,7 +346,7 @@ public class MainScreen {
 			}
 		});
 		visitStoreInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		visitStoreInfo.setBounds(481, 173, 37, 23);
+		visitStoreInfo.setBounds(478, 173, 37, 23);
 		frame.getContentPane().add(visitStoreInfo);
 		
 		JButton viewItemInfo = new JButton("i");
@@ -357,7 +358,7 @@ public class MainScreen {
 			}
 		});
 		viewItemInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		viewItemInfo.setBounds(481, 249, 37, 23);
+		viewItemInfo.setBounds(478, 249, 37, 23);
 		frame.getContentPane().add(viewItemInfo);
 		
 		JButton harvestCropInfo = new JButton("i");
@@ -370,7 +371,7 @@ public class MainScreen {
 			}
 		});
 		harvestCropInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		harvestCropInfo.setBounds(319, 249, 37, 23);
+		harvestCropInfo.setBounds(313, 249, 37, 23);
 		frame.getContentPane().add(harvestCropInfo);
 		
 		JButton tendCropInfo = new JButton("i");
@@ -383,7 +384,7 @@ public class MainScreen {
 			}
 		});
 		tendCropInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		tendCropInfo.setBounds(319, 173, 37, 23);
+		tendCropInfo.setBounds(313, 173, 37, 23);
 		frame.getContentPane().add(tendCropInfo);
 		
 		JButton feedAnimalInfo = new JButton("i");
@@ -396,7 +397,7 @@ public class MainScreen {
 			}
 		});
 		feedAnimalInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		feedAnimalInfo.setBounds(155, 173, 37, 23);
+		feedAnimalInfo.setBounds(148, 173, 37, 23);
 		frame.getContentPane().add(feedAnimalInfo);
 		
 		JButton playAnimalInfo = new JButton("i");
@@ -408,7 +409,7 @@ public class MainScreen {
 			}
 		});
 		playAnimalInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		playAnimalInfo.setBounds(155, 249, 37, 23);
+		playAnimalInfo.setBounds(148, 249, 37, 23);
 		frame.getContentPane().add(playAnimalInfo);
 		
 		JButton viewAnimalInfo = new JButton("i");
@@ -420,7 +421,7 @@ public class MainScreen {
 			}
 		});
 		viewAnimalInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		viewAnimalInfo.setBounds(155, 323, 37, 23);
+		viewAnimalInfo.setBounds(148, 325, 37, 23);
 		frame.getContentPane().add(viewAnimalInfo);
 		
 		JButton viewCropInfo = new JButton("i");
@@ -433,7 +434,7 @@ public class MainScreen {
 			}
 		});
 		viewCropInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
-		viewCropInfo.setBounds(319, 323, 37, 23);
+		viewCropInfo.setBounds(313, 323, 37, 23);
 		frame.getContentPane().add(viewCropInfo);
 		
 		JButton nextDayInfo = new JButton("i");

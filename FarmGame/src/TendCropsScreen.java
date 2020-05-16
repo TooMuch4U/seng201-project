@@ -62,11 +62,11 @@ public class TendCropsScreen {
 		cropListModel.addAll(game.getFarm().getCrops());
 		
 		JList<Crop> cropList = new JList<Crop>(cropListModel);
-		cropList.setBounds(50, 67, 275, 300);
+		cropList.setBounds(25, 67, 325, 300);
 		frame.getContentPane().add(cropList);
 		
 		JList<ItemForCrop> itemList = new JList<ItemForCrop>(itemListModel);
-		itemList.setBounds(400, 67, 275, 300);
+		itemList.setBounds(400, 67, 325, 300);
 		frame.getContentPane().add(itemList);
 		
 		JButton confirmSelectButton = new JButton("Confirm Selection");
@@ -84,7 +84,7 @@ public class TendCropsScreen {
 				}
 			}
 		});
-		confirmSelectButton.setBounds(530, 400, 145, 35);
+		confirmSelectButton.setBounds(580, 400, 145, 35);
 		frame.getContentPane().add(confirmSelectButton);
 		
 		JLabel greetingLabel = new JLabel("Please select which crop you would like to tend, with which item");
@@ -99,7 +99,7 @@ public class TendCropsScreen {
 				game.closeTendCropsScreen(screen);
 			}
 		});
-		cancelButton.setBounds(50, 400, 145, 35);
+		cancelButton.setBounds(25, 400, 145, 35);
 		frame.getContentPane().add(cancelButton);
 	}
 }

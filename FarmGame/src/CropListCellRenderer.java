@@ -15,7 +15,7 @@ public class CropListCellRenderer extends DefaultListCellRenderer {
 	        JLabel label = (JLabel)super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
 	        Crop crop = (Crop) value;
-	        String cropString = String.format("%-10s %10s", crop.getType(), "$" + crop.getPrice());
+	        String cropString = String.format("$%-10.2f %10s", crop.getPrice(), String.format("%s, takes %d days to grow", crop.getType(), crop.getHarvestTime()));
 	        label.setText(cropString);
 
 	        return label;

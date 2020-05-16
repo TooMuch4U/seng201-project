@@ -65,9 +65,10 @@ public class StoreAnimalScreen {
 		/*
 		 * Farms money label
 		 */
-		String money = String.format("$%.2f", farmMoney);
+		String money = String.format("Current Money: $%.2f", farmMoney);
 		JLabel moneyLabel = new JLabel(money);
-		moneyLabel.setBounds(21, 20, 61, 16);
+		moneyLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		moneyLabel.setBounds(21, 20, 180, 16);
 		frame.getContentPane().add(moneyLabel);
 		
 		// Create a ListModel for animals and populate
@@ -103,14 +104,14 @@ public class StoreAnimalScreen {
 			public void actionPerformed(ActionEvent e) {
 				Animal selectedAnimal = animalList.getSelectedValue();
 				String name = selectedAnimal != null ? selectedAnimal.getType() : "";
-				double price = selectedAnimal != null ? selectedAnimal.getPrice() : 0.0;
+				double price = selectedAnimal != null ? selectedAnimal.getPrice() : 0.00;
 
 				if (selectedAnimal == null) {
 					JOptionPane.showMessageDialog(frame, "You need to select an animal first!", "", JOptionPane.PLAIN_MESSAGE);
 				} else if (selectedAnimal.getPrice() > farmMoney){
 					JOptionPane.showMessageDialog(frame, "You don't have enough money to buy that!", "", JOptionPane.PLAIN_MESSAGE);
 				} else {
-					String message = String.format("Are you sure you want to buy a %s for $%s", name, price);
+					String message = String.format("Are you sure you want to buy a %s for $%.2f?", name, price);
 					int choice = JOptionPane.showConfirmDialog(frame, message,  "", JOptionPane.YES_NO_OPTION);
 					if (choice == JOptionPane.YES_OPTION) {
 						game.purchaseAnimal(selectedAnimal);
