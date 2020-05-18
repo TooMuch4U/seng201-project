@@ -650,6 +650,24 @@ public class GameEnviroBasic {
 	public void purchaseItem(Item item) {
 		double itemPrice = item.getPrice();
 		processStoreItem(itemPrice);
+		if (item instanceof ItemHoe) {
+			farm.items.add(new ItemHoe());
+		}
+		if (item instanceof ItemFertilizer) {
+			farm.items.add(new ItemFertilizer());
+		}
+		if (item instanceof ItemGrowLight) {
+			farm.items.add(new ItemGrowLight());
+		}
+		if (item instanceof ItemApple) {
+			farm.items.add(new ItemApple());
+		}
+		if (item instanceof ItemHoe) {
+			farm.items.add(new ItemHoe());
+		}
+		if (item instanceof ItemHoe) {
+			farm.items.add(new ItemHoe());
+		}
 		farm.items.add(item);
 
 	}
@@ -661,7 +679,15 @@ public class GameEnviroBasic {
 	public void purchaseAnimal(Animal animal) {
 		double price = animal.getPrice();
 		processStoreItem(price);
-		farm.addAnimal(animal);
+		if (animal instanceof AnimalPig) {
+			farm.addAnimal(new AnimalPig());
+		}
+		if (animal instanceof AnimalCow) {
+			farm.addAnimal(new AnimalCow());
+		}
+		if (animal instanceof AnimalChicken) {
+			farm.addAnimal(new AnimalChicken());
+		}
 	}
 
 	/**
@@ -671,7 +697,24 @@ public class GameEnviroBasic {
 	public void purchaseCrop(Crop crop) {
 		double price = crop.getPrice();
 		processStoreItem(price);
-		farm.addCrop(crop);
+		if (crop instanceof CropCorn) {
+			farm.addCrop(new CropCorn());
+		}
+		if (crop instanceof CropCabbage) {
+			farm.addCrop(new CropCabbage());
+		}
+		if (crop instanceof CropCauliflower) {
+			farm.addCrop(new CropCauliflower());
+		}
+		if (crop instanceof CropPotato) {
+			farm.addCrop(new CropPotato());
+		}
+		if (crop instanceof CropTomato) {
+			farm.addCrop(new CropTomato());
+		}
+		if (crop instanceof CropWheat) {
+			farm.addCrop(new CropWheat());
+		}
 	}
 		
 		
