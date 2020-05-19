@@ -231,7 +231,7 @@ public class GameEnviroBasic {
 	 */
 	public void closeStoreAnimalScreen(StoreAnimalScreen storeAnimal) {
 		storeAnimal.closeWindow();
-		launchMainScreen();
+		launchStoreMainScreen();
 	}
 	
 	/**
@@ -247,7 +247,7 @@ public class GameEnviroBasic {
 	 */
 	public void closeStoreCropScreen(StoreCropScreen cropScreen) {
 		cropScreen.closeWindow();
-		launchMainScreen();
+		launchStoreMainScreen();
 	}
 	
 	/**
@@ -263,7 +263,7 @@ public class GameEnviroBasic {
 	 */
 	public void closeStoreItemScreen(StoreItemScreen itemScreen) {
 		itemScreen.closeWindow();
-		launchMainScreen();
+		launchStoreMainScreen();
 	}
 	
 	/**
