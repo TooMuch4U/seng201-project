@@ -451,18 +451,22 @@ public class GameEnviroBasic {
 	}
 	
 	/**
-	 * Removes half of the animals from the farm using the game environment's random number generator.
-	 * Utilises a while loop to ensure exactly half of the animals are removed.
-	 * If the rng generates an even number, or there are as many animals in the list as need to be removed, the next animal will be removed.
+	 * Removes a random number of the animals from the farm using the game environment's random number generator.
+	 * If an animal doesn't escape, it loses a substantial amount of happiness.
+	 * A maximum of half of the player's animals can escape. The exact number is generated using the rng.
 	 */
-	public void removeHalfAnimals() {
+	public void removeRandomAnimals() {
 		ArrayList<Animal> animals = farm.getAnimals();
-		int num_required = animals.size()/2;
-		while(num_required > 0) {
+		int maxNum = animals.size()/2;
+		int numRequired = rng.nextInt()%maxNum;
+		while(numRequired > 0) {
 			for(int i = 0; i < animals.size(); i++) {
-				if (num_required == (animals.size() - i) || rng.nextInt()%2 == 0) {
+				if (numRequired == (animals.size() - i) || rng.nextInt()%2 == 0) {
 					animals.remove(i);
-					num_required -= 1;
+					numRequired -= 1;
+				} else {
+					Animal animal = animals.get(i);
+					animal.changeHappiness(-20);
 				}
 			}
 		}
@@ -510,8 +514,8 @@ public class GameEnviroBasic {
 			
 		} else if (randNum%20 == 5) {
 			//Broken fence: animals escape
-			eventInfo = "Overnight, your fence broke, and some of your animals escaped.";
-			removeHalfAnimals();
+			eventInfo = "Overnight, your fence broke, and some of your animals escaped.\nThe ones that didn't are now sad that their friends are gone.";
+			removeRandomAnimals();
 		} else if (randNum%20 == 19 ) {
 			//Drought: crops die
 			eventInfo = "A drought has struck, and your crops are thirsty.\nHalf of them die from lack of water.";
@@ -580,7 +584,7 @@ public class GameEnviroBasic {
 	 */
 	public void playWithAnimals(int animalIndex) {
 		if (numActions > 0) {
-			double change = 2.0; // Change constant to increase animals happiness by
+			double change = 5.0; // Change constant to increase animals happiness by
 			ArrayList<Animal> Animals = farm.getAnimals();
 			Animal animal = Animals.get(animalIndex);
 			animal.changeHappiness(change);
