@@ -57,6 +57,7 @@ public class Store {
 		// Check that the index is valid
 		if (index < arraySize && index >= 0) {
 			returnItem = availableItems.get(index);
+			
 		}
 		else {
 			throw new IllegalArgumentException("That item doesn't exist");

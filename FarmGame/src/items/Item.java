@@ -1,6 +1,6 @@
 package items;
 
-public abstract class Item implements StoreItem{
+public abstract class Item implements Cloneable{
 	
 	/**
 	 * Items name
@@ -9,7 +9,7 @@ public abstract class Item implements StoreItem{
 	/**
 	 * Items price
 	 */
-	private double price;
+	public double price;
 	
 	
 	/**
@@ -48,6 +48,5 @@ public abstract class Item implements StoreItem{
 	 * @return double
 	 */
 	public abstract double getBenefit();
-	
 
 }
