@@ -406,7 +406,7 @@ public class GameEnviroBasic {
 		} else {
 			String returnString = "";
 			for (Crop crop:crops) {
-				returnString += crop.toString() + "\n";
+				returnString += crop.toString() + String.format(" Has been growing for %d days.\n", crop.getGrowingTime());
 			}
 			return returnString;
 		}
