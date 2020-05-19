@@ -510,11 +510,11 @@ public class GameEnviroBasic {
 			
 		} else if (randNum%20 == 5) {
 			//Broken fence: animals escape
-			eventInfo = "Overnight, your fence broke, and half of your animals escaped.";
+			eventInfo = "Overnight, your fence broke, and some of your animals escaped.";
 			removeHalfAnimals();
 		} else if (randNum%20 == 19 ) {
 			//Drought: crops die
-			eventInfo = "A drought has struck, and your crops can't handle it.\nHalf of them die from lack of water.";
+			eventInfo = "A drought has struck, and your crops are thirsty.\nHalf of them die from lack of water.";
 			removeHalfCrops();
 		}
 		return eventInfo;

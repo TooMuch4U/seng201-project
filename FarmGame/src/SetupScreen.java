@@ -153,6 +153,9 @@ public class SetupScreen {
 			public void actionPerformed(ActionEvent e) {
 				if (farmerNameField.getText().isBlank()) {
 					JOptionPane.showMessageDialog(frame, "Please enter a name for your farmer",  "Insufficient Farmer Name", JOptionPane.ERROR_MESSAGE);
+				} else if (farmerNameField.getText().length() > 15 || farmerNameField.getText().length() < 3 || farmerNameField.getText().matches("[a-zA-Z]*") == false) {
+					String prompt = "Please enter a name for your farmer that is between 3 and 15 characters long, and only contains letters.";
+					JOptionPane.showMessageDialog(frame, prompt,  "Insufficient Farmer Name", JOptionPane.ERROR_MESSAGE);
 				} else if (farmNameField.getText().isBlank()) {
 					JOptionPane.showMessageDialog(frame, "Please enter a name for your farm",  "Insufficient Farm Name", JOptionPane.ERROR_MESSAGE);
 				} else {
