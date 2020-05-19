@@ -25,6 +25,10 @@ public class Farm {
 	/**
 	 * Initial money available to the user
 	 */
+	private double startMoney;
+	/**
+	 * A running total of the farm's current money
+	 */
 	private double money;
 	/**
 	 * ArrayList containing the farm's animals
@@ -65,6 +69,7 @@ public class Farm {
 		type = kind;
 		farmer = owner;
 		money = cash;
+		startMoney = cash;
 	}
 	
 	/**
@@ -100,6 +105,14 @@ public class Farm {
 	}
 	
 	/**
+	 * Returns the difference in current money and the money the player had at the start of the game.
+	 * @return profit - a double: the difference in money and startMoney
+	 */
+	public double getProfit() {
+		return money - startMoney;
+	}
+	
+	/**
 	 * Gets the current animals on the farm.
 	 * @return animals - ArrayList containing the farm's animals.
 	 */
@@ -115,6 +128,10 @@ public class Farm {
 		return crops;
 	}
 	
+	/**
+	 * Gets the crops on the player's farm that are currently ready for harvest.
+	 * @return harvestableCrops - an ArrayList containing all crops that can currently be harvested
+	 */
 	public ArrayList<Crop> getHarvestableCrops() {
 		ArrayList<Crop> harvestableCrops = new ArrayList<Crop>();
 		for (Crop crop: crops) {

@@ -97,11 +97,26 @@ public class ScoreScreen {
 		scoreLabel.setBounds(10, 72, 716, 33);
 		frame.getContentPane().add(scoreLabel);
 		
-		String farmInfo = game.viewFarmStatus();
+		/**
+		 * Displays the final information about the player's farm
+		 */
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
-		textPane.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		textPane.setText(farmInfo);
+		Farm farm = game.getFarm();
+		textPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		String endText = String.format("The story of %s's farm, %s, ends.", farm.getFarmer().getName(), farm.getName());
+		//Get the farm's profit, and update the end text depending on a profit or loss was made
+		double farmProfit = farm.getProfit();
+		String profitOrLoss = null;
+		if (farmProfit >= 0) {
+			profitOrLoss = "made";
+		} else {
+			profitOrLoss = "lost";
+			farmProfit = farmProfit*-1;
+		}
+		endText += String.format("\nYou toiled on your farm for %d days, and %s a total of %.2f", game.getCurrentDays(), profitOrLoss, farmProfit);
+		
+		textPane.setText(endText);
 		textPane.setBackground(UIManager.getColor("Button.background"));
 		textPane.setBounds(10, 113, 716, 239);
 		frame.getContentPane().add(textPane);

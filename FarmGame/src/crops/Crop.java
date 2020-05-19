@@ -98,7 +98,7 @@ public class Crop implements StoreItem{
 	
 	/**
 	 * Increases the growing time of the crop by one.
-	 * Is not called when an item is used on the crop.
+	 * Is not called when an item is used on the crop.asfasd
 	 */
 	public void increaseGrowTime() {
 		growingTime += 1;
