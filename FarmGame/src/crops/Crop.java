@@ -20,6 +20,12 @@ public class Crop implements StoreItem{
 	 * The days until the crops can be harvested
 	 */
 	private int daysUntilHarvest;
+	/**
+	 * The days the crop has been growing for.
+	 * Does not count being tended to with an item.
+	 * Always 0 when crop is created.
+	 */
+	private int growingTime = 0;
 	
 	/**
 	 * Constructor using parameters
@@ -36,7 +42,7 @@ public class Crop implements StoreItem{
 	}
 	
 	/**
-	 * Gets the type of crop
+	 * Gets the type of crop.
 	 * @return type
 	 */
 	public String getType() {
@@ -44,7 +50,7 @@ public class Crop implements StoreItem{
 	}
 	
 	/**
-	 * Gets the purchasing price of the crop
+	 * Gets the purchasing price of the crop.
 	 * @return purchasePrice
 	 */
 	public double getPrice() {
@@ -52,7 +58,7 @@ public class Crop implements StoreItem{
 	}
 	
 	/**
-	 * Gets the selling price of the crop
+	 * Gets the selling price of the crop.
 	 * @return salePrice
 	 */
 	public double getSalePrice() {
@@ -60,7 +66,7 @@ public class Crop implements StoreItem{
 	}
 	
 	/**
-	 * Gets the current time until the crop can be harvested
+	 * Gets the current time until the crop can be harvested.
 	 * @return daysUntilHarvest
 	 */
 	public int getHarvestTime() {
@@ -68,9 +74,18 @@ public class Crop implements StoreItem{
 	}
 	
 	/**
-	 * Changes the current harvest time of the crop
-	 * Sets the harvest time to 0 if the harvest time will go below 0
-	 * @param change - the desired change in harvest time
+	 * Gets the total time the crop has been growing for.
+	 * Does not count days taken away by using an item on the crop.
+	 * @return growingTime
+	 */
+	public int getGrowingTime() {
+		return growingTime;
+	}
+	
+	/**
+	 * Changes the current harvest time of the crop.
+	 * Sets the harvest time to 0 if the harvest time will go below 0.
+	 * @param change - the desired change in harvest time.
 	 */
 	public void changeHarvestTime(int change) {
 		if (change < 0) {
@@ -81,12 +96,21 @@ public class Crop implements StoreItem{
 		daysUntilHarvest -= change;
 	}
 	
+	/**
+	 * Increases the growing time of the crop by one.
+	 * Is not called when an item is used on the crop.
+	 */
+	public void increaseGrowTime() {
+		growingTime += 1;
+	}
+	
+	
 	@Override
 	public String toString() {
 		if (daysUntilHarvest == 0) {
 			return String.format("This %s is ready, and will sell for $%.2f", getType(), getSalePrice());
 		} else {
-			return String.format("A %s: has %d days left to grow", getType(), getHarvestTime());
+			return String.format("A %s: growing for %d days, with %d days until harvest", getType(), getHarvestTime());
 		}
 	}
 }

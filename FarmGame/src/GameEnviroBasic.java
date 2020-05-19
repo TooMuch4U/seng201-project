@@ -348,6 +348,7 @@ public class GameEnviroBasic {
 			ArrayList<Animal> animals = farm.getAnimals();
 			for (Crop crop: crops) {
 				crop.changeHarvestTime(1);
+				crop.increaseGrowTime();
 			}
 			for (Animal animal: animals) {
 				double income = animal.getIncome();

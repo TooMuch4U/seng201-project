@@ -89,8 +89,7 @@ public class StoreCropScreen {
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.launchStoreMainScreen();
-				closeWindow();
+				finishedWindow();
 				
 			}
 		});
@@ -113,8 +112,7 @@ public class StoreCropScreen {
 					int choice = JOptionPane.showConfirmDialog(frame, message,  "", JOptionPane.YES_NO_OPTION);
 					if (choice == JOptionPane.YES_OPTION) {
 						game.purchaseCrop(selectedCrop);
-						closeWindow();
-						game.launchMainScreen();
+						finishedWindow();
 					} 
 				}
 				

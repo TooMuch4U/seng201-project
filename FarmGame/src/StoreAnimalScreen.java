@@ -91,8 +91,7 @@ public class StoreAnimalScreen {
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.launchStoreMainScreen();
-				closeWindow();
+				finishedWindow();
 				
 			}
 		});
@@ -115,8 +114,7 @@ public class StoreAnimalScreen {
 					int choice = JOptionPane.showConfirmDialog(frame, message,  "", JOptionPane.YES_NO_OPTION);
 					if (choice == JOptionPane.YES_OPTION) {
 						game.purchaseAnimal(selectedAnimal);
-						closeWindow();
-						game.launchMainScreen();
+						finishedWindow();
 					} 
 				}
 				

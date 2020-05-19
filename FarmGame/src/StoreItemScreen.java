@@ -88,8 +88,7 @@ public class StoreItemScreen {
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.launchStoreMainScreen();
-				closeWindow();
+				finishedWindow();
 				
 			}
 		});
@@ -112,8 +111,7 @@ public class StoreItemScreen {
 					int choice = JOptionPane.showConfirmDialog(frame, message,  "", JOptionPane.YES_NO_OPTION);
 					if (choice == JOptionPane.YES_OPTION) {
 						game.purchaseItem(selectedItem);
-						closeWindow();
-						game.launchMainScreen();
+						finishedWindow();
 					} 
 				}
 				

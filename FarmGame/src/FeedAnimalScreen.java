@@ -52,7 +52,6 @@ public class FeedAnimalScreen {
 		frame.setBounds(100, 100, 750, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		FeedAnimalScreen screen = this;
 		
 		DefaultListModel<ItemForAnimal> itemListModel = new DefaultListModel<>();
 		DefaultListModel<Animal> animalListModel = new DefaultListModel<>();
@@ -78,7 +77,7 @@ public class FeedAnimalScreen {
 					JOptionPane.showMessageDialog(frame, "Please select an animal to feed.", "Warning: No Animal Selected", JOptionPane.ERROR_MESSAGE);
 				} else {
 					game.feedAnimals(item, animalIndex);
-					game.closeFeedAnimalScreen(screen);
+					finishedWindow();
 				}
 			}
 		});
@@ -94,7 +93,7 @@ public class FeedAnimalScreen {
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.closeFeedAnimalScreen(screen);
+				finishedWindow();
 			}
 		});
 		cancelButton.setBounds(25, 400, 145, 35);
