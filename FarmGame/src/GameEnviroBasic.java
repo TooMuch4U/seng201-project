@@ -657,23 +657,17 @@ public class GameEnviroBasic {
 		processStoreItem(itemPrice);
 		if (item instanceof ItemHoe) {
 			farm.items.add(new ItemHoe());
-		}
-		if (item instanceof ItemFertilizer) {
+		} else if (item instanceof ItemFertilizer) {
 			farm.items.add(new ItemFertilizer());
-		}
-		if (item instanceof ItemGrowLight) {
+		} else if (item instanceof ItemGrowLight) {
 			farm.items.add(new ItemGrowLight());
-		}
-		if (item instanceof ItemApple) {
+		} else if (item instanceof ItemApple) {
 			farm.items.add(new ItemApple());
+		} else if (item instanceof ItemMilk) {
+			farm.items.add(new ItemMilk());
+		} else if (item instanceof ItemSteroids) {
+			farm.items.add(new ItemSteroids());
 		}
-		if (item instanceof ItemHoe) {
-			farm.items.add(new ItemHoe());
-		}
-		if (item instanceof ItemHoe) {
-			farm.items.add(new ItemHoe());
-		}
-		farm.items.add(item);
 
 	}
 	
@@ -686,11 +680,9 @@ public class GameEnviroBasic {
 		processStoreItem(price);
 		if (animal instanceof AnimalPig) {
 			farm.addAnimal(new AnimalPig());
-		}
-		if (animal instanceof AnimalCow) {
+		} else if (animal instanceof AnimalCow) {
 			farm.addAnimal(new AnimalCow());
-		}
-		if (animal instanceof AnimalChicken) {
+		} else if (animal instanceof AnimalChicken) {
 			farm.addAnimal(new AnimalChicken());
 		}
 	}
@@ -704,20 +696,15 @@ public class GameEnviroBasic {
 		processStoreItem(price);
 		if (crop instanceof CropCorn) {
 			farm.addCrop(new CropCorn());
-		}
-		if (crop instanceof CropCabbage) {
+		} else if (crop instanceof CropCabbage) {
 			farm.addCrop(new CropCabbage());
-		}
-		if (crop instanceof CropCauliflower) {
+		} else if (crop instanceof CropCauliflower) {
 			farm.addCrop(new CropCauliflower());
-		}
-		if (crop instanceof CropPotato) {
+		} else if (crop instanceof CropPotato) {
 			farm.addCrop(new CropPotato());
-		}
-		if (crop instanceof CropTomato) {
+		} else if (crop instanceof CropTomato) {
 			farm.addCrop(new CropTomato());
-		}
-		if (crop instanceof CropWheat) {
+		} else if (crop instanceof CropWheat) {
 			farm.addCrop(new CropWheat());
 		}
 	}

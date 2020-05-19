@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
@@ -57,8 +59,9 @@ public class StoreCropScreen {
 		JLabel cropLabel = new JLabel("Crops");
 		cropLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		cropLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		cropLabel.setBounds(310, 56, 130, 59);
+		cropLabel.setBounds(310, 20, 130, 59);
 		frame.getContentPane().add(cropLabel);
+		
 		
 		/*
 		 * Farms money label
@@ -66,7 +69,7 @@ public class StoreCropScreen {
 		String money = String.format("Current Money: $%.2f", farmMoney);
 		JLabel moneyLabel = new JLabel(money);
 		moneyLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		moneyLabel.setBounds(21, 20, 180, 16);
+		moneyLabel.setBounds(21, 42, 180, 16);
 		frame.getContentPane().add(moneyLabel);
 		
 		// Create a ListModel for animals and populate
@@ -80,8 +83,18 @@ public class StoreCropScreen {
 		cropList.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		cropList.setCellRenderer(new CropListCellRenderer());
 		cropList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		cropList.setBounds(210, 127, 334, 225);
+		cropList.setBounds(210, 85, 334, 225);
 		frame.getContentPane().add(cropList);
+		
+		JTextPane infoBox = new JTextPane();
+		infoBox.setEditable(false);
+		String ownedInfo = "Currently owned crops:\n";
+		for (Crop crop: game.getFarm().getCrops()) {
+			ownedInfo += crop.getType()+", ";
+		}
+		infoBox.setText(ownedInfo);
+		infoBox.setBounds(125, 321, 500, 60);
+		frame.getContentPane().add(infoBox);
 		
 		/*
 		 * Back button
@@ -90,7 +103,6 @@ public class StoreCropScreen {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
-				
 			}
 		});
 		backButton.setBounds(96, 411, 117, 29);

@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 import animals.*;
+import items.Item;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,6 +8,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 
 import javax.swing.DefaultListModel;
@@ -59,7 +61,7 @@ public class StoreAnimalScreen {
 		JLabel animalsLabel = new JLabel("Animals");
 		animalsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		animalsLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		animalsLabel.setBounds(310, 56, 130, 59);
+		animalsLabel.setBounds(310, 20, 130, 59);
 		frame.getContentPane().add(animalsLabel);
 		
 		/*
@@ -68,7 +70,7 @@ public class StoreAnimalScreen {
 		String money = String.format("Current Money: $%.2f", farmMoney);
 		JLabel moneyLabel = new JLabel(money);
 		moneyLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		moneyLabel.setBounds(21, 20, 180, 16);
+		moneyLabel.setBounds(21, 42, 180, 16);
 		frame.getContentPane().add(moneyLabel);
 		
 		// Create a ListModel for animals and populate
@@ -82,8 +84,18 @@ public class StoreAnimalScreen {
 		animalList.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		animalList.setCellRenderer(new AnimalListCellRenderer());
 		animalList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		animalList.setBounds(210, 127, 334, 225);
+		animalList.setBounds(210, 85, 334, 225);
 		frame.getContentPane().add(animalList);
+		
+		JTextPane infoBox = new JTextPane();
+		infoBox.setEditable(false);
+		String ownedInfo = "Currently owned animals:\n";
+		for (Animal animal: game.getFarm().getAnimals()) {
+			ownedInfo += animal.getType()+", ";
+		}
+		infoBox.setText(ownedInfo);
+		infoBox.setBounds(125, 321, 500, 60);
+		frame.getContentPane().add(infoBox);
 		
 		/*
 		 * Back button

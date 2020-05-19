@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -9,9 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
+import crops.Crop;
 import items.*;
 
 public class StoreItemScreen {
@@ -53,11 +56,11 @@ public class StoreItemScreen {
 		frame.getContentPane().setLayout(null);
 		double farmMoney = game.getFarm().getMoney();
 		
-		JLabel cropLabel = new JLabel("Crops");
-		cropLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		cropLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		cropLabel.setBounds(310, 56, 130, 59);
-		frame.getContentPane().add(cropLabel);
+		JLabel itemLabel = new JLabel("Items");
+		itemLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		itemLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		itemLabel.setBounds(310, 20, 130, 59);
+		frame.getContentPane().add(itemLabel);
 		
 		/*
 		 * Farms money label
@@ -65,7 +68,7 @@ public class StoreItemScreen {
 		String money = String.format("Current Money: $%.2f", farmMoney);
 		JLabel moneyLabel = new JLabel(money);
 		moneyLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		moneyLabel.setBounds(21, 20, 180, 16);
+		moneyLabel.setBounds(21, 42, 180, 16);
 		frame.getContentPane().add(moneyLabel);
 		
 		// Create a ListModel for animals and populate
@@ -73,14 +76,24 @@ public class StoreItemScreen {
 		itemListModel.addAll(game.getStore().availableItems);
 		
 		/*
-		 * Animal JList
+		 * Item JList
 		 */
 		JList<Item> itemList = new JList<>(itemListModel);
 		itemList.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		itemList.setCellRenderer(new ItemListCellRenderer());
 		itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		itemList.setBounds(72, 127, 607, 225);
+		itemList.setBounds(71, 85, 607, 225);
 		frame.getContentPane().add(itemList);
+		
+		JTextPane infoBox = new JTextPane();
+		infoBox.setEditable(false);
+		String ownedInfo = "Currently owned items:\n";
+		for (Item item: game.getFarm().items) {
+			ownedInfo += item.getName()+", ";
+		}
+		infoBox.setText(ownedInfo);
+		infoBox.setBounds(71, 321, 607, 60);
+		frame.getContentPane().add(infoBox);
 		
 		/*
 		 * Back button
