@@ -80,7 +80,7 @@ public class StoreCropScreen {
 		 * Animal JList
 		 */
 		JList<Crop> cropList = new JList<>(cropListModel);
-		cropList.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		cropList.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		cropList.setCellRenderer(new CropListCellRenderer());
 		cropList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cropList.setBounds(210, 85, 334, 225);
