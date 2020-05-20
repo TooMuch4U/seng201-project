@@ -104,6 +104,14 @@ public class MainScreen {
 		frame.getContentPane().add(greetingLabel);
 		
 		/**
+		 * Label for actions remaining
+		 */
+		String actionsString = String.format("Actions Left: %s", game.getNumActions());
+		JLabel actionsLabel = new JLabel(actionsString);
+		actionsLabel.setBounds(10, 82, 140, 16);
+		frame.getContentPane().add(actionsLabel);
+		
+		/**
 		 * Button to advance to the next day
 		 */
 		JButton nextDayButton = new JButton("Next Day");
@@ -117,6 +125,7 @@ public class MainScreen {
 				currentDayLabel.setText(String.format("Current Day : %d", game.getCurrentDays()));
 				daysLeftLabel.setText(String.format("Days Left: %d", game.getRequiredDays()-game.getCurrentDays()));
 				infoBox.setText("Advanced one day\n" + event);
+				actionsLabel.setText(String.format("Actions Left: %s", game.getNumActions()));
 			}
 		});
 		nextDayButton.setBounds(573, 373, 125, 45);
@@ -299,6 +308,7 @@ public class MainScreen {
 				try {
 					game.tendToLand();
 					infoBox.setText("Tended to land; more crops and animals can be bought!");
+					actionsLabel.setText(String.format("Actions Left: %s", game.getNumActions()));
 				} catch (ActionCountException except) {
 					infoBox.setText(except.getMessage());
 				}
@@ -447,5 +457,8 @@ public class MainScreen {
 		nextDayInfo.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 12));
 		nextDayInfo.setBounds(661, 429, 37, 23);
 		frame.getContentPane().add(nextDayInfo);
+		
+		
+		
 	}
 }

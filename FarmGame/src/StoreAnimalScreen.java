@@ -81,7 +81,7 @@ public class StoreAnimalScreen {
 		 * Animal JList
 		 */
 		JList<Animal> animalList = new JList<Animal>(animalListModel);
-		animalList.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		animalList.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		animalList.setCellRenderer(new AnimalListCellRenderer());
 		animalList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		animalList.setBounds(210, 85, 334, 225);
