@@ -59,10 +59,12 @@ public class FeedAnimalScreen {
 		animalListModel.addAll(game.getFarm().getAnimals());
 		
 		JList<Animal> animalList = new JList<Animal>(animalListModel);
+		animalList.setCellRenderer(new AnimalMainListCellRenderer());
 		animalList.setBounds(25, 67, 325, 300);
 		frame.getContentPane().add(animalList);
 		
 		JList<ItemForAnimal> itemList = new JList<ItemForAnimal>(itemListModel);
+		itemList.setCellRenderer(new ItemMainListCellRenderer());
 		itemList.setBounds(400, 67, 325, 300);
 		frame.getContentPane().add(itemList);
 		

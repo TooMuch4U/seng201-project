@@ -62,10 +62,12 @@ public class TendCropsScreen {
 		cropListModel.addAll(game.getFarm().getCrops());
 		
 		JList<Crop> cropList = new JList<Crop>(cropListModel);
+		cropList.setCellRenderer(new CropMainListCellRenderer());
 		cropList.setBounds(25, 67, 325, 300);
 		frame.getContentPane().add(cropList);
 		
 		JList<ItemForCrop> itemList = new JList<ItemForCrop>(itemListModel);
+		itemList.setCellRenderer(new ItemMainListCellRenderer());
 		itemList.setBounds(400, 67, 325, 300);
 		frame.getContentPane().add(itemList);
 		

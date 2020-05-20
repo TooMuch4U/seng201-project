@@ -66,6 +66,7 @@ public class SelectAnimalScreen {
 		animalListModel.addAll(animals);
 		
 		JList<Animal> animalList = new JList<Animal>(animalListModel);
+		animalList.setCellRenderer(new AnimalMainListCellRenderer());
 		animalList.setBounds(140, 70, 470, 320);
 		frame.getContentPane().add(animalList);
 		

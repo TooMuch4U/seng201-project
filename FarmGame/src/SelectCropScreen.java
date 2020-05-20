@@ -74,6 +74,7 @@ public class SelectCropScreen {
 		cropListModel.addAll(crops);
 		
 		JList<Crop> cropList = new JList<Crop>(cropListModel);
+		cropList.setCellRenderer(new CropMainListCellRenderer());
 		cropList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cropList.setBounds(140, 70, 470, 320);
 		frame.getContentPane().add(cropList);
