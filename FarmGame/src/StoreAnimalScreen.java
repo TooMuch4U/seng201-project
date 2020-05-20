@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 import animals.*;
+import crops.Crop;
 import items.Item;
 
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 
 public class StoreAnimalScreen {
@@ -90,8 +92,19 @@ public class StoreAnimalScreen {
 		JTextPane infoBox = new JTextPane();
 		infoBox.setEditable(false);
 		String ownedInfo = "Currently owned animals:\n";
+		//Create a dicitonary object to count the number of animals currently owned
+		Hashtable<String, Integer> animalDict = new Hashtable<String, Integer>();
 		for (Animal animal: game.getFarm().getAnimals()) {
-			ownedInfo += animal.getType()+", ";
+			String type = animal.getType();
+			if (animalDict.get(type) == null) {
+				animalDict.put(type, 1);
+			} else {
+				animalDict.put(type, animalDict.get(type)+1);
+			}
+		}
+		for (String key: animalDict.keySet()) {
+			int number = animalDict.get(key);
+			ownedInfo += String.format("%d %s, ", number, key);
 		}
 		infoBox.setText(ownedInfo);
 		infoBox.setBounds(125, 321, 500, 60);

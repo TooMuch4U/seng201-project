@@ -92,18 +92,18 @@ public class StoreCropScreen {
 		infoBox.setEditable(false);
 		String ownedInfo = "Currently owned crops:\n";
 		//Create a dicitonary object to count the number of crops currently owned
-		Hashtable<Crop, Integer> cropDict = new Hashtable<Crop, Integer>();
+		Hashtable<String, Integer> cropDict = new Hashtable<String, Integer>();
 		for (Crop crop: game.getFarm().getCrops()) {
-			if (cropDict.get(crop) == null) {
-				cropDict.put(crop, 1);
+			String type = crop.getType();
+			if (cropDict.get(type) == null) {
+				cropDict.put(type, 1);
 			} else {
-				cropDict.put(crop, cropDict.get(crop)+1);
+				cropDict.put(type, cropDict.get(type)+1);
 			}
 		}
-		for (Crop key: cropDict.keySet()) {
-			String type = key.getType();
+		for (String key: cropDict.keySet()) {
 			int number = cropDict.get(key);
-			ownedInfo += String.format("%d %s", number, type);
+			ownedInfo += String.format("%d %s, ", number, key);
 		}
 		infoBox.setText(ownedInfo);
 		infoBox.setBounds(125, 321, 500, 60);
