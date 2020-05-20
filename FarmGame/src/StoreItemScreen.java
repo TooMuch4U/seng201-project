@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
+import animals.Animal;
 import crops.Crop;
 import items.*;
 
@@ -88,8 +90,19 @@ public class StoreItemScreen {
 		JTextPane infoBox = new JTextPane();
 		infoBox.setEditable(false);
 		String ownedInfo = "Currently owned items:\n";
+		//Create a dicitonary object to count the number of items currently owned
+		Hashtable<String, Integer> itemDict = new Hashtable<String, Integer>();
 		for (Item item: game.getFarm().items) {
-			ownedInfo += item.getName()+", ";
+			String name = item.getName();
+			if (itemDict.get(name) == null) {
+				itemDict.put(name, 1);
+			} else {
+				itemDict.put(name, itemDict.get(name)+1);
+			}
+		}
+		for (String key: itemDict.keySet()) {
+			int number = itemDict.get(key);
+			ownedInfo += String.format("%d %s, ", number, key);
 		}
 		infoBox.setText(ownedInfo);
 		infoBox.setBounds(71, 321, 607, 60);

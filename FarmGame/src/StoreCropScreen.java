@@ -3,6 +3,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -89,8 +91,19 @@ public class StoreCropScreen {
 		JTextPane infoBox = new JTextPane();
 		infoBox.setEditable(false);
 		String ownedInfo = "Currently owned crops:\n";
+		//Create a dicitonary object to count the number of crops currently owned
+		Hashtable<String, Integer> cropDict = new Hashtable<String, Integer>();
 		for (Crop crop: game.getFarm().getCrops()) {
-			ownedInfo += crop.getType()+", ";
+			String type = crop.getType();
+			if (cropDict.get(type) == null) {
+				cropDict.put(type, 1);
+			} else {
+				cropDict.put(type, cropDict.get(type)+1);
+			}
+		}
+		for (String key: cropDict.keySet()) {
+			int number = cropDict.get(key);
+			ownedInfo += String.format("%d %s, ", number, key);
 		}
 		infoBox.setText(ownedInfo);
 		infoBox.setBounds(125, 321, 500, 60);
