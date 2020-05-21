@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -92,7 +93,7 @@ public class StoreItemScreen {
 		String ownedInfo = "Currently owned items:\n";
 		//Create a dicitonary object to count the number of items currently owned
 		Hashtable<String, Integer> itemDict = new Hashtable<String, Integer>();
-		for (Item item: game.getFarm().items) {
+		for (Item item: game.getFarm().getItems()) {
 			String name = item.getName();
 			if (itemDict.get(name) == null) {
 				itemDict.put(name, 1);

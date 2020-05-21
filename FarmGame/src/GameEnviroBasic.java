@@ -1,6 +1,6 @@
+
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 import animals.*;
 import crops.*;
@@ -40,19 +40,10 @@ public class GameEnviroBasic {
 	 * An int that dictates how many days will pass before animal happiness decreases
 	 */
 	private int decreaseHappinessDays = 1;
-	
-	private boolean randomEventsOn = true;
-	
 	/**
-	 * Construtor with parameters.
-	 * Used with command line application.
-	 * @param days - the amount of playable days specified by the player.
-	 * @param playerFarm - The player's farm.
+	 * A boolean value dictating whether random events are turned on for the game
 	 */
-	public GameEnviroBasic(int days, Farm playerFarm) {
-		requiredDays = days;
-		farm = playerFarm;
-	}
+	private boolean randomEventsOn;
 	
 	/**
 	 * Constructor without parameters.
@@ -575,7 +566,7 @@ public class GameEnviroBasic {
 		double healthBonus = feedItem.getBenefit();
 		Animal chosenAnimal = animals.get(animalIndex);
 		chosenAnimal.changeHealth(healthBonus);
-		farm.items.remove(feedItem);
+		farm.getItems().remove(feedItem);
 		numActions -= 1;
 	}
 	
@@ -592,9 +583,8 @@ public class GameEnviroBasic {
 		int growBonus = (int) cropItem.getBenefit();
 		Crop chosenCrop = crops.get(cropIndex);
 		chosenCrop.changeHarvestTime(growBonus);
-		farm.setCrops(crops);
 		if (cropItem.getName() != "Water") {
-			farm.items.remove(cropItem);
+			farm.getItems().remove(cropItem);
 		}
 		numActions -= 1;
 	}
@@ -663,17 +653,17 @@ public class GameEnviroBasic {
 		double itemPrice = item.getPrice();
 		processStoreItem(itemPrice);
 		if (item instanceof ItemHoe) {
-			farm.items.add(new ItemHoe());
+			farm.addItem(new ItemHoe());
 		} else if (item instanceof ItemFertilizer) {
-			farm.items.add(new ItemFertilizer());
+			farm.addItem(new ItemFertilizer());
 		} else if (item instanceof ItemGrowLight) {
-			farm.items.add(new ItemGrowLight());
+			farm.addItem(new ItemGrowLight());
 		} else if (item instanceof ItemApple) {
-			farm.items.add(new ItemApple());
+			farm.addItem(new ItemApple());
 		} else if (item instanceof ItemMilk) {
-			farm.items.add(new ItemMilk());
+			farm.addItem(new ItemMilk());
 		} else if (item instanceof ItemSteroids) {
-			farm.items.add(new ItemSteroids());
+			farm.addItem(new ItemSteroids());
 		}
 
 	}
@@ -719,7 +709,7 @@ public class GameEnviroBasic {
 		
 	/**
 	 * Method that is run at the end of each day.
-	 * Tally's up the farms score for the day.
+	 * Tallies up the farms score for the day.
 	 */
 	public void endOfDay() {
 		int incr = 0;

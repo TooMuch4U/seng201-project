@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 
 import javax.swing.DefaultListModel;
@@ -8,6 +9,7 @@ import javax.swing.ListSelectionModel;
 
 import items.ItemForAnimal;
 import animals.Animal;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;

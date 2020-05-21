@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JCheckBox;
 
 public class SetupScreen {
 
@@ -115,6 +117,10 @@ public class SetupScreen {
 		farmerAgeSpinner.setBounds(157, 166, 58, 20);
 		frame.getContentPane().add(farmerAgeSpinner);
 		
+		JCheckBox randomEventBox = new JCheckBox("Random Events On");
+		randomEventBox.setBounds(6, 327, 141, 23);
+		frame.getContentPane().add(randomEventBox);
+		
 		JTextPane farmInfo = new JTextPane();
 		farmInfo.setBounds(507, 210, 199, 101);
 		frame.getContentPane().add(farmInfo);
@@ -164,6 +170,7 @@ public class SetupScreen {
 					String farmName = farmNameField.getText();
 					String farmType = (String) farmTypeChoices.getSelectedItem();
 					int numDays = gameLengthSlider.getValue();
+					boolean randomEventsOn = randomEventBox.isSelected();
 					String confirmString = "You have a farmer named " + farmerName + " on a farm of type " + farmType + " called " + farmName + ".\nYou will play for "+numDays + " days.\nIs this correct?";
 					int choice = JOptionPane.showConfirmDialog(frame, confirmString,  "Confirmation", JOptionPane.YES_NO_OPTION);
 					if (choice == JOptionPane.YES_OPTION) {
@@ -188,6 +195,7 @@ public class SetupScreen {
 						
 						game.setFarm(farm);
 						game.setRequiredDays(numDays);
+						game.setRandomEventsOn(randomEventsOn);
 						finishedWindow();
 					}
 				}

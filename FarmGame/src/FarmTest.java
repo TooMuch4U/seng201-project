@@ -1,3 +1,5 @@
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ class FarmTest {
 	void testListIsEmpty() {
 		assertTrue(farm.getAnimals().isEmpty());
 		assertTrue(farm.getCrops().isEmpty());
-		assertTrue(farm.items.isEmpty());
+		assertTrue(farm.getItems().isEmpty());
 	}
 	
 	@Test
@@ -99,49 +101,22 @@ class FarmTest {
 		Item apple = new ItemApple();
 		Item hoe = new ItemHoe();
 		
-		farm.items.add(apple);
-		farm.items.add(hoe);
-		assertTrue(farm.items.contains(apple));
-		assertTrue(farm.items.contains(hoe));
+		farm.addItem(apple);
+		farm.addItem(hoe);
+		assertTrue(farm.getItems().contains(apple));
+		assertTrue(farm.getItems().contains(hoe));
 		
 		for (int i = 1; i < 10; i += 1) {
-			farm.items.add(apple);
-			farm.items.add(hoe);
+			farm.addItem(apple);
+			farm.addItem(hoe);
 		}
-		assertTrue(farm.items.size() == 20);
+		assertTrue(farm.getItems().size() == 20);
 		
-		farm.items.remove(hoe);
-		assertTrue(farm.items.size() == 19);
+		farm.getItems().remove(hoe);
+		assertTrue(farm.getItems().size() == 19);
 		
 	}
 	
-	@Test
-	void testListSet() {
-		ArrayList<Animal> animals = new ArrayList<Animal>();
-		ArrayList<Crop> crops = new ArrayList<Crop>();
-		
-		AnimalCow cow = new AnimalCow();
-		AnimalPig pig = new AnimalPig();
-		CropWheat wheat = new CropWheat();
-		CropCorn corn = new CropCorn();
-		
-		for(int i = 0; i < 10; i += 1) {
-			farm.addAnimal(cow);
-			farm.addCrop(wheat);
-			animals.add(pig);
-			crops.add(corn);
-		}
-		
-		ArrayList<Animal> oldAnimals = farm.getAnimals();
-		ArrayList<Crop> oldCrops = farm.getCrops();
-		farm.setAnimals(animals);
-		farm.setCrops(crops);
-		
-		assertFalse(farm.getAnimals().equals(oldAnimals));
-		assertFalse(farm.getCrops().equals(oldCrops));
-		assertEquals(farm.getAnimals(), animals);
-		assertEquals(farm.getCrops(), crops);
-	}
 	
 	@Test
 	void testAnimalBonus() {

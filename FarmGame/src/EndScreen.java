@@ -1,4 +1,6 @@
+
 import java.util.ArrayList;
+
 import items.*;
 import animals.*;
 import crops.*;
@@ -28,7 +30,7 @@ public class EndScreen {
 		double score = 0.0;
 		ArrayList<Animal> animals = farm.getAnimals();
 		ArrayList<Crop> crops = farm.getCrops();
-		ArrayList<Item> items = farm.items;
+		ArrayList<Item> items = farm.getItems();
 		
 		// Add score from animals
 		for (Animal animal : animals) {

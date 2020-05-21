@@ -1,3 +1,4 @@
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -23,9 +24,27 @@ class GameEnviroBasicTest {
 		game = new GameEnviroBasic();
 		game.setFarm(farm);
 		game.setRequiredDays(15);
+		game.setRandomEventsOn(true);
 		farm.changeAnimalLimit(15);
 		farm.changeCropLimit(15);
 		
+	}
+	
+	@Test
+	void testActionExceptions() {
+		game.setNumActions(0);
+		MainScreen main = new MainScreen(game);
+		try {
+			game.launchSelectAnimalScreen(main);
+		} catch (ActionCountException e) {
+			System.out.println("Exception caught successfully");
+		}
+		
+		try {
+			game.launchTendCropsScreen(main);
+		} catch (ActionCountException e) {
+			System.out.println("Exception caught successfully\n");
+		}
 	}
 	
 	@Test
@@ -94,20 +113,20 @@ class GameEnviroBasicTest {
 		farm.addAnimal(new AnimalCow());
 		farm.addAnimal(new AnimalChicken());
 		ItemForAnimal feedItem = new ItemApple();
-		farm.items.add(feedItem);
-		farm.items.add(feedItem);
+		farm.addItem(feedItem);
+		farm.addItem(feedItem);
 		
 		game.feedAnimals(feedItem, 0);
 		ArrayList<Animal> animals = farm.getAnimals();
 		assertEquals(animals.get(0).getHealth(), 68.00);
 		assertEquals(animals.get(1).getHealth(), 75.00);
-		assertEquals(farm.items.size(), 1);
+		assertEquals(farm.getItems().size(), 1);
 		assertEquals(game.getNumActions(), 9);
 		
 		game.feedAnimals(feedItem, 1);
 		assertEquals(animals.get(0).getHealth(), 68.00);
 		assertEquals(animals.get(1).getHealth(), 78.00);
-		assertEquals(farm.items.size(), 0);
+		assertEquals(farm.getItems().size(), 0);
 		assertEquals(game.getNumActions(), 8);
 	}
 	
@@ -121,9 +140,9 @@ class GameEnviroBasicTest {
 		ItemForCrop fert = new ItemFertilizer();
 		ItemForCrop hoe = new ItemHoe();
 		ItemForCrop water = new ItemWater();
-		farm.items.add(fert);
-		farm.items.add(hoe);
-		farm.items.add(water);
+		farm.addItem(fert);
+		farm.addItem(hoe);
+		farm.addItem(water);
 		assertTrue(farm.getCropItems().size() == 3);
 		
 		game.tendToCrops(fert, 0);

@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 import items.Item;
@@ -33,23 +34,23 @@ public class Farm {
 	/**
 	 * ArrayList containing the farm's animals
 	 */
-	private ArrayList<Animal> animals = new ArrayList<Animal>();
+	protected ArrayList<Animal> animals = new ArrayList<Animal>();
 	/**
 	 * ArrayList containing the farm's crops
 	 */
-	private ArrayList<Crop> crops = new ArrayList<Crop>();
+	protected ArrayList<Crop> crops = new ArrayList<Crop>();
 	/**
 	 * ArrayList containing the farm's items
 	 */
-	public ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Item> items = new ArrayList<Item>();
 	/**
 	 * Maximum amount of crops allowed on the farm
 	 */
-	private int cropLimit = 10;
+	protected int cropLimit = 10;
 	/**
 	 * Maximum amount of animals allowed on the farm
 	 */
-	private int animalLimit = 10;
+	protected int animalLimit = 10;
 	
 	/**
 	 * The farms current bonus score
@@ -129,6 +130,14 @@ public class Farm {
 	}
 	
 	/**
+	 * Gets the current items owned by the player.
+	 * @return items - ArrayList containing the farm's items.
+	 */
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+	
+	/**
 	 * Gets the crops on the player's farm that are currently ready for harvest.
 	 * @return harvestableCrops - an ArrayList containing all crops that can currently be harvested
 	 */
@@ -174,22 +183,6 @@ public class Farm {
 	}
 	
 	/**
-	 * Sets the ArrayList animals to a new or modified list of Animals.
-	 * @param newAnimals - the ArrayList animals with some animals removed.
-	 */
-	public void setAnimals(ArrayList<Animal> newAnimals) {
-		animals = newAnimals;
-	}
-	
-	/**
-	 * Sets the ArrayList crops to a new or modified list of Crops.
-	 * @param newCrops - the ArrayList crops with one or more crops removed or manipulated.
-	 */
-	public void setCrops(ArrayList<Crop> newCrops) {
-		crops = newCrops;
-	}
-	
-	/**
 	 * Manipulates the total current money of the farm.
 	 * Throws an illegal argument exception if the money goes below 0.
 	 * @param change - the desired change in money.
@@ -212,9 +205,6 @@ public class Farm {
 	public void addAnimal(Animal animal) {
 		if (animals.size() == animalLimit) {
 			throw new IllegalArgumentException("Farm is full of animals");
-		} else if (type == "animalBonus") {
-			animal.changeHealth(10.00);
-			animal.changeHappiness(10.00);
 		}
 		animals.add(animal);
 	}
@@ -227,11 +217,18 @@ public class Farm {
 	public void addCrop(Crop crop) {
 		if (crops.size() == cropLimit) {
 			throw new IllegalArgumentException("Farm is full of crops");
-		} else if (type == "cropBonus" && crop.getHarvestTime() > 1) {
-			crop.changeHarvestTime(1);
 		}
 		crops.add(crop);
 	}
+	
+	/**
+	 * Adds an item into the ArrayList items.
+	 * @param item - the item to be added to the farm's current items.
+	 */
+	public void addItem(Item item) {
+		items.add(item);
+	}
+	
 	
 	/**
 	 * Changes the farms crop limit.
