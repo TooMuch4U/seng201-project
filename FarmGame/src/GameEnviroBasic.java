@@ -6,6 +6,10 @@ import animals.*;
 import crops.*;
 import items.*;
 
+/** Game environment class
+ * Represents the games current state and handles most processes
+ *
+ */
 public class GameEnviroBasic {
 	
 	/**
@@ -186,6 +190,7 @@ public class GameEnviroBasic {
 	
 	/**
 	 * Launches the setup screen of the GUI.
+	 * @param game - Game environment variable
 	 */
 	public void launchSetupScreen(GameEnviroBasic game) {
 		SetupScreen setupWindow = new SetupScreen(game);
@@ -338,6 +343,7 @@ public class GameEnviroBasic {
 	 * If the current days is the number of days the player requested, the game is over.
 	 * Generates and displays the score, and prompts the user to play again.
 	 * This function is called directly when the player chooses to advance time.
+	 * @return event - The random event
 	 */
 	public String advanceDays() {
 		boolean decrease = false;
@@ -531,6 +537,7 @@ public class GameEnviroBasic {
 	 * County Fair - 10% chance of occurring - player gets a bonus sum of money depending on the numbers of crops and animals they have.
 	 * Broken Fence - 5% chance of occurring - player loses half of their farm's animals. The animals are chose randomly using removeHalfAnimals().
 	 * Drought - 5% chance of occurring - player loses half of their farm's crops. The crops are chose randomly using removeHalfCrops().
+	 * @param randNum - Number that determines if a random event occurs
 	 * @return eventInfo - a string detailing what event happened, if any.
 	 */
 	public String randomEvents(int randNum) {
@@ -739,6 +746,7 @@ public class GameEnviroBasic {
 	/**
 	 * Main method of the game object.
 	 * Calls the setup screen launcher when triggered.
+	 * @param args 
 	 */
 	public static void main(String[] args) {
 		GameEnviroBasic game = new GameEnviroBasic();

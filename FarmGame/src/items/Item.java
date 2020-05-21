@@ -1,6 +1,9 @@
 package items;
 
-public abstract class Item implements Cloneable{
+/** Representation of an item
+ * 
+ */
+public abstract class Item {
 	
 	/**
 	 * Items name
@@ -36,7 +39,7 @@ public abstract class Item implements Cloneable{
 	/**
 	 * Returns the items price.
 	 * 
-	 * @return
+	 * @return price - The price of the item
 	 */
 	public double getPrice() {
 		return(price);

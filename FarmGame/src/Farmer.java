@@ -1,5 +1,7 @@
 
-
+/** Represents a farmer
+ * 
+ */
 public class Farmer {
 	
 	/**
@@ -34,6 +36,8 @@ public class Farmer {
 	
 	/**
 	 * Returns the farmers name.
+	 * @return name - The name of the farmer
+	 * 
 	 */
 	public String getName() {
 		return(name);
@@ -41,6 +45,7 @@ public class Farmer {
 	
 	/**
 	 * Returns the farmers age.
+	 * @return age - The age of the farmer
 	 */
 	public int getAge() {
 		return(age);
@@ -72,16 +77,6 @@ public class Farmer {
 		else {
 			throw new IllegalArgumentException("newAge String must not be negative.");
 		}
-	}
-
-	public static void main(String[] args) {
-		
-		Farmer farmer1 = new Farmer("Tom", 18);
-		Farmer farmer2 = new Farmer();
-		
-		
-		System.out.println(farmer1.getName());
-		System.out.println(farmer2.getName());
 	}
 
 }

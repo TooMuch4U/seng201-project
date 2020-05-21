@@ -8,6 +8,8 @@ import items.ItemWater;
 import crops.Crop;
 import animals.Animal;
 
+/** Represents the farm
+ */
 public class Farm {
 	
 	/**

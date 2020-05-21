@@ -1,8 +1,10 @@
 package crops;
-import items.StoreItem;
 
-
-public class Crop implements StoreItem{
+/** Representation of a crop
+ * 
+ * 
+ */
+public class Crop {
 	
 	/**
 	 * The type of crop

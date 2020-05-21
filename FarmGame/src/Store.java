@@ -4,6 +4,9 @@ import items.*;
 import animals.*;
 import crops.*;
 
+/** Store class represents the farms store
+ * 
+ */
 public class Store {
 	
 	/**
@@ -22,6 +25,10 @@ public class Store {
 	public ArrayList<Crop> availableCrops = new ArrayList<Crop>();
 	
 	
+	/**
+	 * Constructor for store
+	 * Initialises all available items
+	 */
 	public Store() {
 		// Add all items to availableItems ArrayList
 		availableItems.add(new ItemHoe());
@@ -71,7 +78,7 @@ public class Store {
 	 * Returns the Animal from the availableAnimals array at the given index
 	 * 
 	 * @param index Index of the animal wanted.
-	 * @return
+	 * @return returnItem - The items that was purchased
 	 */
 	public Animal purchaseAnimal(int index) {
 		
@@ -93,7 +100,7 @@ public class Store {
 	 * Returns the Crop from the availableCrops array at the given index
 	 * 
 	 * @param index Index of the crop wanted.
-	 * @return
+	 * @return returnItem - The crop that was purchased
 	 */
 	public Crop purchaseCrop(int index) {
 		
