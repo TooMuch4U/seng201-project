@@ -604,15 +604,13 @@ public class GameEnviroBasic {
 	 * @param animalIndex takes the integer of the position in the arrayList to get the animal.
 	 */
 	public void playWithAnimals(int animalIndex) {
-		if (numActions > 0) {
-			double change = 5.0; // Change constant to increase animals happiness by
-			ArrayList<Animal> Animals = farm.getAnimals();
-			Animal animal = Animals.get(animalIndex);
-			animal.changeHappiness(change);
-			numActions -= 1;
-		} else {
-			throw new ActionCountException("All actions performed for the day");
-		}
+
+		double change = 5.0; // Change constant to increase animals happiness by
+		ArrayList<Animal> Animals = farm.getAnimals();
+		Animal animal = Animals.get(animalIndex);
+		animal.changeHappiness(change);
+		numActions -= 1;
+
 	}
 	
 	/**
@@ -620,38 +618,26 @@ public class GameEnviroBasic {
 	 * @param cropIndex index of the crop to harvest.
 	 */
 	public void harvestCrops(int cropIndex) {
-		if (numActions > 0) {
-			ArrayList<Crop> crops = farm.getCrops();
-			double income = 0.0;
+		ArrayList<Crop> crops = farm.getCrops();
+		Crop crop = crops.get(cropIndex);
+		double income = crop.getSalePrice(); 
+		crops.remove(crop); // Remove the crop from the farm
 
-			Crop crop = crops.get(cropIndex);
-			income = income + crop.getSalePrice(); 
-			crops.remove(crop); // Remove the crop from the farm
-
-			farm.changeMoney(income); // Add the money to the farm
-			numActions -= 1;
-		} else {
-			throw new ActionCountException("All actions performed for the day");
-		}
-		
+		farm.changeMoney(income); // Add the money to the farm
+		numActions -= 1;		
 	}
 	
 	/**
 	 * Tending to land increases the crop and animal limits on the farm.
 	 */
 	public void tendToLand() {
-		if (numActions > 0) {
-			int cropIncrease = 5;
-			int animalIncrease = 5;
+		int cropIncrease = 5;
+		int animalIncrease = 5;
 
-			farm.changeCropLimit(cropIncrease);
-			farm.changeAnimalLimit(animalIncrease);
-			decreaseHappinessDays += 1;
-			numActions -= 1;
-		} else {
-			throw new ActionCountException("All actions performed for the day");
-		}
-		
+		farm.changeCropLimit(cropIncrease);
+		farm.changeAnimalLimit(animalIncrease);
+		decreaseHappinessDays += 1;
+		numActions -= 1;		
 	}
 	
 	/**

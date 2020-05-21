@@ -88,7 +88,6 @@ class GameEnviroBasicTest {
 		assertEquals(game.getNumActions(), 0);
 	}
 	
-	
 	@Test
 	void testFeedAnimals() {
 		game.setNumActions(10);
@@ -212,4 +211,81 @@ class GameEnviroBasicTest {
 		assertTrue(game.randomEvents(19) != "");
 		assertTrue(game.randomEvents(159) != "");
 	}
+
+	@Test
+	void testPlayWithAnimals() {
+		for (int i = 0; i < 5; i += 1) {
+			farm.addAnimal(new AnimalCow());
+		}
+		
+		double baseHappiness = farm.getAnimals().get(2).getHappiness();
+		
+		game.playWithAnimals(2);
+		assertEquals(baseHappiness + 5, farm.getAnimals().get(2).getHappiness());
+		assertEquals(baseHappiness, farm.getAnimals().get(1).getHappiness());
+		
+		game.playWithAnimals(4);
+		game.playWithAnimals(2);
+		assertEquals(baseHappiness + 10, farm.getAnimals().get(2).getHappiness());
+		assertEquals(baseHappiness + 5, farm.getAnimals().get(4).getHappiness());
+		assertEquals(baseHappiness, farm.getAnimals().get(0).getHappiness());
+		
+	}
+
+	@Test
+	void testHarvestCrops() {
+		Crop wheat = new CropWheat();
+		double profit = wheat.getSalePrice();
+		double baseMoney = farm.getMoney();
+		farm.addCrop(wheat);
+		game.advanceDays();
+		
+		game.harvestCrops(0);
+		assertEquals(farm.getMoney(), baseMoney+profit);
+		assertEquals(farm.getCrops().size(), 0);
+		assertEquals(game.getNumActions(), 1);
+	}
+	
+	@Test
+	void testTendToLand() {
+		for (int i = 0; i < 25; i += 1) {
+			farm.addAnimal(new AnimalCow());
+			farm.addCrop(new CropWheat());
+		}
+		try {
+			farm.addAnimal(new AnimalCow());
+			System.out.println("No exception caught when adding too many animals");
+		} catch (IllegalArgumentException e) {
+			System.out.println("Exception successfully caught");
+		}
+		try {
+			farm.addCrop(new CropWheat());
+			System.out.println("No exception caught when adding too many crops");
+		} catch (IllegalArgumentException e) {
+			System.out.println("Exception successfully caught");
+		}
+		
+		
+		game.tendToLand();
+		try {
+			farm.addAnimal(new AnimalCow());
+			System.out.println("No exception caught: adding animal test successful");
+		} catch (IllegalArgumentException e) {
+			System.out.println("Exception caught: adding animal test unsuccessful");
+		}
+		
+		try {
+			farm.addAnimal(new AnimalCow());
+			System.out.println("No exception caught: adding crop test successful");
+		} catch (IllegalArgumentException e) {
+			System.out.println("Exception caught: adding crop test unsuccessful");
+		}
+		
+		double happiness = farm.getAnimals().get(0).getHappiness();
+		game.advanceDays();
+		//Checks that the animals' happiness remains unchanged
+		assertEquals(farm.getAnimals().get(0).getHappiness(), happiness);
+		
+	}
+	
 }
