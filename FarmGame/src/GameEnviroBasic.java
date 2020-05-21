@@ -41,6 +41,8 @@ public class GameEnviroBasic {
 	 */
 	private int decreaseHappinessDays = 1;
 	
+	private boolean randomEventsOn = true;
+	
 	/**
 	 * Construtor with parameters.
 	 * Used with command line application.
@@ -125,6 +127,14 @@ public class GameEnviroBasic {
 	}
 	
 	/**
+	 * Sets whether the random events occur during gameplay or not
+	 * @param accept - true if random events will occur
+	 */
+	public void setRandomEventsOn(boolean accept) {
+		randomEventsOn = accept;
+	}
+	
+	/**
 	 * Launches the main GUI screen of the game.
 	 */
 	public void launchMainScreen() {
@@ -186,8 +196,8 @@ public class GameEnviroBasic {
 	/**
 	 * Launches the setup screen of the GUI.
 	 */
-	public void launchSetupScreen() {
-		SetupScreen setupWindow = new SetupScreen(this);
+	public void launchSetupScreen(GameEnviroBasic game) {
+		SetupScreen setupWindow = new SetupScreen(game);
 	}
 	
 	/**
@@ -328,7 +338,7 @@ public class GameEnviroBasic {
 	 */
 	public void closeScoreScreen(ScoreScreen score) {
 		score.closeWindow();
-		launchSetupScreen();
+		launchSetupScreen(new GameEnviroBasic());
 	}
 	
 	
@@ -339,11 +349,18 @@ public class GameEnviroBasic {
 	 * This function is called directly when the player chooses to advance time.
 	 */
 	public String advanceDays() {
+		boolean decrease = false;
 		currentDays += 1;
 		decreaseHappinessDays -= 1;
+		
+		if (decreaseHappinessDays == 0) {
+			decrease = true;
+			decreaseHappinessDays = 1;
+		}
+		
 		String event = "";
 		if (currentDays != requiredDays) {
-			numActions = 2;
+			setNumActions(2);
 			ArrayList<Crop> crops = farm.getCrops();
 			ArrayList<Animal> animals = farm.getAnimals();
 			for (Crop crop: crops) {
@@ -354,15 +371,14 @@ public class GameEnviroBasic {
 				double income = animal.getIncome();
 				farm.changeMoney(income);
 				animal.changeHealth(-2);
-				if (decreaseHappinessDays == 0) {
+				if (decrease) {
 					animal.changeHappiness(-2);
-					decreaseHappinessDays = 1;
 				}
 			}
-			farm.setCrops(crops);
-			farm.setAnimals(animals);
-			int randNum = rng.nextInt();
-			event = randomEvents(randNum);
+			if (randomEventsOn) {
+				int randNum = rng.nextInt();
+				event = randomEvents(randNum);
+			}
 		}
 		return event;
 	}
@@ -454,43 +470,68 @@ public class GameEnviroBasic {
 	 * Removes a random number of the animals from the farm using the game environment's random number generator.
 	 * If an animal doesn't escape, it loses a substantial amount of happiness.
 	 * A maximum of half of the player's animals can escape. The exact number is generated using the rng.
+	 * Returns a string detailing the event.
+	 * If the player has one or no animals, nothing happens, and the returned string contains nothing.
+	 * @return - a string detailing the event. Returns an empty string if the player doesn't have enough animals.
 	 */
-	public void removeRandomAnimals() {
+	public String removeRandomAnimals() {
 		ArrayList<Animal> animals = farm.getAnimals();
-		int maxNum = animals.size()/2;
-		int numRequired = rng.nextInt()%maxNum;
-		while(numRequired > 0) {
-			for(int i = 0; i < animals.size(); i++) {
-				if (numRequired == (animals.size() - i) || rng.nextInt()%2 == 0) {
-					animals.remove(i);
+		if (animals.size() < 2) {
+			return "";
+		} else {
+			int maxNum = animals.size()/2;
+			int numRequired = rng.nextInt()%maxNum;
+			int i = 0;
+			ArrayList<Integer> needRemoving = new ArrayList<Integer>();
+			while(numRequired > 0 && i < animals.size()) {
+				if (rng.nextInt()%2 == 0) {
+					//Keep track of the indices that need removing. Stored from highest index to lowest.
+					needRemoving.add(0, i);
 					numRequired -= 1;
 				} else {
 					Animal animal = animals.get(i);
 					animal.changeHappiness(-20);
 				}
+				i += 1;
 			}
+			//Remove indices in top-down order
+			for (int num: needRemoving) {
+				animals.remove(num);
+			}
+			return "Overnight, your fence broke, and some of your animals escaped.\nThe ones that didn't are now sad that their friends are gone.";
 		}
-		farm.setAnimals(animals);
 	}
 	
 	/**
 	 * Removes half of the crops from the farm using a random number generator.
 	 * Uses a while loop to ensure that the number of crops removed is adequate.
 	 * If the rng generates an odd number, or the remaining crops in the list need to be removed, the next crop will be removed.
+	 * @return - A String detailing the event. If the player has one or no crops, returns an empty string.
+	 * 
 	 */
-	public void removeHalfCrops() {
+	public String removeHalfCrops() {
 		ArrayList<Crop> crops = farm.getCrops();
-		int crop_num = crops.size();
-		int num_required = crop_num/2;
-		while(num_required > 0) {
-			for(int i = 0; i < crop_num; i++) {
-				if (num_required == (crop_num - i) || rng.nextInt()%2 == 1) {
-					crops.remove(i);
-					num_required -= 1;
-				}
+		int cropNum = crops.size();
+		int numRequired = cropNum/2;
+		int i = 0;
+		ArrayList<Integer> needRemoving = new ArrayList<Integer>();
+		while(numRequired > 0) {
+			if (numRequired == (cropNum - (i+1)) || rng.nextInt()%2 == 1) {
+				//Keep track of the indices that need removing. Stored from highest index to lowest.
+				needRemoving.add(0, i);
+				numRequired -= 1;
 			}
+			i += 1;
 		}
-		farm.setCrops(crops);
+		//Remove indices in top-down order
+		for (int num: needRemoving) {
+			crops.remove(num);
+		}
+		if (cropNum < 2) {
+			return "";
+		} else {
+			return "A drought has struck, and your crops are thirsty.\nHalf of them die from lack of water.";
+		}
 	}
 	
 	/**
@@ -507,19 +548,17 @@ public class GameEnviroBasic {
 			//County fair: win a bonus amount of money 
 			int animalNum = farm.getAnimals().size();
 			int cropNum = farm.getCrops().size();
-			double moneyGain = Math.round((25*animalNum + 10*cropNum)*100.0)/100.0;			
+			double moneyGain = 25*animalNum + 10*cropNum;		
 			
-			eventInfo = "Your farm won first prize at the county fair!\nYou gain an extra $"+ Double.toString(moneyGain)+" for your spectacular animals and crops.";
+			eventInfo = String.format("Your farm won first prize at the county fair!\nYou gain an extra $%.2f for your spectacular animals and crops.", moneyGain);
 			farm.changeMoney(moneyGain);
 			
 		} else if (randNum%20 == 5) {
 			//Broken fence: animals escape
-			eventInfo = "Overnight, your fence broke, and some of your animals escaped.\nThe ones that didn't are now sad that their friends are gone.";
-			removeRandomAnimals();
+			eventInfo = removeRandomAnimals();
 		} else if (randNum%20 == 19 ) {
 			//Drought: crops die
-			eventInfo = "A drought has struck, and your crops are thirsty.\nHalf of them die from lack of water.";
-			removeHalfCrops();
+			eventInfo = removeHalfCrops();
 		}
 		return eventInfo;
 	}
@@ -532,28 +571,14 @@ public class GameEnviroBasic {
 	 * @param animalIndex - the index of the animal within the list that the user wishes to feed.
 	 */
 	public void feedAnimals(ItemForAnimal feedItem, int animalIndex) {
-		if (numActions > 0) {
-			ArrayList<Animal> animals = farm.getAnimals();
-			double healthBonus = feedItem.getBenefit();
-			Animal chosenAnimal = animals.get(animalIndex);
-			chosenAnimal.changeHealth(healthBonus);
-			farm.setAnimals(animals);
-			farm.items.remove(feedItem);
-			numActions -= 1;
-		} else {
-			throw new ActionCountException("All actions performed for the day");
-		}
+		ArrayList<Animal> animals = farm.getAnimals();
+		double healthBonus = feedItem.getBenefit();
+		Animal chosenAnimal = animals.get(animalIndex);
+		chosenAnimal.changeHealth(healthBonus);
+		farm.items.remove(feedItem);
+		numActions -= 1;
 	}
 	
-	/**
-	 * Allows the player to tend to the crops on their farm, making them grow quicker.
-	 * Counts towards the player's daily actions, and as such, can't be performed if the player has no more actions for the day.
-	 * An overload method of tendToCrops that ensures the basic item is used if no item is specified in the command line implementation.
-	 * @param cropIndex - the index of the crop within the list that the player wishes to tend to.
-	 */
-	public void tendToCrops(int cropIndex) {
-		tendToCrops(new ItemWater(), cropIndex);
-	}
 	
 	/**
 	 * Allows the player to tend to the crops on their farm, making them grow quicker.
@@ -562,20 +587,16 @@ public class GameEnviroBasic {
 	 * @param cropIndex - the index of the crop within the list that the player wishes to tend to.
 	 */
 	public void tendToCrops(ItemForCrop cropItem, int cropIndex) {
-		if (numActions > 0) {
-			ArrayList<Crop> crops = farm.getCrops();
-			//Cast the given double to an integer
-			int growBonus = (int) cropItem.getBenefit();
-			Crop chosenCrop = crops.get(cropIndex);
-			chosenCrop.changeHarvestTime(growBonus);
-			farm.setCrops(crops);
-			if (cropItem.getName() != "Water") {
-				farm.items.remove(cropItem);
-			}
-			numActions -= 1;
-		} else {
-			throw new ActionCountException("All actions performed for the day");
+		ArrayList<Crop> crops = farm.getCrops();
+		//Cast the given double to an integer
+		int growBonus = (int) cropItem.getBenefit();
+		Crop chosenCrop = crops.get(cropIndex);
+		chosenCrop.changeHarvestTime(growBonus);
+		farm.setCrops(crops);
+		if (cropItem.getName() != "Water") {
+			farm.items.remove(cropItem);
 		}
+		numActions -= 1;
 	}
 	
 	/**
@@ -741,7 +762,7 @@ public class GameEnviroBasic {
 	 */
 	public static void main(String[] args) {
 		GameEnviroBasic game = new GameEnviroBasic();
-		game.launchSetupScreen();
+		game.launchSetupScreen(game);
 	}
 	
 }

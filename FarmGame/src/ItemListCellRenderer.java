@@ -19,9 +19,9 @@ public class ItemListCellRenderer extends DefaultListCellRenderer {
 	        String itemString;
 	        
 	        if (item instanceof ItemForCrop) {
-	        	itemString = String.format("%s decreases time until harvest by %s days.  $%s", item.getName(), item.getBenefit(), item.getPrice());
+	        	itemString = String.format("%s decreases time until harvest by %s days.  $%.2f", item.getName(), item.getBenefit(), item.getPrice());
 	        } else {
-	        	itemString = String.format("%s increases the health of animals by %s.  $%s", item.getName(), item.getBenefit(), item.getPrice());
+	        	itemString = String.format("%s increases the health of animals by %s.  $%.2f", item.getName(), item.getBenefit(), item.getPrice());
 	        }
 	     
 	        
