@@ -725,7 +725,11 @@ public class GameEnviroBasic {
 		farm.incrBonus(incr);
 
 	}
-
+	
+	/**
+	 * Returns the end screen
+	 * @return EndScreen
+	 */
 	public EndScreen endGame() {
 		gameEnded = true;
 		EndScreen end = new EndScreen(farm);

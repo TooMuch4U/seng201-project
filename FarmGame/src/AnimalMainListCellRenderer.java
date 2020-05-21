@@ -18,7 +18,7 @@ public class AnimalMainListCellRenderer extends DefaultListCellRenderer {
 	        JLabel label = (JLabel)super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
 	        Animal animal = (Animal) value;
-	        String animalString = String.format("A %s: %.1f%% happy and %.1f%% healthy", animal.getType(), animal.getHealth(), animal.getHappiness());
+	        String animalString = animal.toString();
 	        label.setText(animalString);
 	        
 	        java.net.URL imageURL = AnimalListCellRenderer.class.getResource(String.format("images/Animals/%s.png", animal.getType()));
