@@ -1,40 +1,39 @@
 package crops;
 
-/** Representation of a crop
- * 
- * 
+/**
+ * Represents a crop on the player's farm.
  */
 public class Crop {
 	
 	/**
-	 * The type of crop
+	 * The type of crop.
 	 */
 	private String type;
 	/**
-	 * The purchase price of the crops
+	 * The purchase price of the crop.
 	 */
 	private double purchasePrice;
 	/**
-	 * The income gained when selling the crops
+	 * The income gained when selling the crop.
 	 */
 	private double salePrice;
 	/**
-	 * The days until the crops can be harvested
+	 * The days until the crops can be harvested.
 	 */
 	private int daysUntilHarvest;
 	/**
 	 * The days the crop has been growing for.
-	 * Does not count being tended to with an item.
+	 * If an item is tended to, this does not affect growing time.
 	 * Always 0 when crop is created.
 	 */
 	private int growingTime = 0;
 	
 	/**
-	 * Constructor using parameters
-	 * @param kind - the type of crop
-	 * @param buying - the purchase price
-	 * @param selling - the selling price
-	 * @param time - the harvest time in days
+	 * Constructor using parameters.
+	 * @param kind - the type of crop.
+	 * @param buying - the purchase price.
+	 * @param selling - the selling price.
+	 * @param time - the harvest time in days.
 	 */
 	public Crop(String kind, double buying, double selling, int time) {
 		type = kind;
@@ -100,7 +99,7 @@ public class Crop {
 	
 	/**
 	 * Increases the growing time of the crop by one.
-	 * Is not called when an item is used on the crop.asfasd
+	 * Is not called when an item is used on the crop.
 	 */
 	public void increaseGrowTime() {
 		growingTime += 1;

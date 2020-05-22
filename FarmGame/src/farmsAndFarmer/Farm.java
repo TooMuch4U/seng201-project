@@ -14,56 +14,56 @@ import animals.Animal;
 public class Farm {
 	
 	/**
-	 * Name of the farm
+	 * Name of the farm.
 	 */
 	private String name;
 	/**
-	 * Type of the farm
-	 * Affects bonuses granted during the game
+	 * Type of the farm.
+	 * Affects bonuses granted during the game.
 	 */
 	private String type;
 	/**
-	 * User's created farmer assigned to the farm
+	 * User's created farmer assigned to the farm.
 	 */
 	private Farmer farmer;
 	/**
-	 * Initial money available to the user
+	 * Initial money available to the user.
 	 */
 	private double startMoney;
 	/**
-	 * A running total of the farm's current money
+	 * A running total of the farm's current money.
 	 */
 	private double money;
 	/**
-	 * ArrayList containing the farm's animals
+	 * ArrayList containing the farm's animals.
 	 */
 	protected ArrayList<Animal> animals = new ArrayList<Animal>();
 	/**
-	 * ArrayList containing the farm's crops
+	 * ArrayList containing the farm's crops.
 	 */
 	protected ArrayList<Crop> crops = new ArrayList<Crop>();
 	/**
-	 * ArrayList containing the farm's items
+	 * ArrayList containing the farm's items.
 	 */
 	private ArrayList<Item> items = new ArrayList<Item>();
 	/**
-	 * Maximum amount of crops allowed on the farm
+	 * Maximum amount of crops allowed on the farm.
 	 */
 	protected int cropLimit = 10;
 	/**
-	 * Maximum amount of animals allowed on the farm
+	 * Maximum amount of animals allowed on the farm.
 	 */
 	protected int animalLimit = 10;
 	
 	/**
-	 * The farms current bonus score
+	 * The farms current bonus score.
 	 */
 	private int currentBonusScore = 0;
 	
 	
 	/**
 	 * Constructor using parameters.
-	 * @param title - the desired name for the farm, having already been checked.
+	 * @param title - the desired name for the farm.
 	 * @param kind - the type of farm to be made.
 	 * @param owner - the Farmer created by the player.
 	 * @param cash - the initial available money.
@@ -77,24 +77,24 @@ public class Farm {
 	}
 	
 	/**
-	 * Gets the name of the farm
-	 * @return name
+	 * Gets the name of the farm.
+	 * @return name - a String
 	 */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * Gets the farm's farmer's name and age
-	 * @return farmer
+	 * Gets the farm's farmer object.
+	 * @return farmer - a Farmer object
 	 */
 	public Farmer getFarmer() {
 		return farmer;
 	}
 	
 	/**
-	 * Get's the farm's type
-	 * @return type
+	 * Gets the farm's type.
+	 * @return type - a String
 	 */
 	public String getType() {
 		return type;
@@ -102,7 +102,7 @@ public class Farm {
 	
 	/**
 	 * Gets the current money available to the user.
-	 * @return money
+	 * @return money - a double.
 	 */
 	public double getMoney() {
 		return money;
@@ -110,7 +110,7 @@ public class Farm {
 	
 	/**
 	 * Returns the difference in current money and the money the player had at the start of the game.
-	 * @return profit - a double: the difference in money and startMoney
+	 * @return profit - a double.
 	 */
 	public double getProfit() {
 		return money - startMoney;
@@ -142,7 +142,7 @@ public class Farm {
 	
 	/**
 	 * Gets the crops on the player's farm that are currently ready for harvest.
-	 * @return harvestableCrops - an ArrayList containing all crops that can currently be harvested
+	 * @return harvestableCrops - an ArrayList containing all crops that can currently be harvested.
 	 */
 	public ArrayList<Crop> getHarvestableCrops() {
 		ArrayList<Crop> harvestableCrops = new ArrayList<Crop>();
@@ -193,7 +193,7 @@ public class Farm {
 	public void changeMoney(double change) {
 		if (money >= Math.abs(change) && change < 0 || change >= 0) {
 			money += change;
-			//Ensures that the total money is always displayed to 2 d.p.
+			//Ensures that the total money is always rounded to 2 d.p.
 			money = Math.round(money*100.0)/100.0;
 		} else {
 			throw new IllegalArgumentException("Not enough money");
@@ -259,7 +259,7 @@ public class Farm {
 	
 	/**
 	 * Returns the farms current bonus score.
-	 * @return currentbonusScore.
+	 * @return currentbonusScore - a double.
 	 */
 	public int getBonusScore() {
 		return currentBonusScore;
@@ -267,7 +267,7 @@ public class Farm {
 	
 	/**
 	 * Increases the farms current bonus score.
-	 * @param incr Amount to increase the farms bonus score by.
+	 * @param incr - amount to increase the farm's bonus score by.
 	 */
 	public void incrBonus(int incr) {
 		currentBonusScore = currentBonusScore + incr;

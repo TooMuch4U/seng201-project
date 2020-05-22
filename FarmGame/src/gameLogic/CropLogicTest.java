@@ -102,5 +102,8 @@ class CropLogicTest {
 		
 		//Check the numActions decreases properly.
 		assertEquals(gameInfo.getNumActions(), 7);
+		//Ensure the grow time of crops is unnaffected.
+		assertEquals(crops.get(0).getGrowingTime(), 0);
+		assertEquals(crops.get(1).getGrowingTime(), 0);
 	}
 }

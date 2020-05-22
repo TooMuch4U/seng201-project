@@ -1,18 +1,19 @@
 package farmsAndFarmer;
 
-/** Represents a farmer
- * 
+/**
+ * Represents the player's farmer
  */
 public class Farmer {
 	
 	/**
-	 * Farmers name
-	 * Must be at least of length 1
+	 * The farmer's name.
+	 * Must be at least of length 3, and less than length 15.
+	 * Checked when exting the set-up screen.
 	 */
 	private String name;
 	/**
-	 * Farmers age
-	 * must be a positive integer
+	 * The farmer's age.
+	 * Must be a non-negative integer.
 	 */
 	private int age;
 	
@@ -27,18 +28,17 @@ public class Farmer {
 	/**
 	 * Constructor with params.
 	 * 
-	 * @param newName Name the farmer will be initialised with.
-	 * @param newAge Age the farmer will be initialised with.
+	 * @param newName - the name the farmer will be initialised with.
+	 * @param newAge - the age the farmer will be initialised with.
 	 */
 	public Farmer(String newName, int newAge) {
-		this.setName(newName);
-		this.setAge(newAge);
+		name = newName;
+		age = newAge;
 	}
 	
 	/**
 	 * Returns the farmers name.
-	 * @return name - The name of the farmer
-	 * 
+	 * @return name - The name of the farmer.
 	 */
 	public String getName() {
 		return(name);
@@ -46,38 +46,10 @@ public class Farmer {
 	
 	/**
 	 * Returns the farmers age.
-	 * @return age - The age of the farmer
+	 * @return age - The age of the farmer.
 	 */
 	public int getAge() {
 		return(age);
-	}
-	
-	/**
-	 * Sets the farmers name.
-	 * 
-	 * @param newName New name for the farmer. Must be at least 1 character.
-	 */
-	public void setName(String newName) {
-		if (newName.length() > 0) {
-			name = newName;
-		}
-		else {
-			throw new IllegalArgumentException("newName String must atleast be of length 1.");				
-		}
-	}
-	
-	/**
-	 * Sets the farmers age.
-	 * 
-	 * @param newAge age to set for farmer.
-	 */
-	private void setAge(int newAge) {
-		if (newAge >= 0) {
-			age = newAge;
-		}
-		else {
-			throw new IllegalArgumentException("newAge String must not be negative.");
-		}
 	}
 
 }

@@ -18,19 +18,7 @@ class FarmerTest {
 	void testSet() {
 		Farmer farmer = new Farmer("Tom", 19);
 		assertEquals(farmer.getName(), "Tom");
-		farmer.setName("Test");
-		assertEquals(farmer.getName(), "Test");
+		Farmer secondFarmer = new Farmer();
+		assertEquals(secondFarmer.getName(), "Nameless Farmer");
 	}
-	
-	@Test
-	void testError() {
-		assertThrows(IllegalArgumentException.class, () -> new Farmer("Tom", -1));
-		assertThrows(IllegalArgumentException.class, () -> new Farmer("", 19));
-		
-		Farmer farmer = new Farmer("Tom", 19);
-		
-		assertThrows(IllegalArgumentException.class, () -> farmer.setName(""));
-		
-	}
-
 }

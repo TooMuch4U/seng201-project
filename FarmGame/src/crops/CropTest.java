@@ -23,6 +23,8 @@ class CropTest {
 		assertEquals(testCropA.getType(), "Test Crop");
 		assertEquals(testCropB.getType(), "Beans");
 		assertEquals(testCropB.getPrice(), 0.02);
+		assertEquals(testCropA.getGrowingTime(), 0);
+		assertEquals(testCropB.getGrowingTime(), 0);
 	}
 	
 	@Test
@@ -36,6 +38,12 @@ class CropTest {
 		} catch (IllegalArgumentException e) {
 			System.err.println(e.getMessage());
 		}
+	}
+	
+	@Test
+	void testIncreaseGrowingTime() {
+		testCropA.increaseGrowTime();
+		assertEquals(testCropA.getGrowingTime(), 1);
 	}
 
 }

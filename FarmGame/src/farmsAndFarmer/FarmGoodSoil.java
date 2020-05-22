@@ -3,14 +3,14 @@ package farmsAndFarmer;
 import crops.Crop;
 
 /**
- * Farm type that grants an additional bonus to crop growing time
+ * Farm type that grants an additional bonus to crop growing time.
  */
 public class FarmGoodSoil extends Farm {
 	
 	/**
-	 * Constructor for the farm with parameters
-	 * @param name - the name of the farm
-	 * @param farmer - the farmer created by the user
+	 * Constructor for the farm with parameters.
+	 * @param name - the name of the farm.
+	 * @param farmer - the farmer created by the user.
 	 */
 	public FarmGoodSoil(String name, Farmer farmer) {
 		super(name, "cropBonus", farmer, 1000.00);
@@ -18,7 +18,7 @@ public class FarmGoodSoil extends Farm {
 	
 	/**
 	 * Adds a crop into the ArrayList crops.
-	 * Decreases the crop's harvest time by a day.
+	 * Due to farm bonus, decreases the crop's harvest time by a day.
 	 * @param crop - the crop to be added to the farm's current crops.
 	 */
 	@Override
