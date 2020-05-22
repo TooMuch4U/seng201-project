@@ -152,41 +152,17 @@ public class BasicGameLogic {
 	 * Tending to land increases the crop and animal limits on the farm.
 	 */
 	public void tendToLand() {
-		int cropIncrease = 5;
-		int animalIncrease = 5;
-
-		farm.changeCropLimit(cropIncrease);
-		farm.changeAnimalLimit(animalIncrease);
-		gameInfo.setDecreaseHappinessDays(gameInfo.getDecreaseHappinessDays() + 1);
-		gameInfo.changeNumActions();		
-	}
+		if (gameInfo.getNumActions() == 0) {
+			throw new ActionCountException("Sorry, you've performed all your actions for today.");
+		} else {
+			int cropIncrease = 5;
+			int animalIncrease = 5;
 	
-	/**
-	 * Method that is run at the end of each day.
-	 * Tallies up the farms score for the day.
-	 */
-	public void endOfDay() {
-		int incr = 0;
-
-		ArrayList<Animal> animals = farm.getAnimals();
-
-		// Add score from animals
-		for (Animal animal : animals) {
-			int hap = (int) animal.getHappiness();
-			incr = incr + hap;
+			farm.changeCropLimit(cropIncrease);
+			farm.changeAnimalLimit(animalIncrease);
+			gameInfo.setDecreaseHappinessDays(gameInfo.getDecreaseHappinessDays() + 1);
+			gameInfo.changeNumActions();
 		}
-
-		farm.incrBonus(incr);
-
-	}
-	
-	/**
-	 * Returns the end screen
-	 * @return EndScreen
-	 */
-	public EndScreen endGame() {
-		EndScreen end = new EndScreen(farm);
-		return end;
 	}
 	
 }

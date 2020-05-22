@@ -48,7 +48,7 @@ public class ScreenManager {
 	 */
 	public void launchFeedAnimalScreen(MainScreen mainWindow) {
 		if (gameInfo.getNumActions() == 0) {
-			throw new ActionCountException("All actions performed for the day");
+			throw new ActionCountException("Sorry, you've perfomed all actions for the day.");
 		} else {
 			closeMainScreen(mainWindow);
 			FeedAnimalScreen animalWindow = new FeedAnimalScreen(this, gameInfo, animalLogic);
@@ -70,7 +70,7 @@ public class ScreenManager {
 	 */
 	public void launchTendCropsScreen(MainScreen mainWindow) {
 		if (gameInfo.getNumActions() == 0) {
-			throw new ActionCountException("All actions performed for the day");
+			throw new ActionCountException("Sorry, you've perfomed all actions for the day.");
 		} else {
 			closeMainScreen(mainWindow);
 			TendCropsScreen cropsWindow = new TendCropsScreen(this, gameInfo, cropLogic);
@@ -178,7 +178,7 @@ public class ScreenManager {
 	 */
 	public void launchSelectCropScreen(MainScreen main) {
 		if (gameInfo.getNumActions() == 0) {
-			throw new ActionCountException("All actions performed for the day");
+			throw new ActionCountException("Sorry, you've perfomed all actions for the day.");
 		} else {
 			main.closeWindow();
 			SelectCropScreen cropScreen = new SelectCropScreen(this, cropLogic, gameInfo);
@@ -233,7 +233,8 @@ public class ScreenManager {
 	 */
 	public void closeScoreScreen(ScoreScreen score) {
 		score.closeWindow();
-		launchSetupScreen(new ScreenManager());
+		ScreenManager newManager = new ScreenManager();
+		newManager.launchSetupScreen(newManager);
 	}
 	
 	/**

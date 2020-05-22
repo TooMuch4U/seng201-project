@@ -59,4 +59,21 @@ public class AnimalLogic {
 		gameInfo.changeNumActions();
 	}
 	
+	/**
+	 * Method that is run at the end of each day.
+	 * Calculates the total bonus score generated today by the farm's animals
+	 */
+	public void calculateBonusScore() {
+		int incr = 0;
+		ArrayList<Animal> animals = farm.getAnimals();
+		// Add score from animals
+		for (Animal animal : animals) {
+			int hap = (int) animal.getHappiness();
+			incr = incr + hap;
+		}
+
+		farm.incrBonus(incr);
+
+	}
+	
 }
