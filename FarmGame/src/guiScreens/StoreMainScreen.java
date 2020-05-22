@@ -16,6 +16,9 @@ import java.awt.event.ActionEvent;
 
 public class StoreMainScreen {
 
+	/**
+	 * The frame for the GUI screen.
+	 */
 	private JFrame frame;
 	/**
 	 * The manager of the GUI screens.
@@ -32,14 +35,14 @@ public class StoreMainScreen {
 	}
 	
 	/**
-	 * Close the window
+	 * Close the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
 	/**
-	 * Hands control back to the main class
+	 * Hands control back to the main class.
 	 */
 	public void finishedWindow() {
 		manager.closeStoreMainScreen(this);
@@ -53,7 +56,6 @@ public class StoreMainScreen {
 		frame.setBounds(100, 100, 750, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		StoreMainScreen screen = this;
 		
 		JLabel lblNewLabel = new JLabel("What would you like to buy?");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -67,7 +69,8 @@ public class StoreMainScreen {
 		JButton btnNewButton = new JButton("Animals");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.launchStoreAnimalScreen(screen);
+				closeWindow();
+				manager.launchStoreAnimalScreen();
 			}
 		});
 		btnNewButton.setBounds(311, 111, 117, 29);

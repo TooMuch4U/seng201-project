@@ -138,7 +138,8 @@ public class MainScreen {
 				String event = gameLogic.advanceDays();
 				int daysLeft = game.getRequiredDays()-game.getCurrentDays();
 				if (daysLeft == 0) {
-					manager.launchScoreScreen(screen);
+					finishedWindow();
+					manager.launchScoreScreen();
 				}
 				currentDayLabel.setText(String.format("Current Day : %d", game.getCurrentDays()));
 				daysLeftLabel.setText(String.format("Days Left: %d", game.getRequiredDays()-game.getCurrentDays()));
@@ -278,7 +279,7 @@ public class MainScreen {
 		JButton visitStoreButton = new JButton("Visit Store");
 		visitStoreButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.closeMainScreen(screen);
+				finishedWindow();
 				manager.launchStoreMainScreen();
 			}
 		});
@@ -340,6 +341,9 @@ public class MainScreen {
 		 * Each of the following buttons provides information about the main buttons
 		 * 
 		 */
+		/**
+		 * Displays information about tending land
+		 */
 		JButton tendLandInfo = new JButton("i");
 		tendLandInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -353,6 +357,9 @@ public class MainScreen {
 		tendLandInfo.setBounds(643, 249, 37, 23);
 		frame.getContentPane().add(tendLandInfo);
 		
+		/**
+		 * Displays information about viewing farm
+		 */
 		JButton viewFarmInfo = new JButton("i");
 		viewFarmInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -365,6 +372,9 @@ public class MainScreen {
 		viewFarmInfo.setBounds(643, 173, 37, 23);
 		frame.getContentPane().add(viewFarmInfo);
 		
+		/**
+		 * Displays information about visiting the store
+		 */
 		JButton visitStoreInfo = new JButton("i");
 		visitStoreInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -377,6 +387,9 @@ public class MainScreen {
 		visitStoreInfo.setBounds(478, 173, 37, 23);
 		frame.getContentPane().add(visitStoreInfo);
 		
+		/**
+		 * Displays information about viewing items
+		 */
 		JButton viewItemInfo = new JButton("i");
 		viewItemInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -389,6 +402,9 @@ public class MainScreen {
 		viewItemInfo.setBounds(478, 249, 37, 23);
 		frame.getContentPane().add(viewItemInfo);
 		
+		/**
+		 * Displays information about harvesting crops
+		 */
 		JButton harvestCropInfo = new JButton("i");
 		harvestCropInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -402,6 +418,9 @@ public class MainScreen {
 		harvestCropInfo.setBounds(313, 249, 37, 23);
 		frame.getContentPane().add(harvestCropInfo);
 		
+		/**
+		 * Displays information about tending to crops
+		 */
 		JButton tendCropInfo = new JButton("i");
 		tendCropInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -415,6 +434,9 @@ public class MainScreen {
 		tendCropInfo.setBounds(313, 173, 37, 23);
 		frame.getContentPane().add(tendCropInfo);
 		
+		/**
+		 * Displays information about feeding animals
+		 */
 		JButton feedAnimalInfo = new JButton("i");
 		feedAnimalInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -428,6 +450,9 @@ public class MainScreen {
 		feedAnimalInfo.setBounds(148, 173, 37, 23);
 		frame.getContentPane().add(feedAnimalInfo);
 		
+		/**
+		 * Displays information about playing with animals
+		 */
 		JButton playAnimalInfo = new JButton("i");
 		playAnimalInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -440,6 +465,9 @@ public class MainScreen {
 		playAnimalInfo.setBounds(148, 249, 37, 23);
 		frame.getContentPane().add(playAnimalInfo);
 		
+		/**
+		 * Displays information about viewing animal info
+		 */
 		JButton viewAnimalInfo = new JButton("i");
 		viewAnimalInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -452,6 +480,9 @@ public class MainScreen {
 		viewAnimalInfo.setBounds(148, 325, 37, 23);
 		frame.getContentPane().add(viewAnimalInfo);
 		
+		/**
+		 * Displays information about viewing crop info
+		 */
 		JButton viewCropInfo = new JButton("i");
 		viewCropInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -465,6 +496,9 @@ public class MainScreen {
 		viewCropInfo.setBounds(313, 323, 37, 23);
 		frame.getContentPane().add(viewCropInfo);
 		
+		/**
+		 * Displays information about advancing to the next day.
+		 */
 		JButton nextDayInfo = new JButton("i");
 		nextDayInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

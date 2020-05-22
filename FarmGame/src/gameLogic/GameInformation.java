@@ -7,31 +7,31 @@ import farmsAndFarmer.Farm;
 public class GameInformation {
 	
 	/**
-	 * The player's farm
+	 * The player's farm.
 	 */
 	private Farm farm;
 	/**
-	 * The number of days the player wishes to play for
+	 * The number of in-game days the player wishes to play for.
 	 */
 	private int requiredDays;
 	/**
-	 * The current day the player is on
+	 * The current day the player is on.
 	 */
 	private int currentDays = 0;
 	/**
-	 * The number of actions permittable in a day
+	 * The number of major actions permittable in a day.
 	 */
 	private int numActions = 2;
 	/**
-	 * The store object
+	 * The store object.
 	 */
 	private Store store = new Store();
 	/**
-	 * An int that dictates how many days will pass before animal happiness decreases
+	 * An int that dictates how many days will pass before animal happiness decreases.
 	 */
 	private int decreaseHappinessDays = 1;
 	/**
-	 * A boolean value dictating whether random events are turned on for the game
+	 * A boolean value dictating whether random events are turned on for the game.
 	 */
 	private boolean randomEventsOn;
 	
@@ -69,23 +69,23 @@ public class GameInformation {
 	}
 	
 	/**
-	 * Sets whether the random events occur during gameplay or not
-	 * @param accept - true if random events will occur
+	 * Sets whether the random events occur during gameplay or not.
+	 * @param accept - true if random events will occur.
 	 */
 	public void setRandomEventsOn(boolean accept) {
 		randomEventsOn = accept;
 	}
 	
 	/**
-	 * Sets the amount of days until animal happiness decreases
-	 * @param days - the required days until a decrease in happiness
+	 * Sets the amount of days until animal happiness decreases.
+	 * @param days - the required days until a decrease in happiness.
 	 */
 	public void setDecreaseHappinessDays(int days) {
 		decreaseHappinessDays = days;
 	}
 	
 	/**
-	 * Adds one day to the current day counter
+	 * Adds one day to the current day counter.
 	 */
 	public void addOneDay() {
 		currentDays += 1;
@@ -100,7 +100,7 @@ public class GameInformation {
 	
 	/**
 	 * Returns the store object.
-	 * @return store - the store object
+	 * @return store - the store object.
 	 */
 	public Store getStore() {
 		return store;
@@ -139,16 +139,16 @@ public class GameInformation {
 	}
 	
 	/**
-	 * Returns whether the random events are turned on for the game
-	 * @return randomEventsOn - a boolean specifying whether random events are activated
+	 * Returns whether the random events are turned on for the game.
+	 * @return randomEventsOn - a boolean.
 	 */
 	public boolean getRandomEventsOn() {
 		return randomEventsOn;
 	}
 	
 	/**
-	 * Returns the number of days left until animal happiness decreases
-	 * @return - decreaseHappinessDays
+	 * Returns the number of days left until animal happiness decreases.
+	 * @return - decreaseHappinessDays - an int.
 	 */
 	public int getDecreaseHappinessDays() {
 		return decreaseHappinessDays;

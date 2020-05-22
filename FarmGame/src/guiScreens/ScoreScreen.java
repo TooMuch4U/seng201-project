@@ -20,7 +20,10 @@ import gameLogic.GameInformation;
 import gameLogic.ScreenManager;
 
 public class ScoreScreen {
-
+	
+	/**
+	 * The frame for the GUI screen.
+	 */
 	private JFrame frame;
 	/**
 	 * The information about the game, which all functions can be accessed from.
@@ -42,8 +45,8 @@ public class ScoreScreen {
 	}
 	
 	/**
-	 * Closes the GUI setup window.
-	 * Called from the game environment.
+	 * Closes the GUI setup window. 
+	 * Called from the screen manager.
 	 */
 	public void closeWindow() {
 		frame.dispose();

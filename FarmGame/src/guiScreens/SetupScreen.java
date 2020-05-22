@@ -27,11 +27,29 @@ import javax.swing.JCheckBox;
 
 public class SetupScreen {
 
+	/**
+	 * The frame for the GUI screen.
+	 */
 	private JFrame frame;
+	/**
+	 * Textfield allowing user input for their farmer's name.
+	 */
 	private JTextField farmerNameField;
+	/**
+	 * A prompt for the user to input their information
+	 */
 	private JLabel startLabel;
+	/**
+	 * Textfield allowing user input for their farm's name.
+	 */
 	private JTextField farmNameField;
+	/**
+	 * The game logic responsible for managing the GUI screens.
+	 */
 	private ScreenManager manager;
+	/**
+	 * The logic class containing important informationa about the current game.
+	 */
 	private GameInformation game;
 
 	/**
@@ -68,21 +86,34 @@ public class SetupScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		/**
+		 * Welcoming label.
+		 */
 		JLabel lblWelcome = new JLabel("Welcome!");
 		lblWelcome.setBounds(321, 11, 87, 25);
 		lblWelcome.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(lblWelcome);
 		
+		/**
+		 * Textfield for user-inputted farmer names.
+		 */
 		farmerNameField = new JTextField();
 		farmerNameField.setBounds(157, 118, 127, 20);
 		frame.getContentPane().add(farmerNameField);
 		farmerNameField.setColumns(10);
 		
+		/**
+		 * Label prompting the user.
+		 */
 		startLabel = new JLabel("To start, please input your information");
 		startLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		startLabel.setBounds(256, 47, 252, 25);
 		frame.getContentPane().add(startLabel);
 		
+		/**
+		 * Slider allowing user to select game length. 
+		 * Minimum length of 5, and a maximum length of 25.
+		 */
 		JSlider gameLengthSlider = new JSlider();
 		gameLengthSlider.setPaintLabels(true);
 		gameLengthSlider.setPaintTicks(true);
@@ -95,44 +126,74 @@ public class SetupScreen {
 		gameLengthSlider.setBounds(10, 258, 380, 45);
 		frame.getContentPane().add(gameLengthSlider);
 		
+		/**
+		 * Textfield for user-inputted farmer names.
+		 */
 		farmNameField = new JTextField();
 		farmNameField.setBounds(507, 118, 199, 20);
 		frame.getContentPane().add(farmNameField);
 		farmNameField.setColumns(10);
 		
+		/**
+		 * Label prompting user to input age.
+		 */
 		JLabel farmerAgeLabel = new JLabel("Please enter your age:");
 		farmerAgeLabel.setBounds(10, 164, 162, 25);
 		frame.getContentPane().add(farmerAgeLabel);
 		
+		/**
+		 * Label prompting user to input age.
+		 */
 		JLabel gameLengthLabel = new JLabel("Please select the game length:");
 		gameLengthLabel.setBounds(10, 225, 205, 34);
 		frame.getContentPane().add(gameLengthLabel);
 		
+		/**
+		 * Label prompting user to input farm name.
+		 */
 		JLabel farmNameLabel = new JLabel("Please enter your farm's name:");
 		farmNameLabel.setBounds(321, 116, 212, 25);
 		frame.getContentPane().add(farmNameLabel);
 		
+		/**
+		 * Label prompting user to select farm type.
+		 */
 		JLabel farmTypeLabel = new JLabel("Please select your farm's type:");
 		farmTypeLabel.setBounds(321, 169, 261, 17);
 		frame.getContentPane().add(farmTypeLabel);
 		
+		/**
+		 * Label prompting user to input farmer name.
+		 */
 		JLabel farmerNameLabel = new JLabel("Please enter your name:");
 		farmerNameLabel.setBounds(10, 115, 162, 26);
 		frame.getContentPane().add(farmerNameLabel);
 		
+		/**
+		 * Spinner to allow user to choose age.
+		 */
 		JSpinner farmerAgeSpinner = new JSpinner();
 		farmerAgeSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		farmerAgeSpinner.setBounds(157, 166, 58, 20);
 		frame.getContentPane().add(farmerAgeSpinner);
 		
+		/**
+		 * Confirming whether random events are to be activated.
+		 */
 		JCheckBox randomEventBox = new JCheckBox("Random Events On");
 		randomEventBox.setBounds(6, 327, 141, 23);
 		frame.getContentPane().add(randomEventBox);
 		
+		/**
+		 * Information box for farm types.
+		 */
 		JTextPane farmInfo = new JTextPane();
 		farmInfo.setBounds(507, 210, 199, 101);
 		frame.getContentPane().add(farmInfo);
 		
+		/**
+		 * Combobox containing the famr types. Updates an information box with type details.
+		 */
 		JComboBox<String> farmTypeChoices = new JComboBox<String>();
 		farmTypeChoices.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -162,6 +223,9 @@ public class SetupScreen {
 		farmTypeChoices.setBounds(507, 167, 199, 22);
 		frame.getContentPane().add(farmTypeChoices);
 		
+		/**
+		 * Button to confirm the user's choices. Checks the farmer name is appropriate length and does not contain special characters. Creates a new farm using details.
+		 */
 		JButton confirmButton = new JButton("CONFIRM");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -213,6 +277,9 @@ public class SetupScreen {
 		confirmButton.setBounds(321, 380, 110, 39);
 		frame.getContentPane().add(confirmButton);
 		
+		/**
+		 * Label informing farm information.
+		 */
 		JLabel farmInfoLabel = new JLabel("Farm Information:");
 		farmInfoLabel.setBounds(321, 210, 149, 26);
 		frame.getContentPane().add(farmInfoLabel);

@@ -24,6 +24,9 @@ import java.awt.event.ActionEvent;
 
 public class SelectCropScreen {
 
+	/**
+	 * The frame for the GUI screen.
+	 */
 	private JFrame frame;
 	/**
 	 * Information about the player's farm, and other game information.
@@ -76,7 +79,7 @@ public class SelectCropScreen {
 		frame.getContentPane().setLayout(null);
 		
 		/**
-		 * The header label of the screen
+		 * The header label of the screen.
 		 */
 		JLabel promptLabel = new JLabel("Please select the crop you would like to harvest");
 		promptLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -85,7 +88,7 @@ public class SelectCropScreen {
 		frame.getContentPane().add(promptLabel);
 		
 		/**
-		 * Create a list model to display the crop list.
+		 * Create a list model to display the crop list, then create the crop JList.
 		 */
 		DefaultListModel<Crop> cropListModel = new DefaultListModel<Crop>();
 		ArrayList<Crop> crops = game.getFarm().getHarvestableCrops();
@@ -110,7 +113,7 @@ public class SelectCropScreen {
 		frame.getContentPane().add(cancelButton);
 		
 		/**
-		 * Confirm the player's selection
+		 * Confirm the player's selection. 
 		 * If the player hasn't selected a crop, display an error message. Otherwise, display a Yes/No option.
 		 */
 		JButton confirmButton = new JButton("Confirm");

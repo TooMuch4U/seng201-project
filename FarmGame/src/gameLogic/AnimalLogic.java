@@ -7,19 +7,34 @@ import farmsAndFarmer.Farm;
 import items.ItemForAnimal;
 
 /**
- * Contains logic dictating the manipulation of animals and their attributes
+ * Contains logic dictating the manipulation of animals and their attributes.
  *
  */
 public class AnimalLogic {
 	
+	/**
+	 * The logic class containing the vital information about the current game.
+	 */
 	private GameInformation gameInfo;
+	/**
+	 * The player's farm object.
+	 */
 	private Farm farm;
 	
+	/**
+	 * Constructor for AnimalLogic with parameters. 
+	 * @param info - the GameInformation class containing the information about the current game.
+	 */
 	public AnimalLogic(GameInformation info) {
 		gameInfo = info;
 		farm = gameInfo.getFarm();
 	}
 	
+	/**
+	 * Decreases each animal's health by a set amount. 
+	 * If the number of days until animal happiness decreases is zero, decrease happiness by a set amount too. 
+	 * @param happinessChange - a boolean dictating whether happiness should decrease.
+	 */
 	public void dailyDecrease(boolean happinessChange) {
 		ArrayList<Animal> animals = farm.getAnimals();
 		for (Animal animal: animals) {
@@ -33,9 +48,9 @@ public class AnimalLogic {
 	}
 	
 	/**
-	 * Allows the user to feed an animal on their farm.
-	 * Counts as a daily action, and as such can't be performed if all actions are completed.
-	 * @param feedItem - the ItemForAnimal that will be used to increase the animal's health.
+	 * Allows the user to feed an animal on their farm. 
+	 * Counts as a daily action, and as such can't be performed if all actions are completed. 
+	 * @param feedItem - the ItemForAnimal that will be used to increase the animal's health. 
 	 * @param animalIndex - the index of the animal within the list that the user wishes to feed.
 	 */
 	public void feedAnimals(ItemForAnimal feedItem, int animalIndex) {
@@ -48,7 +63,7 @@ public class AnimalLogic {
 	}
 	
 	/**
-	 * Play with animals, increases the happiness of an animal in the farm.
+	 * Play with animals, increases the happiness of an animal in the farm. 
 	 * @param animalIndex takes the integer of the position in the arrayList to get the animal.
 	 */
 	public void playWithAnimals(int animalIndex) {
@@ -60,8 +75,8 @@ public class AnimalLogic {
 	}
 	
 	/**
-	 * Method that is run at the end of each day.
-	 * Calculates the total bonus score generated today by the farm's animals
+	 * Method that is run at the end of each day. 
+	 * Calculates the total bonus score generated today by all of the farm's animals.
 	 */
 	public void calculateBonusScore() {
 		int incr = 0;

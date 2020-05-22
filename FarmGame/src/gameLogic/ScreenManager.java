@@ -2,22 +2,41 @@ package gameLogic;
 
 import guiScreens.*;
 
+/**
+ * Manages the opening and closing of GUI screens between activities
+ */
 public class ScreenManager {
 	
-	private GameInformation gameInfo;
-	private BasicGameLogic basicLogic;
-	private AnimalLogic animalLogic;
-	private CropLogic cropLogic;
-	private StoreLogic storeLogic;
 	/**
-	 * Constructor of the ScreenManager
+	 * The logic class containing the vital information about the current game.
+	 */
+	private GameInformation gameInfo;
+	/**
+	 * Logic class containing logic involving the farm's status and advancing days.
+	 */
+	private BasicGameLogic basicLogic;
+	/**
+	 * Logic class containing logic involving the manipulation and interaction with animals.
+	 */
+	private AnimalLogic animalLogic;
+	/**
+	 * Logic class containing logic involving the manipulation and interaction with animals.
+	 */
+	private CropLogic cropLogic;
+	/**
+	 * Logic class containing logic involving interaction with the store.
+	 */
+	private StoreLogic storeLogic;
+	
+	/**
+	 * Constructor of the ScreenManager.
 	 */
 	public ScreenManager() {
 		gameInfo = new GameInformation();
 	}
 	
 	/**
-	 * Builds the required logic classes after the information about the game has been filled in
+	 * Builds the required logic classes after the information about the game has been filled in.
 	 */
 	public void buildLogicClasses() {
 		animalLogic = new AnimalLogic(gameInfo);
@@ -125,8 +144,7 @@ public class ScreenManager {
 	 * Launches the stores animal screen GUI.
 	 * @param storeMain - The store main screen GUI.
 	 */
-	public void launchStoreAnimalScreen(StoreMainScreen storeMain) {
-		storeMain.closeWindow();
+	public void launchStoreAnimalScreen() {
 		StoreAnimalScreen storeAnimal = new StoreAnimalScreen(this, gameInfo, storeLogic);
 	}
 	
@@ -173,7 +191,7 @@ public class ScreenManager {
 	
 	/**
 	 * Launches the select crop screen object of the GUI, and closes the main screen.
-	 * Throws an action count exception if the player has no actions left for the day.
+	 * Throws an ActionCountException if the player has no actions left for the day.
 	 * @param main - the main screen GUI object that needs to be closed.
 	 */
 	public void launchSelectCropScreen(MainScreen main) {
@@ -221,8 +239,7 @@ public class ScreenManager {
 	 * Closes the main screen of the game, and launches the final score screen.
 	 * @param main - the main screen GUI object that needs to be closed.
 	 */
-	public void launchScoreScreen(MainScreen main) {
-		main.closeWindow();
+	public void launchScoreScreen() {
 		ScoreScreen scoreScreen = new ScoreScreen(this, gameInfo);
 	}
 	

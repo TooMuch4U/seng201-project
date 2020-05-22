@@ -26,6 +26,9 @@ import gameLogic.StoreLogic;
 
 public class StoreCropScreen {
 
+	/**
+	 * The frame for the GUI screen.
+	 */
 	private JFrame frame;
 	/**
 	 * Information about the player's farm, and other game information.

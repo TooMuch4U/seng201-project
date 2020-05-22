@@ -22,10 +22,22 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 public class FeedAnimalScreen {
-
+	
+	/**
+	 * The frame of the GUI screen
+	 */
 	private JFrame frame;
+	/**
+	 * The game logic responsible for managing the GUI screens.
+	 */
 	private ScreenManager manager;
+	/**
+	 * The logic class containing important informationa about the current game.
+	 */
 	private GameInformation game;
+	/**
+	 * Collection of logic pertaining to manipulation and interaction with animals.
+	 */
 	private AnimalLogic animalLogic;
 
 	/**
@@ -63,11 +75,17 @@ public class FeedAnimalScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		/**
+		 * Create the list models for the JList
+		 */
 		DefaultListModel<ItemForAnimal> itemListModel = new DefaultListModel<>();
 		DefaultListModel<Animal> animalListModel = new DefaultListModel<>();
 		itemListModel.addAll(game.getFarm().getAnimalItems());
 		animalListModel.addAll(game.getFarm().getAnimals());
 		
+		/**
+		 * Create the JLists
+		 */
 		JList<Animal> animalList = new JList<Animal>(animalListModel);
 		animalList.setCellRenderer(new AnimalMainListCellRenderer());
 		animalList.setBounds(25, 67, 325, 300);
@@ -78,6 +96,9 @@ public class FeedAnimalScreen {
 		itemList.setBounds(400, 67, 325, 300);
 		frame.getContentPane().add(itemList);
 		
+		/**
+		 * Confirm Button - check they have been selected, then move to next screen.
+		 */
 		JButton confirmSelectButton = new JButton("Confirm Selection");
 		confirmSelectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -96,12 +117,18 @@ public class FeedAnimalScreen {
 		confirmSelectButton.setBounds(580, 400, 145, 35);
 		frame.getContentPane().add(confirmSelectButton);
 		
+		/**
+		 * Label to prompt the player
+		 */
 		JLabel greetingLabel = new JLabel("Please select which animal you would like to feed, with which item");
 		greetingLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		greetingLabel.setBounds(10, 11, 716, 45);
 		frame.getContentPane().add(greetingLabel);
 		
+		/**
+		 * Cancel button - go to previous screen
+		 */
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -12,8 +12,17 @@ import farmsAndFarmer.Farm;
  */
 public class RandomEvents {
 	
+	/**
+	 * The random number generator used to determine when an event occurs.
+	 */
 	private Random rng = new Random();
+	/**
+	 * The logic class containing the vital information about the current game.
+	 */
 	private GameInformation gameInfo;
+	/**
+	 * The player's farm.
+	 */
 	private Farm farm;
 	
 	public RandomEvents(GameInformation info) {

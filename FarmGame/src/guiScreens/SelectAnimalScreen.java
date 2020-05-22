@@ -73,12 +73,18 @@ public class SelectAnimalScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		/**
+		 * Label prompting the player to select an animal
+		 */
 		JLabel promptLabel = new JLabel("Please select the animal you would like to play with");
 		promptLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		promptLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		promptLabel.setBounds(10, 11, 716, 45);
 		frame.getContentPane().add(promptLabel);
 		
+		/**
+		 * Create the list model for the Jlist, then create the JList itself.
+		 */
 		DefaultListModel<Animal> animalListModel = new DefaultListModel<Animal>();
 		ArrayList<Animal> animals = game.getFarm().getAnimals();
 		animalListModel.addAll(animals);
@@ -88,6 +94,9 @@ public class SelectAnimalScreen {
 		animalList.setBounds(140, 70, 470, 320);
 		frame.getContentPane().add(animalList);
 		
+		/**
+		 * Button allowing the player to confirm their selection. Checks that an animal has been selected before moving on.
+		 */
 		JButton confirmButton = new JButton("Confirm");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -108,6 +117,9 @@ public class SelectAnimalScreen {
 		confirmButton.setBounds(600, 400, 105, 35);
 		frame.getContentPane().add(confirmButton);
 		
+		/**
+		 * Button allowing the player to go back to the previous screen.
+		 */
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

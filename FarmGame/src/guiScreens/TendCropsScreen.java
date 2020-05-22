@@ -24,6 +24,9 @@ import javax.swing.JTextArea;
 
 public class TendCropsScreen {
 
+	/**
+	 * The frame for the GUI screen.
+	 */
 	private JFrame frame;
 	/**
 	 * The information about the game, which all functions can be accessed from.
@@ -73,8 +76,10 @@ public class TendCropsScreen {
 		frame.setBounds(100, 100, 750, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		TendCropsScreen screen = this;
 		
+		/**
+		 * Create a list model for the JLists, then create the JLists themselves.
+		 */
 		DefaultListModel<ItemForCrop> itemListModel = new DefaultListModel<>();
 		DefaultListModel<Crop> cropListModel = new DefaultListModel<>();
 		itemListModel.addAll(game.getFarm().getCropItems());
@@ -90,6 +95,9 @@ public class TendCropsScreen {
 		itemList.setBounds(400, 67, 325, 300);
 		frame.getContentPane().add(itemList);
 		
+		/**
+		 * Button to confirm user selection. Checks the user has selected values, then enquires whether the player is sure.
+		 */
 		JButton confirmSelectButton = new JButton("Confirm Selection");
 		confirmSelectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -101,23 +109,29 @@ public class TendCropsScreen {
 					JOptionPane.showMessageDialog(frame, "Please select a crop to tend to.", "Warning: No Crop Selected", JOptionPane.ERROR_MESSAGE);
 				} else {
 					cropLogic.tendToCrops(item, cropIndex);
-					manager.closeTendCropsScreen(screen);
+					finishedWindow();
 				}
 			}
 		});
 		confirmSelectButton.setBounds(580, 400, 145, 35);
 		frame.getContentPane().add(confirmSelectButton);
 		
+		/**
+		 * Label prompting the user to make selections.
+		 */
 		JLabel greetingLabel = new JLabel("Please select which crop you would like to tend, with which item");
 		greetingLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		greetingLabel.setBounds(10, 11, 716, 45);
 		frame.getContentPane().add(greetingLabel);
 		
+		/**
+		 * Button to go back to the previous screen
+		 */
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.closeTendCropsScreen(screen);
+				finishedWindow();
 			}
 		});
 		cancelButton.setBounds(25, 400, 145, 35);

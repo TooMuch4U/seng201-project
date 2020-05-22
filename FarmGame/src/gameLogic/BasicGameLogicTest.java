@@ -50,33 +50,23 @@ class BasicGameLogicTest {
 			farm.addAnimal(new AnimalCow());
 			farm.addCrop(new CropWheat());
 		}
-		try {
-			farm.addAnimal(new AnimalCow());
-			System.out.println("No exception caught when adding too many animals");
-		} catch (IllegalArgumentException e) {
-			System.out.println("Exception successfully caught");
-		}
-		try {
-			farm.addCrop(new CropWheat());
-			System.out.println("No exception caught when adding too many crops");
-		} catch (IllegalArgumentException e) {
-			System.out.println("Exception successfully caught");
-		}
+		assertThrows(IllegalArgumentException.class, () -> farm.addAnimal(new AnimalCow()));
+		assertThrows(IllegalArgumentException.class, () -> farm.addCrop(new CropWheat()));
 		
-		//Now enxure no exceptions are caught after land has been tended to
+		//Now ensure no exceptions are caught after land has been tended to
 		game.tendToLand();
 		try {
 			farm.addAnimal(new AnimalCow());
 			System.out.println("No exception caught: adding animal test successful");
 		} catch (IllegalArgumentException e) {
-			System.out.println("Exception caught: adding animal test unsuccessful");
+			fail("Exception caught: adding animal test unsuccessful");
 		}
 		
 		try {
 			farm.addAnimal(new AnimalCow());
 			System.out.println("No exception caught: adding crop test successful");
 		} catch (IllegalArgumentException e) {
-			System.out.println("Exception caught: adding crop test unsuccessful");
+			fail("Exception caught: adding crop test unsuccessful");
 		}
 		
 		double happiness = farm.getAnimals().get(0).getHappiness();
@@ -86,14 +76,7 @@ class BasicGameLogicTest {
 		
 		//Check the functon can't be called when the number of exceptions is too low
 		gameInfo.setNumActions(0);
-		try {
-			game.tendToLand();
-			System.out.println("Exception not caught; tending land action test unsuccessful");
-		} catch (ActionCountException e) {
-			System.out.println("Exception successfully caught");
-			assertEquals(e.getMessage(), "Sorry, you've performed all your actions for today.");
-		}
-		
+		assertThrows(ActionCountException.class, () -> game.tendToLand());		
 	}
 	
 	@Test

@@ -10,23 +10,23 @@ import farmsAndFarmer.Farm;
 public class EndScreen {
 	
 	/**
-	 * The games score
+	 * The game's score.
 	 */
 	private double baseScore = 0.0;
 	
 	/**
-	 * Constructor for EndScreen
+	 * Constructor for EndScreen.
 	 * @param farm farm to calculate score for.
 	 */
 	public EndScreen(Farm farm) {
-		baseScore = this.calculateScore(farm);
+		baseScore = calculateScore(farm);
 	}
 	
 	/**
 	 * Calculates the score of the farm.
 	 * 
-	 * @param farm Farm to calculate score of
-	 * @return
+	 * @param farm - the Farm to calculate score of.
+	 * @return score - the total score of the game.
 	 */
 	private double calculateScore(Farm farm) {
 		double score = 0.0;
@@ -52,12 +52,12 @@ public class EndScreen {
 		score = score + farm.getMoney();
 		score = score + farm.getBonusScore();
 		
-		return(score);
+		return score;
 	}
 	
 	/**
-	 * Returns the farms score as a string.
-	 * @return
+	 * Returns the farm's score as a string.
+	 * @return a string representation of baseScore.
 	 */
 	public String displayScore() {
 		return("" + baseScore);
