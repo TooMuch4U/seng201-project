@@ -88,4 +88,5 @@ class BasicGameLogicTest {
 		assertEquals(animalString, "You don't have any animals right now. Visit the store to buy some.\n");
 	}
 
+
 }
