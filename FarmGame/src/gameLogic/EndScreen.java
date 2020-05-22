@@ -16,7 +16,7 @@ public class EndScreen {
 	
 	/**
 	 * Constructor for EndScreen.
-	 * @param farm farm to calculate score for.
+	 * @param farm Farm to calculate score for.
 	 */
 	public EndScreen(Farm farm) {
 		baseScore = calculateScore(farm);
@@ -25,8 +25,8 @@ public class EndScreen {
 	/**
 	 * Calculates the score of the farm.
 	 * 
-	 * @param farm - the Farm to calculate score of.
-	 * @return score - the total score of the game.
+	 * @param farm The Farm to calculate score of.
+	 * @return score The total score of the game.
 	 */
 	private double calculateScore(Farm farm) {
 		double score = 0.0;
@@ -57,7 +57,7 @@ public class EndScreen {
 	
 	/**
 	 * Returns the farm's score as a string.
-	 * @return a string representation of baseScore.
+	 * @return A String representation of baseScore.
 	 */
 	public String displayScore() {
 		return("" + baseScore);

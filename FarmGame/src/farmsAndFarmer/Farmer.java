@@ -6,8 +6,8 @@ package farmsAndFarmer;
 public class Farmer {
 	
 	/**
-	 * The farmer's name.
-	 * Must be at least of length 3, and less than length 15.
+	 * The farmer's name. 
+	 * Must be at least of length 3, and less than length 15. 
 	 * Checked when exting the set-up screen.
 	 */
 	private String name;
@@ -28,8 +28,8 @@ public class Farmer {
 	/**
 	 * Constructor with params.
 	 * 
-	 * @param newName - the name the farmer will be initialised with.
-	 * @param newAge - the age the farmer will be initialised with.
+	 * @param newName The name the farmer will be initialised with.
+	 * @param newAge The age the farmer will be initialised with.
 	 */
 	public Farmer(String newName, int newAge) {
 		name = newName;
@@ -38,7 +38,7 @@ public class Farmer {
 	
 	/**
 	 * Returns the farmers name.
-	 * @return name - The name of the farmer.
+	 * @return name The name of the farmer.
 	 */
 	public String getName() {
 		return(name);
@@ -46,7 +46,7 @@ public class Farmer {
 	
 	/**
 	 * Returns the farmers age.
-	 * @return age - The age of the farmer.
+	 * @return age The age of the farmer.
 	 */
 	public int getAge() {
 		return(age);

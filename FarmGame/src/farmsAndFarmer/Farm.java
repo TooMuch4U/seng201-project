@@ -18,7 +18,7 @@ public class Farm {
 	 */
 	private String name;
 	/**
-	 * Type of the farm.
+	 * Type of the farm. 
 	 * Affects bonuses granted during the game.
 	 */
 	private String type;
@@ -63,10 +63,10 @@ public class Farm {
 	
 	/**
 	 * Constructor using parameters.
-	 * @param title - the desired name for the farm.
-	 * @param kind - the type of farm to be made.
-	 * @param owner - the Farmer created by the player.
-	 * @param cash - the initial available money.
+	 * @param title The desired name for the farm.
+	 * @param kind The type of farm to be made.
+	 * @param owner The Farmer created by the player.
+	 * @param cash The initial available money.
 	 */
 	public Farm(String title, String kind, Farmer owner, double cash) {
 		name = title;
@@ -78,7 +78,7 @@ public class Farm {
 	
 	/**
 	 * Gets the name of the farm.
-	 * @return name - a String
+	 * @return name A String of the farm's name.
 	 */
 	public String getName() {
 		return name;
@@ -86,7 +86,7 @@ public class Farm {
 	
 	/**
 	 * Gets the farm's farmer object.
-	 * @return farmer - a Farmer object
+	 * @return farmer The farm's Farmer object.
 	 */
 	public Farmer getFarmer() {
 		return farmer;
@@ -94,7 +94,7 @@ public class Farm {
 	
 	/**
 	 * Gets the farm's type.
-	 * @return type - a String
+	 * @return type The farm's type.
 	 */
 	public String getType() {
 		return type;
@@ -102,7 +102,7 @@ public class Farm {
 	
 	/**
 	 * Gets the current money available to the user.
-	 * @return money - a double.
+	 * @return money The farm's current money.
 	 */
 	public double getMoney() {
 		return money;
@@ -110,7 +110,7 @@ public class Farm {
 	
 	/**
 	 * Returns the difference in current money and the money the player had at the start of the game.
-	 * @return profit - a double.
+	 * @return profit The total profit since the start of the game.
 	 */
 	public double getProfit() {
 		return money - startMoney;
@@ -118,7 +118,7 @@ public class Farm {
 	
 	/**
 	 * Gets the current animals on the farm.
-	 * @return animals - ArrayList containing the farm's animals.
+	 * @return animals An ArrayList containing the farm's animals.
 	 */
 	public ArrayList<Animal> getAnimals() {
 		return animals;
@@ -126,7 +126,7 @@ public class Farm {
 	
 	/**
 	 * Gets the current crops growing on the farm.
-	 * @return crops - ArrayList containing the farm's crops.
+	 * @return crops An ArrayList containing the farm's crops.
 	 */
 	public ArrayList<Crop> getCrops() {
 		return crops;
@@ -134,7 +134,7 @@ public class Farm {
 	
 	/**
 	 * Gets the current items owned by the player.
-	 * @return items - ArrayList containing the farm's items.
+	 * @return items An ArrayList containing the farm's items.
 	 */
 	public ArrayList<Item> getItems() {
 		return items;
@@ -142,7 +142,7 @@ public class Farm {
 	
 	/**
 	 * Gets the crops on the player's farm that are currently ready for harvest.
-	 * @return harvestableCrops - an ArrayList containing all crops that can currently be harvested.
+	 * @return harvestableCrops An ArrayList containing all crops that can currently be harvested.
 	 */
 	public ArrayList<Crop> getHarvestableCrops() {
 		ArrayList<Crop> harvestableCrops = new ArrayList<Crop>();
@@ -156,7 +156,7 @@ public class Farm {
 	
 	/**
 	 * Returns a list containing all of the items owned by the player that can be used on animals.
-	 * @return animalItems - an ArrayList that contains all items that could be used on an animal.
+	 * @return animalItems An ArrayList that contains all items that could be used on an animal.
 	 */
 	public ArrayList<ItemForAnimal> getAnimalItems() {
 		ArrayList<ItemForAnimal> animalItems = new ArrayList<>();
@@ -171,7 +171,7 @@ public class Farm {
 	
 	/**
 	 * Returns a list containing all of the items owned by the player that could be used on crops.
-	 * @return cropItems - an ArrayList that contains all items that could be used on a crop.
+	 * @return cropItems An ArrayList that contains all items that could be used on a crop.
 	 */
 	public ArrayList<ItemForCrop> getCropItems() {
 		ArrayList<ItemForCrop> cropItems = new ArrayList<>();
@@ -188,7 +188,7 @@ public class Farm {
 	/**
 	 * Manipulates the total current money of the farm.
 	 * Throws an illegal argument exception if the money goes below 0.
-	 * @param change - the desired change in money.
+	 * @param change The desired change in money.
 	 */
 	public void changeMoney(double change) {
 		if (money >= Math.abs(change) && change < 0 || change >= 0) {
@@ -203,7 +203,7 @@ public class Farm {
 	/**
 	 * Adds an animal into the ArrayList animals.
 	 * If the farm's type allows it, adds a bonus to the animal's happiness and health.
-	 * @param animal - the animal to be added to the ArrayList.
+	 * @param animal The animal to be added to the ArrayList.
 	 */
 	public void addAnimal(Animal animal) {
 		if (animals.size() == animalLimit) {
@@ -215,7 +215,7 @@ public class Farm {
 	/**
 	 * Adds a crop into the ArrayList crops.
 	 * If the farm's type allows it, decreases the crop's harvest time by a day.
-	 * @param crop - the crop to be added to the farm's current crops.
+	 * @param crop The crop to be added to the farm's current crops.
 	 */
 	public void addCrop(Crop crop) {
 		if (crops.size() == cropLimit) {
@@ -226,7 +226,7 @@ public class Farm {
 	
 	/**
 	 * Adds an item into the ArrayList items.
-	 * @param item - the item to be added to the farm's current items.
+	 * @param item The item to be added to the farm's current items.
 	 */
 	public void addItem(Item item) {
 		items.add(item);
@@ -259,7 +259,7 @@ public class Farm {
 	
 	/**
 	 * Returns the farms current bonus score.
-	 * @return currentbonusScore - a double.
+	 * @return currentbonusScore
 	 */
 	public int getBonusScore() {
 		return currentBonusScore;
@@ -267,7 +267,7 @@ public class Farm {
 	
 	/**
 	 * Increases the farms current bonus score.
-	 * @param incr - amount to increase the farm's bonus score by.
+	 * @param incr Amount to increase the farm's bonus score by.
 	 */
 	public void incrBonus(int incr) {
 		currentBonusScore = currentBonusScore + incr;

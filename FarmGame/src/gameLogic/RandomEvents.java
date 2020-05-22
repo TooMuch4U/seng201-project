@@ -36,7 +36,7 @@ public class RandomEvents {
 	 * A maximum of half of the player's animals can escape. The exact number is generated using the rng.
 	 * Returns a string detailing the event.
 	 * If the player has one or no animals, nothing happens, and the returned string contains nothing.
-	 * @return - a string detailing the event. Returns an empty string if the player doesn't have enough animals.
+	 * @return A string detailing the event. Returns an empty string if the player doesn't have enough animals.
 	 */
 	public String removeRandomAnimals() {
 		ArrayList<Animal> animals = farm.getAnimals();
@@ -70,7 +70,7 @@ public class RandomEvents {
 	 * Removes half of the crops from the farm using a random number generator.
 	 * Uses a while loop to ensure that the number of crops removed is adequate.
 	 * If the rng generates an odd number, or the remaining crops in the list need to be removed, the next crop will be removed.
-	 * @return - A String detailing the event. If the player has one or no crops, returns an empty string.
+	 * @return A String detailing the event. If the player has one or no crops, returns an empty string.
 	 * 
 	 */
 	public String removeHalfCrops() {
@@ -104,8 +104,8 @@ public class RandomEvents {
 	 * County Fair - 10% chance of occurring - player gets a bonus sum of money depending on the numbers of crops and animals they have.
 	 * Broken Fence - 5% chance of occurring - player loses half of their farm's animals. The animals are chose randomly using removeHalfAnimals().
 	 * Drought - 5% chance of occurring - player loses half of their farm's crops. The crops are chose randomly using removeHalfCrops().
-	 * @param randNum - Number that determines if a random event occurs
-	 * @return eventInfo - a string detailing what event happened, if any.
+	 * @param randNum Number that determines if a random event occurs
+	 * @return eventInfo A string detailing what event happened, if any.
 	 */
 	public String randomEvents(int randNum) {
 		String eventInfo = "";
@@ -130,7 +130,7 @@ public class RandomEvents {
 	
 	/**
 	 * Calls the randomEvents method to potentially trigger a random event
-	 * @return event - a String detailing what, if any, random event occured
+	 * @return event A String detailing what, if any, random event occured
 	 */
 	public String triggerRandomEvents() {
 		int randNum = rng.nextInt();

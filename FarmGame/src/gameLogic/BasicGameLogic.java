@@ -43,9 +43,9 @@ public class BasicGameLogic {
 	
 	/**
 	 * Constructor for BasicGameLogic with parameters. 
-	 * @param info - the GameInformation class containing information about the current game 
-	 * @param animal - the AnimalLogic class for the current game 
-	 * @param crop - the CropLogic class for the current game
+	 * @param info The GameInformation class containing information about the current game 
+	 * @param animal The AnimalLogic class for the current game 
+	 * @param crop The CropLogic class for the current game
 	 */
 	public BasicGameLogic(GameInformation info, AnimalLogic animal, CropLogic crop) {
 		gameInfo = info;
@@ -63,7 +63,7 @@ public class BasicGameLogic {
 	 * Advances the number of days by one, and resets the action counter. 
 	 * If the current days is the number of days the player requested, the game is over, so don't carry out the operation. 
 	 * This function is called directly when the player chooses to advance time. 
-	 * @return event - The random event
+	 * @return event A String detailing what happened if anything.
 	 */
 	public String advanceDays() {
 		int currentDays = gameInfo.getCurrentDays();
@@ -95,7 +95,7 @@ public class BasicGameLogic {
 	 * Returns the String representation of each item owned by the player. 
 	 * This does not decrease daily actions. 
 	 * If the user has no items, the string prompts them to visit the store. 
-	 * @return String - either textual representations of each of the player's items, or a prompt to buy items from the store.
+	 * @return String Either textual representations of each of the player's items, or a prompt to buy items from the store.
 	 */
 	public String viewItems() {
 		ArrayList<ItemForAnimal> animalItems = farm.getAnimalItems();
@@ -120,7 +120,7 @@ public class BasicGameLogic {
 	 * Returns a string for each crop, outlining their type and the growing time left. 
 	 * This does not count as a daily action; it can thus be called if all actions are performed. 
 	 * If the user has no crops, the string prompts them to visit the store. 
-	 * @return returnString - the string detailing the player's crops. 
+	 * @return returnString The string detailing the player's crops. 
 	 */
 	public String viewCropStatus() {
 		ArrayList<Crop> crops = farm.getCrops();
@@ -140,7 +140,7 @@ public class BasicGameLogic {
 	 * Returns a string for each animal outlining their type, happiness, and health. 
 	 * This does not count as a daily action; it can thus be called if all actions are performed. 
 	 * If the user has no animals, the string prompts them to visit the store. 
-	 * @return returnString - the string detailing the player's animals. 
+	 * @return returnString The string detailing the player's animals. 
 	 */
 	public String viewAnimalStatus() {
 		ArrayList<Animal> animals = farm.getAnimals();
@@ -161,7 +161,7 @@ public class BasicGameLogic {
 	 * Returns a string containing their farm's name, farmer, and total current money. 
 	 * Also returns strings containing information about the player's animals and crops. 
 	 * This does not count towards daily actions. 
-	 * @return returnString - a string containing information about the user's farm. 
+	 * @return returnString A string containing information about the user's farm. 
 	 */
 	public String viewFarmStatus() {
 		String farmName = farm.getName();

@@ -30,10 +30,10 @@ public class Crop {
 	
 	/**
 	 * Constructor using parameters.
-	 * @param kind - the type of crop.
-	 * @param buying - the purchase price.
-	 * @param selling - the selling price.
-	 * @param time - the harvest time in days.
+	 * @param kind The type of crop.
+	 * @param buying The purchase price.
+	 * @param selling The selling price.
+	 * @param time The harvest time in days.
 	 */
 	public Crop(String kind, double buying, double selling, int time) {
 		type = kind;
@@ -86,7 +86,7 @@ public class Crop {
 	/**
 	 * Changes the current harvest time of the crop.
 	 * Sets the harvest time to 0 if the harvest time will go below 0.
-	 * @param change - the desired change in harvest time.
+	 * @param change The desired change in harvest time.
 	 */
 	public void changeHarvestTime(int change) {
 		if (change < 0) {
@@ -98,7 +98,7 @@ public class Crop {
 	}
 	
 	/**
-	 * Increases the growing time of the crop by one.
+	 * Increases the growing time of the crop by one. 
 	 * Is not called when an item is used on the crop.
 	 */
 	public void increaseGrowTime() {
@@ -107,6 +107,9 @@ public class Crop {
 	
 	
 	@Override
+	/**
+	 * Displays the crop's types, growing time, and time until harvest. If the crop is ready to be harvested, it display the sale price.
+	 */
 	public String toString() {
 		if (daysUntilHarvest == 0) {
 			return String.format("This %s is ready, and will sell for $%.2f", getType(), getSalePrice());

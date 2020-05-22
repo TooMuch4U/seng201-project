@@ -45,7 +45,7 @@ public class GameInformation {
 	/**
 	 * Sets the value of the player's farm.
 	 * Used only in the GUI implementation.
-	 * @param playerFarm - the player's farm, created using information on the set-up screen.
+	 * @param playerFarm The player's farm, created using information on the set-up screen.
 	 */
 	public void setFarm(Farm playerFarm) {
 		farm = playerFarm;
@@ -54,7 +54,7 @@ public class GameInformation {
 	/**
 	 * Sets the desired amount of days for the player.
 	 * Used only in the GUI implementation.
-	 * @param desiredDays - the amount of days the player wants to play for.
+	 * @param desiredDays The amount of days the player wants to play for.
 	 */
 	public void setRequiredDays(int desiredDays) {
 		requiredDays = desiredDays;
@@ -62,7 +62,7 @@ public class GameInformation {
 	
 	/**
 	 * Sets the number of actions permittable in a single day.
-	 * @param number - the number of actions that can be completed in one day.
+	 * @param number The number of actions that can be completed in one day.
 	 */
 	public void setNumActions(int number) {
 		numActions = number;
@@ -70,7 +70,7 @@ public class GameInformation {
 	
 	/**
 	 * Sets whether the random events occur during gameplay or not.
-	 * @param accept - true if random events will occur.
+	 * @param accept true if random events will occur.
 	 */
 	public void setRandomEventsOn(boolean accept) {
 		randomEventsOn = accept;
@@ -78,7 +78,7 @@ public class GameInformation {
 	
 	/**
 	 * Sets the amount of days until animal happiness decreases.
-	 * @param days - the required days until a decrease in happiness.
+	 * @param days The required days until a decrease in happiness.
 	 */
 	public void setDecreaseHappinessDays(int days) {
 		decreaseHappinessDays = days;
@@ -100,7 +100,7 @@ public class GameInformation {
 	
 	/**
 	 * Returns the store object.
-	 * @return store - the store object.
+	 * @return store The store object.
 	 */
 	public Store getStore() {
 		return store;
@@ -108,7 +108,7 @@ public class GameInformation {
 	
 	/**
 	 * Returns the current value of numActions.
-	 * @return numActions - the number of actions left in the day.
+	 * @return numActions The number of actions left in the day.
 	 */
 	public int getNumActions() {
 		return numActions;
@@ -116,7 +116,7 @@ public class GameInformation {
 	
 	/**
 	 * Returns the number of days currently surpassed.
-	 * @return currentDays - the number of days the game has gone for so far.
+	 * @return currentDays The number of days the game has gone for so far.
 	 */
 	public int getCurrentDays() {
 		return currentDays;
@@ -124,7 +124,7 @@ public class GameInformation {
 	
 	/**
 	 * Returns the number of days the game must continue for.
-	 * @return requiredDays - the number of days the player wanted the game to go for.
+	 * @return requiredDays The number of days the player wanted the game to go for.
 	 */
 	public int getRequiredDays() {
 		return requiredDays;
@@ -132,7 +132,7 @@ public class GameInformation {
 	
 	/**
 	 * Returns the player's farm object.
-	 * @return farm - the player's farm.
+	 * @return farm The player's farm.
 	 */
 	public Farm getFarm() {
 		return farm;
@@ -140,7 +140,7 @@ public class GameInformation {
 	
 	/**
 	 * Returns whether the random events are turned on for the game.
-	 * @return randomEventsOn - a boolean.
+	 * @return randomEventsOn true if random events are enabled.
 	 */
 	public boolean getRandomEventsOn() {
 		return randomEventsOn;
@@ -148,7 +148,7 @@ public class GameInformation {
 	
 	/**
 	 * Returns the number of days left until animal happiness decreases.
-	 * @return - decreaseHappinessDays - an int.
+	 * @return decreaseHappinessDays Days until animals lose happiness.
 	 */
 	public int getDecreaseHappinessDays() {
 		return decreaseHappinessDays;

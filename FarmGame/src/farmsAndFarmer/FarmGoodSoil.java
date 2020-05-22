@@ -9,17 +9,17 @@ public class FarmGoodSoil extends Farm {
 	
 	/**
 	 * Constructor for the farm with parameters.
-	 * @param name - the name of the farm.
-	 * @param farmer - the farmer created by the user.
+	 * @param name The name of the farm.
+	 * @param farmer The farmer created by the user.
 	 */
 	public FarmGoodSoil(String name, Farmer farmer) {
 		super(name, "cropBonus", farmer, 1000.00);
 	}
 	
 	/**
-	 * Adds a crop into the ArrayList crops.
+	 * Adds a crop into the ArrayList crops. 
 	 * Due to farm bonus, decreases the crop's harvest time by a day.
-	 * @param crop - the crop to be added to the farm's current crops.
+	 * @param crop The crop to be added to the farm's current crops.
 	 */
 	@Override
 	public void addCrop(Crop crop) {

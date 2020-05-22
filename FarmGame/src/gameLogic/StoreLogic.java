@@ -7,17 +7,27 @@ import items.*;
 
 public class StoreLogic {
 	
+	/**
+	 * A logic class containing the vital information about the current game.
+	 */
 	private GameInformation gameInfo;
+	/**
+	 * The player's farm object.
+	 */
 	private Farm farm;
 	
+	/**
+	 * Constructor with parameters. 
+	 * @param info The logic class containing information about the current game.
+	 */
 	public StoreLogic(GameInformation info) {
 		gameInfo = info;
 		farm = gameInfo.getFarm();
 	}
 	
 	/**
-	 * Processes the payment of a store item.
-	 * The farm must have enough money to make the purchase price.
+	 * Processes the payment of a store item. 
+	 * The farm must have enough money to make the purchase price. 
 	 * @param price The price of the item being purchased.
 	 */
 	private void processStoreItem(double price) {
@@ -31,7 +41,7 @@ public class StoreLogic {
 	}
 	
 	/**
-	 * Purchases an item from the store if the farm has enough money.
+	 * Purchases an item from the store if the farm has enough money. 
 	 * @param item The item the store would like to purchase.
 	 */
 	public void purchaseItem(Item item) {
@@ -54,7 +64,7 @@ public class StoreLogic {
 	}
 	
 	/**
-	 * Purchases an animal from the store if the farm has enough money.
+	 * Purchases an animal from the store if the farm has enough money. 
 	 * @param animal The animal that is to be purchased.
 	 */
 	public void purchaseAnimal(Animal animal) {

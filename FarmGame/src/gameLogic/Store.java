@@ -11,24 +11,24 @@ import crops.*;
 public class Store {
 	
 	/**
-	 * ArrayList containing the stores available items
+	 * ArrayList containing the stores available items.
 	 */
 	public ArrayList<Item> availableItems = new ArrayList<Item>();
 	
 	/**
-	 * ArrayList containing the stores available animals
+	 * ArrayList containing the stores available animals.
 	 */
 	public ArrayList<Animal> availableAnimals = new ArrayList<Animal>();
 	
 	/**
-	 * ArrayList containing the stores available crops
+	 * ArrayList containing the stores available crops.
 	 */
 	public ArrayList<Crop> availableCrops = new ArrayList<Crop>();
 	
 	
 	/**
-	 * Constructor for store
-	 * Initialises all available items
+	 * Constructor for store. 
+	 * Initialises all available items.
 	 */
 	public Store() {
 		// Add all items to availableItems ArrayList
@@ -54,7 +54,7 @@ public class Store {
 	}
 	
 	/**
-	 * Returns the item from the availableItems array at the given index
+	 * Returns the item from the availableItems array at the given index.
 	 * 
 	 * @param index Index of the item to retrieve. Must not be larger than the ArrayList size
 	 * @return Item
@@ -79,7 +79,7 @@ public class Store {
 	 * Returns the Animal from the availableAnimals array at the given index
 	 * 
 	 * @param index Index of the animal wanted.
-	 * @return returnItem - The items that was purchased
+	 * @return returnItem The items that was purchased
 	 */
 	public Animal purchaseAnimal(int index) {
 		
@@ -101,7 +101,7 @@ public class Store {
 	 * Returns the Crop from the availableCrops array at the given index
 	 * 
 	 * @param index Index of the crop wanted.
-	 * @return returnItem - The crop that was purchased
+	 * @return returnItem The crop that was purchased
 	 */
 	public Crop purchaseCrop(int index) {
 		

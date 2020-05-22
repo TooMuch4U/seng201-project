@@ -55,7 +55,7 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the main GUI screen of the game.
-	 * @param mainWindow - the main screen of the GUI.
+	 * @param mainWindow The main screen of the GUI.
 	 */
 	public void closeMainScreen(MainScreen mainWindow) {
 		mainWindow.closeWindow();
@@ -63,7 +63,7 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the main game screen and opens the animal feeding GUI screen.
-	 * @param mainWindow - the main screen of the GUI. Passed in to close the screen.
+	 * @param mainWindow The main screen of the GUI. Passed in to close the screen.
 	 */
 	public void launchFeedAnimalScreen(MainScreen mainWindow) {
 		if (gameInfo.getNumActions() == 0) {
@@ -76,7 +76,7 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the animal feeding screen and opens the main screen of the GUI.
-	 * @param animalWindow - the animal feeding screen of the GUI.
+	 * @param animalWindow The animal feeding screen of the GUI.
 	 */
 	public void closeFeedAnimalScreen(FeedAnimalScreen animalWindow) {
 		animalWindow.closeWindow();
@@ -85,7 +85,7 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the main game screen and opens the crop tending GUI screen.
-	 * @param mainWindow - the main screen of the GUI. Passed in to close the screen.
+	 * @param mainWindow The main screen of the GUI. Passed in to close the screen.
 	 */
 	public void launchTendCropsScreen(MainScreen mainWindow) {
 		if (gameInfo.getNumActions() == 0) {
@@ -98,7 +98,7 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the crop tending screen and opens the main game screen.
-	 * @param cropsWindow - the crop tending screen of the GUI.
+	 * @param cropsWindow The crop tending screen of the GUI.
 	 */
 	public void closeTendCropsScreen(TendCropsScreen cropsWindow) {
 		cropsWindow.closeWindow();
@@ -107,7 +107,7 @@ public class ScreenManager {
 	
 	/**
 	 * Launches the setup screen of the GUI.
-	 * @param game - Game environment variable
+	 * @param manager The GUI screen manager.
 	 */
 	public void launchSetupScreen(ScreenManager manager) {
 		SetupScreen setupWindow = new SetupScreen(manager, gameInfo);
@@ -115,7 +115,7 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the setup screen of the GUI.
-	 * @param setupWindow - the setup screen of the GUI.
+	 * @param setupWindow The setup screen of the GUI.
 	 */
 	public void closeSetupScreen(SetupScreen setupWindow) {
 		setupWindow.closeWindow();
@@ -133,7 +133,7 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the store main screen.
-	 * @param storeMain - The store main screen.
+	 * @param storeMain The store main screen.
 	 */
 	public void closeStoreMainScreen(StoreMainScreen storeMain) {
 		storeMain.closeWindow();
@@ -141,16 +141,16 @@ public class ScreenManager {
 	}
 	
 	/**
-	 * Launches the stores animal screen GUI.
-	 * @param storeMain - The store main screen GUI.
+	 * Launches the stores animal screen GUI. 
+	 * @param storeMain The store main screen GUI.
 	 */
 	public void launchStoreAnimalScreen() {
 		StoreAnimalScreen storeAnimal = new StoreAnimalScreen(this, gameInfo, storeLogic);
 	}
 	
 	/**
-	 * Closes the store animal screen GUI.
-	 * @param storeAnimal - Store animal GUI to be closed.
+	 * Closes the store animal screen GUI. 
+	 * @param storeAnimal Store animal GUI to be closed.
 	 */
 	public void closeStoreAnimalScreen(StoreAnimalScreen storeAnimal) {
 		storeAnimal.closeWindow();
@@ -166,7 +166,7 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the store crop screen GUI.
-	 * @param cropScreen - store crop screen GUI object to be closed.
+	 * @param cropScreen Store Crop GUI screen to be closed.
 	 */
 	public void closeStoreCropScreen(StoreCropScreen cropScreen) {
 		cropScreen.closeWindow();
@@ -181,8 +181,8 @@ public class ScreenManager {
 	}
 	
 	/**
-	 * Closes the Store Item screen of the GUI.
-	 * @param itemScreen - the item screen GUI object to be closed.
+	 * Closes the Store Item screen of the GUI. 
+	 * @param itemScreen The item screen GUI object to be closed.
 	 */
 	public void closeStoreItemScreen(StoreItemScreen itemScreen) {
 		itemScreen.closeWindow();
@@ -190,9 +190,9 @@ public class ScreenManager {
 	}
 	
 	/**
-	 * Launches the select crop screen object of the GUI, and closes the main screen.
-	 * Throws an ActionCountException if the player has no actions left for the day.
-	 * @param main - the main screen GUI object that needs to be closed.
+	 * Launches the select crop screen object of the GUI, and closes the main screen. 
+	 * Throws an ActionCountException if the player has no actions left for the day. 
+	 * @param main The main screen GUI object that needs to be closed.
 	 */
 	public void launchSelectCropScreen(MainScreen main) {
 		if (gameInfo.getNumActions() == 0) {
@@ -204,8 +204,8 @@ public class ScreenManager {
 	}
 	
 	/**.
-	 * Closes the select crop screen object of the GUI, and relaunches the main screen.
-	 * @param cropScreen - the crop select GUI object that needs to be closed.
+	 * Closes the select crop screen object of the GUI, and relaunches the main screen. 
+	 * @param cropScreen The crop select GUI object that needs to be closed.
 	 */
 	public void closeSelectCropScreen(SelectCropScreen cropScreen) {
 		cropScreen.closeWindow();
@@ -213,9 +213,9 @@ public class ScreenManager {
 	}
 	
 	/**
-	 * Launches the select animal screen object of the GUI, and closes the main screen.
-	 * Throws an ActionCountException if the player has performed all tasks for the day.
-	 * @param main - the main screen GUI object that needs to be closed.
+	 * Launches the select animal screen object of the GUI, and closes the main screen. 
+	 * Throws an ActionCountException if the player has performed all tasks for the day. 
+	 * @param main The main screen GUI object that needs to be closed.
 	 */
 	public void launchSelectAnimalScreen(MainScreen main) {
 		if (gameInfo.getNumActions() == 0) {
@@ -227,8 +227,8 @@ public class ScreenManager {
 	}
 	
 	/**
-	 * Closes the select animal screen object of the GUI, and relaunches the main screen of the game.
-	 * @param animalScreen - the select animal screen GUI object that needs to be closed.
+	 * Closes the select animal screen object of the GUI, and relaunches the main screen of the game. 
+	 * @param animalScreen The select animal screen GUI object that needs to be closed.
 	 */
 	public void closeSelectAnimalScreen(SelectAnimalScreen animalScreen) {
 		animalScreen.closeWindow();
@@ -236,17 +236,17 @@ public class ScreenManager {
 	}
 	
 	/**
-	 * Closes the main screen of the game, and launches the final score screen.
-	 * @param main - the main screen GUI object that needs to be closed.
+	 * Closes the main screen of the game, and launches the final score screen. 
+	 * @param main The main screen GUI object that needs to be closed.
 	 */
 	public void launchScoreScreen() {
 		ScoreScreen scoreScreen = new ScoreScreen(this, gameInfo);
 	}
 	
 	/**
-	 * Closes the final score screen, and launches a new set-up screen for the player.
-	 * Called if the player chooses to start a new game.
-	 * @param score - The score screen GUI object that needs to be closed.
+	 * Closes the final score screen, and launches a new set-up screen for the player. 
+	 * Called if the player chooses to start a new game. 
+	 * @param score The score screen GUI object that needs to be closed.
 	 */
 	public void closeScoreScreen(ScoreScreen score) {
 		score.closeWindow();
@@ -255,9 +255,8 @@ public class ScreenManager {
 	}
 	
 	/**
-	 * Main method of the game object.
+	 * Main method of the game object. 
 	 * Calls the setup screen launcher when triggered.
-	 * @param args 
 	 */
 	public static void main(String[] args) {
 		ScreenManager manager = new ScreenManager();

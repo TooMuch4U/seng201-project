@@ -23,7 +23,7 @@ public class CropLogic {
 	
 	/**
 	 * Constructor with paramters for CropLogic.
-	 * @param info - the GameInformation class for the current game.
+	 * @param info The GameInformation class for the current game.
 	 */
 	public CropLogic(GameInformation info) {
 		gameInfo = info;
@@ -45,8 +45,8 @@ public class CropLogic {
 	/**
 	 * Allows the player to tend to the crops on their farm, making them grow quicker. 
 	 * Counts towards the player's daily actions, and as such, can't be performed if the player has no more actions for the day. 
-	 * @param cropItem - the ItemForCrop to be used on the crops. 
-	 * @param cropIndex - the index of the crop within the list that the player wishes to tend to.
+	 * @param cropItem The ItemForCrop to be used on the crops. 
+	 * @param cropIndex The index of the crop within the list that the player wishes to tend to.
 	 */
 	public void tendToCrops(ItemForCrop cropItem, int cropIndex) {
 		ArrayList<Crop> crops = farm.getCrops();
@@ -63,7 +63,7 @@ public class CropLogic {
 	
 	/**
 	 * Harvests one crop in the farm and adds the money to the farm. 
-	 * @param cropIndex index of the crop to harvest.
+	 * @param cropIndex Index of the crop to harvest.
 	 */
 	public void harvestCrops(int cropIndex) {
 		ArrayList<Crop> crops = farm.getCrops();

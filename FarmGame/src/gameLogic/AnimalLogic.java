@@ -23,7 +23,7 @@ public class AnimalLogic {
 	
 	/**
 	 * Constructor for AnimalLogic with parameters. 
-	 * @param info - the GameInformation class containing the information about the current game.
+	 * @param info The GameInformation class containing the information about the current game.
 	 */
 	public AnimalLogic(GameInformation info) {
 		gameInfo = info;
@@ -33,7 +33,7 @@ public class AnimalLogic {
 	/**
 	 * Decreases each animal's health by a set amount. 
 	 * If the number of days until animal happiness decreases is zero, decrease happiness by a set amount too. 
-	 * @param happinessChange - a boolean dictating whether happiness should decrease.
+	 * @param happinessChange A boolean dictating whether happiness should decrease.
 	 */
 	public void dailyDecrease(boolean happinessChange) {
 		ArrayList<Animal> animals = farm.getAnimals();
@@ -50,8 +50,8 @@ public class AnimalLogic {
 	/**
 	 * Allows the user to feed an animal on their farm. 
 	 * Counts as a daily action, and as such can't be performed if all actions are completed. 
-	 * @param feedItem - the ItemForAnimal that will be used to increase the animal's health. 
-	 * @param animalIndex - the index of the animal within the list that the user wishes to feed.
+	 * @param feedItem The ItemForAnimal that will be used to increase the animal's health. 
+	 * @param animalIndex The index of the animal within the list that the user wishes to feed.
 	 */
 	public void feedAnimals(ItemForAnimal feedItem, int animalIndex) {
 		ArrayList<Animal> animals = farm.getAnimals();
@@ -64,7 +64,7 @@ public class AnimalLogic {
 	
 	/**
 	 * Play with animals, increases the happiness of an animal in the farm. 
-	 * @param animalIndex takes the integer of the position in the arrayList to get the animal.
+	 * @param animalIndex Takes the integer of the position in the arrayList to get the animal.
 	 */
 	public void playWithAnimals(int animalIndex) {
 		double change = 5.0; // Change constant to increase animals happiness by
