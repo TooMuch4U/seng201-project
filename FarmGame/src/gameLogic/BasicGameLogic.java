@@ -165,10 +165,10 @@ public class BasicGameLogic {
 	 */
 	public String viewFarmStatus() {
 		String farmName = farm.getName();
-		String farmMoney = Double.toString(farm.getMoney());
+		Double farmMoney = farm.getMoney();
 		String farmerName = farm.getFarmer().getName();
 		
-		String returnString = String.format("Your farm %s has a farmer called %s, with total money of %.2f.\n", farmName, farmerName, farmMoney);
+		String returnString = String.format("Your farm %s has a farmer called %s, with total money of $%.2f.\n", farmName, farmerName, farmMoney);
 		returnString += viewAnimalStatus() + viewCropStatus() + viewItems();
 		return returnString;
 	}
