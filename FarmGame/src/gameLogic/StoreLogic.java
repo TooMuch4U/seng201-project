@@ -27,17 +27,11 @@ public class StoreLogic {
 	
 	/**
 	 * Processes the payment of a store item. 
-	 * The farm must have enough money to make the purchase price. 
+	 * The farm must have enough money to make the purchase price, which is checked at the GUI screen. 
 	 * @param price The price of the item being purchased.
 	 */
 	private void processStoreItem(double price) {
-		if (farm.getMoney() >= price) {
-			// Farm can afford the item
-			farm.changeMoney(- price);
-
-		} else {
-			throw new IllegalStateException("There is not enough money to purchase this");
-		}
+		farm.changeMoney(-price);
 	}
 	
 	/**
