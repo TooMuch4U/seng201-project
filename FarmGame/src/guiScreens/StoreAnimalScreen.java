@@ -49,7 +49,10 @@ public class StoreAnimalScreen {
 	private Farm farm;
 
 	/**
-	 * Create the application.
+	 * Create the GUI screen.
+	 * @param incomingManager The ScreenManager object that will launch and close this screen.
+	 * @param gameInfo The logic class containing information about the current game.
+	 * @param storeLogic The logic class allowing purchasing of animals, crops, and items.
 	 */
 	public StoreAnimalScreen(ScreenManager incomingManager, GameInformation gameInfo, StoreLogic storeLogic) {
 		manager = incomingManager;
@@ -61,14 +64,14 @@ public class StoreAnimalScreen {
 	}
 	
 	/**
-	 * Close the window
+	 * Close the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
 	/**
-	 * Hands control back to the main class
+	 * Hands control back to the main class.
 	 */
 	public void finishedWindow() {
 		manager.closeStoreAnimalScreen(this);

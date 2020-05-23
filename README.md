@@ -1,4 +1,4 @@
-# Farming Simulator
+# FarmSim 201
 SENG201 farm game project. Try get the highest score by caring for animals and growing crops.
 
 ## Importing Into Eclipse IDE

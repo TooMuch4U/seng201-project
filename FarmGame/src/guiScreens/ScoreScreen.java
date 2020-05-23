@@ -35,7 +35,9 @@ public class ScoreScreen {
 	private ScreenManager manager;
 	
 	/**
-	 * Create the application.
+	 * Create the GUI screen.
+	 * @param incomingManager The ScreenManager object that will launch and close this screen.
+	 * @param gameInfo The logic class containing information about the current game.
 	 */
 	public ScoreScreen(ScreenManager incomingManager, GameInformation gameInfo) {
 		manager = incomingManager;

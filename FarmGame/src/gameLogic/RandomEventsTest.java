@@ -36,16 +36,17 @@ class RandomEventsTest {
 	void testRemoveRandomAnimals() {
 		String status = random.removeRandomAnimals();
 		assertTrue(status == "");
-		
 		for (int i = 0; i < 10; i += 1) {
-			farm.addAnimal(new AnimalCow());
+			farm.addAnimal(new Animal("animal", 100, 100, 100, 100));
 		}
-		ArrayList<Animal> animals = farm.getAnimals();
-		int size = animals.size();
+		int size = farm.getAnimals().size();
 		
 		status = random.removeRandomAnimals();
-		//Check if an animal has been removed. As is random, very slim chance that it has not
-		assertTrue(size != animals.size());
+		//Check that an animal has been removed
+		assertFalse(size == farm.getAnimals().size());
+		for (int i = 0; i < farm.getAnimals().size(); i += 1) {
+			assertEquals(farm.getAnimals().get(i).getHappiness(), 80.0);
+		}
 		assertFalse(status == "");
 	}
 	

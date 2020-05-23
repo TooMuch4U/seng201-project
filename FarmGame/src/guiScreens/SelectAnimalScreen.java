@@ -39,7 +39,10 @@ public class SelectAnimalScreen {
 	private AnimalLogic animalLogic;
 
 	/**
-	 * Create the application.
+	 * Create the GUI screen.
+	 * @param incomingManager The ScreenManager object that will launch and close this screen.
+	 * @param gameInfo The logic class containing information about the current game.
+	 * @param animal The logic class allowing interaction with an manipulation of animals.
 	 */
 	public SelectAnimalScreen(ScreenManager incomingManager, GameInformation gameInfo, AnimalLogic animal) {
 		manager = incomingManager;
@@ -50,7 +53,7 @@ public class SelectAnimalScreen {
 	}
 	
 	/**
-	 * Closes the GUI setup window.
+	 * Closes the GUI setup window. 
 	 * Called from the game environment.
 	 */
 	public void closeWindow() {

@@ -58,7 +58,7 @@ class StoreLogicTest {
 		assertEquals(farm.getAnimals().size(), 4);
 		
 		// Exception
-		assertThrows(IllegalStateException.class, () -> storeLogic.purchaseAnimal(testAnimal));
+		assertThrows(IllegalArgumentException.class, () -> storeLogic.purchaseAnimal(testAnimal));
 	}
 	
 	@Test
@@ -101,7 +101,7 @@ class StoreLogicTest {
 		assertEquals(farm.getCrops().size(), 1);
 		
 		// Exception
-		assertThrows(IllegalStateException.class, () -> storeLogic.purchaseCrop(testCrop));
+		assertThrows(IllegalArgumentException.class, () -> storeLogic.purchaseCrop(testCrop));
 	}
 	
 	@Test
@@ -144,7 +144,7 @@ class StoreLogicTest {
 		assertEquals(farm.getItems().size(), 1);
 		
 		// Exception
-		assertThrows(IllegalStateException.class, () -> storeLogic.purchaseItem(testItem));
+		assertThrows(IllegalArgumentException.class, () -> storeLogic.purchaseItem(testItem));
 	}
 	
 

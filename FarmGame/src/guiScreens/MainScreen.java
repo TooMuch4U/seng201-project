@@ -39,7 +39,10 @@ public class MainScreen {
 	private MainScreen screen = this;
 
 	/**
-	 * Create the application.
+	 * Creates the GUI screen.
+	 * @param incomingManager The ScreenManager object that will launch and close this screen.
+	 * @param gameInfo The logic class containing information about the current game.
+	 * @param basicLogic The logic class allowing farmland interaction and advancing of days.
 	 */
 	public MainScreen(ScreenManager incomingManager, GameInformation gameInfo, BasicGameLogic basicLogic) {
 		manager = incomingManager;
@@ -50,7 +53,7 @@ public class MainScreen {
 	}
 	
 	/**
-	 * Closes the GUI setup window.
+	 * Closes the GUI setup window. 
 	 * Called from the game environment.
 	 */
 	public void closeWindow() {
@@ -339,9 +342,7 @@ public class MainScreen {
 		
 		/**
 		 * Each of the following buttons provides information about the main buttons
-		 * 
-		 */
-		/**
+		 *
 		 * Displays information about tending land
 		 */
 		JButton tendLandInfo = new JButton("i");

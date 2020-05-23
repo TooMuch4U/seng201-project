@@ -42,7 +42,10 @@ public class SelectCropScreen {
 	private ScreenManager manager;
 
 	/**
-	 * Create the application.
+	 * Create the GUI screen.
+	 * @param incomingManager The ScreenManager object that will launch and close this screen.
+	 * @param crop The logic class allowing interaction with and manipulation of crops.
+	 * @param gameInfo The logic class containing information about the current game.
 	 */
 	public SelectCropScreen(ScreenManager incomingManager, CropLogic crop, GameInformation gameInfo) {
 		manager = incomingManager;
@@ -53,7 +56,7 @@ public class SelectCropScreen {
 	}
 	
 	/**
-	 * Closes the GUI setup window.
+	 * Closes the GUI setup window. 
 	 * Called from the game environment.
 	 */
 	public void closeWindow() {
@@ -62,8 +65,6 @@ public class SelectCropScreen {
 	
 	/**
 	 * Notifies the game environment that the screen must be closed.
-	 * Passes in the index of the selected Crop.
-	 * @param cropIndex - an integer index that specifies what crop was selected
 	 */
 	public void finishedWindow() {
 		manager.closeSelectCropScreen(this);

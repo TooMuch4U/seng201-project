@@ -142,7 +142,6 @@ public class ScreenManager {
 	
 	/**
 	 * Launches the stores animal screen GUI. 
-	 * @param storeMain The store main screen GUI.
 	 */
 	public void launchStoreAnimalScreen() {
 		StoreAnimalScreen storeAnimal = new StoreAnimalScreen(this, gameInfo, storeLogic);
@@ -237,7 +236,6 @@ public class ScreenManager {
 	
 	/**
 	 * Closes the main screen of the game, and launches the final score screen. 
-	 * @param main The main screen GUI object that needs to be closed.
 	 */
 	public void launchScoreScreen() {
 		ScoreScreen scoreScreen = new ScoreScreen(this, gameInfo);
@@ -257,6 +255,7 @@ public class ScreenManager {
 	/**
 	 * Main method of the game object. 
 	 * Calls the setup screen launcher when triggered.
+	 * @param args Input arguments for main function.
 	 */
 	public static void main(String[] args) {
 		ScreenManager manager = new ScreenManager();

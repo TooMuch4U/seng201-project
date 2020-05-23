@@ -48,19 +48,19 @@ public class RandomEvents {
 			int i = 0;
 			ArrayList<Integer> needRemoving = new ArrayList<Integer>();
 			while(numRequired > 0 && i < animals.size()) {
-				if (rng.nextInt()%2 == 0 || numRequired == animals.size()-i) {
+				if (rng.nextInt()%2 == 0 || numRequired == animals.size()-(i+1)) {
 					//Keep track of the indices that need removing. Stored from highest index to lowest.
 					needRemoving.add(0, i);
 					numRequired -= 1;
-				} else {
-					Animal animal = animals.get(i);
-					animal.changeHappiness(-20);
 				}
 				i += 1;
 			}
 			//Remove indices in top-down order
 			for (int num: needRemoving) {
 				animals.remove(num);
+			}
+			for (Animal animal: animals) {
+				animal.changeHappiness(-20);
 			}
 			return "Overnight, your fence broke, and some of your animals escaped.\nThe ones that didn't are now sad that their friends are gone.";
 		}

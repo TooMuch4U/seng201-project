@@ -53,7 +53,9 @@ public class SetupScreen {
 	private GameInformation game;
 
 	/**
-	 * Create the application.
+	 * Create the GUI screen.
+	 * @param incomingManager The ScreenManager object that will launch and close this screen.
+	 * @param gameInfo The logic class containing information about the current game.
 	 */
 	public SetupScreen(ScreenManager incomingManager, GameInformation gameInfo) {
 		manager = incomingManager;
@@ -63,7 +65,7 @@ public class SetupScreen {
 	}
 	
 	/**
-	 * Closes the GUI setup window.
+	 * Closes the GUI setup window. 
 	 * Called from the game environment.
 	 */
 	public void closeWindow() {

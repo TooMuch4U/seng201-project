@@ -44,7 +44,10 @@ public class StoreItemScreen {
 	private ScreenManager manager;
 	
 	/**
-	 * Create the application.
+	 * Create the GUI screen.
+	 * @param incomingManager The ScreenManager object that will launch and close this screen.
+	 * @param gameInfo The logic class containing information about the current game.
+	 * @param storeLogic The logic class allowing purchasing of animals, crops, and items.
 	 */
 	public StoreItemScreen(ScreenManager incomingManager, GameInformation gameInfo, StoreLogic storeLogic) {
 		manager = incomingManager;
@@ -56,14 +59,14 @@ public class StoreItemScreen {
 	}
 	
 	/**
-	 * Close the window
+	 * Close the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
 	/**
-	 * Hands control back to the main class
+	 * Hands control back to the main class.
 	 */
 	public void finishedWindow() {
 		manager.closeStoreItemScreen(this);
