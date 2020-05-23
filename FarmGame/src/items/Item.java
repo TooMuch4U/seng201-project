@@ -6,11 +6,11 @@ package items;
 public abstract class Item {
 	
 	/**
-	 * Items name
+	 * Item's name
 	 */
 	private String name;
 	/**
-	 * Items price
+	 * Item's price
 	 */
 	public double price;
 	
@@ -28,25 +28,25 @@ public abstract class Item {
 	}
 	
 	/**
-	 * Returns the items name.
+	 * Returns the item's name.
 	 * 
-	 * @return String
+	 * @return name A String of the name of the item
 	 */
 	public String getName() {
 		return(name);
 	}
 	
 	/**
-	 * Returns the items price.
+	 * Returns the item's price.
 	 * 
-	 * @return price - The price of the item
+	 * @return price The price of the item
 	 */
 	public double getPrice() {
 		return(price);
 	}
 	
 	/**
-	 * Returns the items benefit.
+	 * Returns the item's benefit.
 	 * 
 	 * @return double
 	 */

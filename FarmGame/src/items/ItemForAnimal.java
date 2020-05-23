@@ -20,12 +20,20 @@ public class ItemForAnimal extends Item {
 	}
 
 	@Override
+	/**
+	 * Returns the item's health benefit.
+	 * 
+	 * @return healthBenefit The health the item will grant an animal.
+	 */
 	public double getBenefit() {
 		return(healthBenefit);
 	}
 	
 	
 	@Override
+	/**
+	 * Returns a String representation of the item
+	 */
 	public String toString() {
 		return String.format("%s: increases animal health by %s", super.getName(), getBenefit());
 	}
