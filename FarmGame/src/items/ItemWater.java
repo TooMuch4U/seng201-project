@@ -1,8 +1,8 @@
 package items;
 
 /**
- * Default item used if no item is specified when tending to crops
- * Cannot be purchased from the shop
+ * Free item that can be used if the player has no ItemForCrops. 
+ * Cannot be purchased from the shop.
  */
 public class ItemWater extends ItemForCrop {
 	

@@ -20,11 +20,19 @@ public class ItemForCrop extends Item {
 	}
 	
 	@Override
+	/**
+	 * Returns the item's growing benefit.
+	 * 
+	 * @return daysBenefit The number of days the item will decrease growing time by.
+	 */
 	public double getBenefit() {
 		return(daysBenefit);
 	}
 	
 	@Override
+	/**
+	 * Returns a String representation of the item
+	 */
 	public String toString() {
 		return String.format("%s: decreases growing time by %s days", super.getName(), getBenefit());
 	}
