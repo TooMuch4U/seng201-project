@@ -111,7 +111,7 @@ public class StoreItemScreen {
 		JTextPane infoBox = new JTextPane();
 		infoBox.setEditable(false);
 		String ownedInfo = "Currently owned items:\n";
-		//Create a dicitonary object to count the number of items currently owned
+		//Create a dictionary object to count the number of items currently owned
 		Hashtable<String, Integer> itemDict = new Hashtable<String, Integer>();
 		for (Item item: game.getFarm().getItems()) {
 			String name = item.getName();
