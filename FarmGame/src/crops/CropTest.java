@@ -32,7 +32,7 @@ class CropTest {
 		testCropB.changeHarvestTime(4);
 		assertEquals(testCropB.getHarvestTime(), 5);
 		testCropB.changeHarvestTime(8);
-		assertEquals(testCropB.getHarvestTime(), 0);
+		assertEquals(testCropB.getHarvestTime(), 1);
 		try {
 			testCropB.changeHarvestTime(-5);
 		} catch (IllegalArgumentException e) {

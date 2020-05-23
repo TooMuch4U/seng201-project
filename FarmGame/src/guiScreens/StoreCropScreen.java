@@ -20,7 +20,6 @@ import javax.swing.SwingConstants;
 
 import animals.Animal;
 import crops.Crop;
-import farmsAndFarmer.Farm;
 import gameLogic.GameInformation;
 import gameLogic.ScreenManager;
 import gameLogic.StoreLogic;
@@ -43,10 +42,6 @@ public class StoreCropScreen {
 	 * The manager of the GUI screens.
 	 */
 	private ScreenManager manager;
-	/**
-	 * The player's farm object.
-	 */
-	private Farm farm;
 	
 	/**
 	 * Create the application.
@@ -55,7 +50,6 @@ public class StoreCropScreen {
 		manager = incomingManager;
 		game = gameInfo;
 		store = storeLogic;
-		farm = game.getFarm();
 		initialize();
 		frame.setVisible(true);
 		
@@ -159,8 +153,6 @@ public class StoreCropScreen {
 					JOptionPane.showMessageDialog(frame, "You need to select a crop first!", "", JOptionPane.PLAIN_MESSAGE);
 				} else if (selectedCrop.getPrice() > farmMoney){
 					JOptionPane.showMessageDialog(frame, "You don't have enough money to buy that!", "", JOptionPane.PLAIN_MESSAGE);
-				} else if (farm.getCrops().size() == farm.getCropLimit()) {
-					JOptionPane.showMessageDialog(frame, "Your farm doesn't have room for any more crops! Tend to your land to make more room.", "No room on your farm.", JOptionPane.ERROR_MESSAGE);
 				} else {
 					String message = String.format("Are you sure you want to buy a %s for $%.2f?", name, price);
 					int choice = JOptionPane.showConfirmDialog(frame, message,  "", JOptionPane.YES_NO_OPTION);

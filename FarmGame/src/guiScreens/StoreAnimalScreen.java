@@ -3,7 +3,6 @@ package guiScreens;
 import java.awt.EventQueue;
 import animals.*;
 import crops.Crop;
-import farmsAndFarmer.Farm;
 import gameLogic.GameInformation;
 import gameLogic.ScreenManager;
 import gameLogic.StoreLogic;
@@ -43,10 +42,7 @@ public class StoreAnimalScreen {
 	 * The manager of the GUI screens.
 	 */
 	private ScreenManager manager;
-	/**
-	 * The player's farm object.
-	 */
-	private Farm farm;
+	
 
 	/**
 	 * Create the application.
@@ -158,8 +154,6 @@ public class StoreAnimalScreen {
 					JOptionPane.showMessageDialog(frame, "You need to select an animal first!", "", JOptionPane.PLAIN_MESSAGE);
 				} else if (selectedAnimal.getPrice() > farmMoney){
 					JOptionPane.showMessageDialog(frame, "You don't have enough money to buy that!", "", JOptionPane.PLAIN_MESSAGE);
-				} else if (farm.getAnimals().size() == farm.getAnimalLimit()) {
-					JOptionPane.showMessageDialog(frame, "Your farm doesn't have room for any more animals! Tend to your land to make more room.", "No room on your farm.", JOptionPane.ERROR_MESSAGE);
 				} else {
 					String message = String.format("Are you sure you want to buy a %s for $%.2f?", name, price);
 					int choice = JOptionPane.showConfirmDialog(frame, message,  "", JOptionPane.YES_NO_OPTION);

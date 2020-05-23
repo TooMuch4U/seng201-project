@@ -57,11 +57,11 @@ public class StoreMainScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel buyPromptLabel = new JLabel("What would you like to buy?");
-		buyPromptLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		buyPromptLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		buyPromptLabel.setBounds(203, 36, 339, 59);
-		frame.getContentPane().add(buyPromptLabel);
+		JLabel lblNewLabel = new JLabel("What would you like to buy?");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(203, 36, 339, 59);
+		frame.getContentPane().add(lblNewLabel);
 		
 		/*
 		 * Animals button
@@ -76,8 +76,8 @@ public class StoreMainScreen {
 		animalButton.setBounds(311, 111, 117, 29);
 		frame.getContentPane().add(animalButton);
 		
-		JButton cropsButton = new JButton("Crops");
-		cropsButton.addActionListener(new ActionListener() {
+		JButton btnNewButton_1 = new JButton("Crops");
+		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				closeWindow();
 				manager.launchStoreCropScreen();

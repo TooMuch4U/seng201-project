@@ -57,7 +57,7 @@ public class Store {
 	 * Returns the item from the availableItems array at the given index.
 	 * 
 	 * @param index Index of the item to retrieve. Must not be larger than the ArrayList size
-	 * @return returnItem The item that was chosen.
+	 * @return Item
 	 */
 	public Item purchaseItem(int index) {
 		int arraySize = availableItems.size();
@@ -79,7 +79,7 @@ public class Store {
 	 * Returns the Animal from the availableAnimals array at the given index
 	 * 
 	 * @param index Index of the animal wanted.
-	 * @return returnItem The animal that was purchased
+	 * @return returnItem The items that was purchased
 	 */
 	public Animal purchaseAnimal(int index) {
 		

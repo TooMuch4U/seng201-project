@@ -115,9 +115,6 @@ class FarmTest {
 		farm.getItems().remove(hoe);
 		assertTrue(farm.getItems().size() == 19);
 		
-		assertFalse(farm.getAnimalItems().contains(hoe));
-		assertFalse(farm.getCropItems().contains(apple));
-		
 	}
 	
 	
@@ -179,33 +176,4 @@ class FarmTest {
 		assertEquals(1500.00, moneyFarm.getMoney());
 	}
 	
-	@Test
-	void testChangeLimits() {
-		int animalLimit = farm.getAnimalLimit();
-		int cropLimit = farm.getCropLimit();
-		
-		farm.changeAnimalLimit(-(animalLimit+10));
-		farm.changeCropLimit(-(cropLimit+10));
-		
-		
-		
-		farm.changeAnimalLimit(10);
-		farm.changeCropLimit(125);
-		
-		assertEquals(farm.getAnimalLimit(), 10);
-		assertEquals(farm.getCropLimit(), 125);
-	}
-	
-	@Test
-	void testGetHarvestableCrops() {
-		Crop harvest = new Crop("harvest", 0, 0, 0);
-		Crop noHarvest = new Crop("No harvest", 10, 10, 10);
-		for (int i = 0; i < 5; i += 1) {
-			farm.addCrop(harvest);
-			farm.addCrop(noHarvest);
-		}
-		
-		assertTrue(farm.getHarvestableCrops().contains(harvest));
-		assertFalse(farm.getHarvestableCrops().contains(noHarvest));
-	}
 }

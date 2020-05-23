@@ -6,7 +6,7 @@ package items;
 public abstract class Item {
 	
 	/**
-	 * Item's name
+	 * Items name
 	 */
 	private String name;
 	/**
