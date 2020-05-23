@@ -57,34 +57,34 @@ public class StoreMainScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("What would you like to buy?");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(203, 36, 339, 59);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel buyPromptLabel = new JLabel("What would you like to buy?");
+		buyPromptLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		buyPromptLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		buyPromptLabel.setBounds(203, 36, 339, 59);
+		frame.getContentPane().add(buyPromptLabel);
 		
 		/*
 		 * Animals button
 		 */
-		JButton btnNewButton = new JButton("Animals");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton animalButton = new JButton("Animals");
+		animalButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				closeWindow();
 				manager.launchStoreAnimalScreen();
 			}
 		});
-		btnNewButton.setBounds(311, 111, 117, 29);
-		frame.getContentPane().add(btnNewButton);
+		animalButton.setBounds(311, 111, 117, 29);
+		frame.getContentPane().add(animalButton);
 		
-		JButton btnNewButton_1 = new JButton("Crops");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton cropsButton = new JButton("Crops");
+		cropsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				closeWindow();
 				manager.launchStoreCropScreen();
 			}
 		});
-		btnNewButton_1.setBounds(311, 152, 117, 29);
-		frame.getContentPane().add(btnNewButton_1);
+		cropsButton.setBounds(311, 152, 117, 29);
+		frame.getContentPane().add(cropsButton);
 		
 		/*
 		 * Item button
@@ -102,14 +102,14 @@ public class StoreMainScreen {
 		/*
 		 * Back Button
 		 */
-		JButton btnNewButton_3 = new JButton("Back");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
 			}
 		});
-		btnNewButton_3.setBounds(83, 419, 117, 29);
-		frame.getContentPane().add(btnNewButton_3);
+		backButton.setBounds(83, 419, 117, 29);
+		frame.getContentPane().add(backButton);
 	}
 
 }
