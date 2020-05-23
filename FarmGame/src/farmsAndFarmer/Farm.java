@@ -141,6 +141,22 @@ public class Farm {
 	}
 	
 	/**
+	 * Gets the farm's current limit of animals.
+	 * @return animalLimit The maximum number of animals allowed on the farm.
+	 */
+	public int getAnimalLimit() {
+		return animalLimit;
+	}
+
+	/**
+	 * Gets the farm's current limit of crops.
+	 * @return cropLimit The maximum number of crops allowed on the farm.
+	 */
+	public int getCropLimit() {
+		return cropLimit;
+	}
+	
+	/**
 	 * Gets the crops on the player's farm that are currently ready for harvest.
 	 * @return harvestableCrops An ArrayList containing all crops that can currently be harvested.
 	 */

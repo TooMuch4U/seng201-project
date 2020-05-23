@@ -44,11 +44,11 @@ public class RandomEvents {
 			return "";
 		} else {
 			int maxNum = animals.size()/2;
-			int numRequired = rng.nextInt()%maxNum;
+			int numRequired = (rng.nextInt()%maxNum)+1;
 			int i = 0;
 			ArrayList<Integer> needRemoving = new ArrayList<Integer>();
 			while(numRequired > 0 && i < animals.size()) {
-				if (rng.nextInt()%2 == 0) {
+				if (rng.nextInt()%2 == 0 || numRequired == animals.size()-i) {
 					//Keep track of the indices that need removing. Stored from highest index to lowest.
 					needRemoving.add(0, i);
 					numRequired -= 1;
