@@ -31,13 +31,18 @@ public class StoreLogic {
 	 * @param price The price of the item being purchased.
 	 */
 	private void processStoreItem(double price) {
-		if (farm.getMoney() >= price) {
-			// Farm can afford the item
-			farm.changeMoney(- price);
+		if (price >= 0.0) {
+			if (farm.getMoney() >= price) {
+				// Farm can afford the item
+				farm.changeMoney(- price);
 
+			} else {
+				throw new IllegalStateException("There is not enough money to purchase this");
+			}
 		} else {
-			throw new IllegalStateException("There is not enough money to purchase this");
+			throw new IllegalArgumentException("Price must be a positive double!");
 		}
+		
 	}
 	
 	/**
