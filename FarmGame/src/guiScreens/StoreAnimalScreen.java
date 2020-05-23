@@ -119,7 +119,7 @@ public class StoreAnimalScreen {
 		JTextPane infoBox = new JTextPane();
 		infoBox.setEditable(false);
 		String ownedInfo = "Currently owned animals:\n";
-		//Create a dicitonary object to count the number of animals currently owned
+		//Create a dictionary object to count the number of animals currently owned
 		Hashtable<String, Integer> animalDict = new Hashtable<String, Integer>();
 		for (Animal animal: game.getFarm().getAnimals()) {
 			String type = animal.getType();
