@@ -121,7 +121,7 @@ public class StoreCropScreen {
 		JTextPane infoBox = new JTextPane();
 		infoBox.setEditable(false);
 		String ownedInfo = "Currently owned crops:\n";
-		//Create a dicitonary object to count the number of crops currently owned
+		//Create a dictionary object to count the number of crops currently owned
 		Hashtable<String, Integer> cropDict = new Hashtable<String, Integer>();
 		for (Crop crop: game.getFarm().getCrops()) {
 			String type = crop.getType();
