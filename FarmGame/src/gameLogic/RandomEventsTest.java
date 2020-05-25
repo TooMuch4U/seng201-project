@@ -39,7 +39,7 @@ class RandomEventsTest {
 		for (int i = 0; i < 10; i += 1) {
 			farm.addAnimal(new Animal("animal", 100, 100, 100, 100));
 		}
-		int size = farm.getAnimals().size();
+		int size = 10;
 		
 		status = random.removeRandomAnimals();
 		//Check that an animal has been removed

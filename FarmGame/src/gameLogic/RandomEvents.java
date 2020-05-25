@@ -44,7 +44,7 @@ public class RandomEvents {
 			return "";
 		} else {
 			int maxNum = animals.size()/2;
-			int numRequired = (rng.nextInt()%maxNum)+1;
+			int numRequired = Math.abs((rng.nextInt()%maxNum))+1;
 			int i = 0;
 			ArrayList<Integer> needRemoving = new ArrayList<Integer>();
 			while(numRequired > 0 && i < animals.size()) {
