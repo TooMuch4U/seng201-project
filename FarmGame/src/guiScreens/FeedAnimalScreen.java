@@ -88,17 +88,21 @@ public class FeedAnimalScreen {
 		animalListModel.addAll(game.getFarm().getAnimals());
 		
 		/**
-		 * Create the JLists
+		 * Create the JLists, and add them to ScrollPanes
 		 */
 		JList<Animal> animalList = new JList<Animal>(animalListModel);
 		animalList.setCellRenderer(new AnimalMainListCellRenderer());
-		animalList.setBounds(25, 67, 325, 300);
-		frame.getContentPane().add(animalList);
+		JScrollPane animalScroll = new JScrollPane();
+		animalScroll.setViewportView(animalList);
+		animalScroll.setBounds(25, 67, 325, 300);
+		frame.getContentPane().add(animalScroll);
 		
 		JList<ItemForAnimal> itemList = new JList<ItemForAnimal>(itemListModel);
 		itemList.setCellRenderer(new ItemMainListCellRenderer());
-		itemList.setBounds(400, 67, 325, 300);
-		frame.getContentPane().add(itemList);
+		JScrollPane itemScroll = new JScrollPane();
+		itemScroll.setViewportView(itemList);
+		itemScroll.setBounds(400, 67, 325, 300);
+		frame.getContentPane().add(itemScroll);
 		
 		/**
 		 * Confirm Button - check they have been selected, then move to next screen.
