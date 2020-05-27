@@ -6,6 +6,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import crops.Crop;
@@ -82,6 +83,7 @@ public class TendCropsScreen {
 		
 		/**
 		 * Create a list model for the JLists, then create the JLists themselves.
+		 * Adds the JLists into ScrollPanes.
 		 */
 		DefaultListModel<ItemForCrop> itemListModel = new DefaultListModel<>();
 		DefaultListModel<Crop> cropListModel = new DefaultListModel<>();
@@ -90,13 +92,17 @@ public class TendCropsScreen {
 		
 		JList<Crop> cropList = new JList<Crop>(cropListModel);
 		cropList.setCellRenderer(new CropMainListCellRenderer());
-		cropList.setBounds(25, 67, 325, 300);
-		frame.getContentPane().add(cropList);
+		JScrollPane cropScroll = new JScrollPane();
+		cropScroll.setViewportView(cropList);
+		cropScroll.setBounds(25, 67, 325, 300);
+		frame.getContentPane().add(cropScroll);
 		
 		JList<ItemForCrop> itemList = new JList<ItemForCrop>(itemListModel);
 		itemList.setCellRenderer(new ItemMainListCellRenderer());
-		itemList.setBounds(400, 67, 325, 300);
-		frame.getContentPane().add(itemList);
+		JScrollPane itemScroll = new JScrollPane();
+		itemScroll.setViewportView(itemList);
+		itemScroll.setBounds(400, 67, 325, 300);
+		frame.getContentPane().add(itemScroll);
 		
 		/**
 		 * Button to confirm user selection. Checks the user has selected values, then enquires whether the player is sure.

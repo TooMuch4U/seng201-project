@@ -14,6 +14,7 @@ import gameLogic.CropLogic;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.DefaultListModel;
@@ -90,6 +91,7 @@ public class SelectCropScreen {
 		
 		/**
 		 * Create a list model to display the crop list, then create the crop JList.
+		 * Places the JList into a ScrollPane.
 		 */
 		DefaultListModel<Crop> cropListModel = new DefaultListModel<Crop>();
 		ArrayList<Crop> crops = game.getFarm().getHarvestableCrops();
@@ -98,8 +100,11 @@ public class SelectCropScreen {
 		JList<Crop> cropList = new JList<Crop>(cropListModel);
 		cropList.setCellRenderer(new CropMainListCellRenderer());
 		cropList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		cropList.setBounds(140, 70, 470, 320);
-		frame.getContentPane().add(cropList);
+		JScrollPane cropScroll = new JScrollPane();
+		cropScroll.setViewportView(cropList);
+		cropScroll.setBounds(25, 67, 325, 300);
+		cropScroll.setBounds(140, 70, 470, 320);
+		frame.getContentPane().add(cropScroll);
 		
 		/**
 		 * Go back to the main screen without doing anything if the player wishes to cancel.

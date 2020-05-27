@@ -134,7 +134,7 @@ public class ScoreScreen {
 			profitOrLoss = "lost";
 			farmProfit = farmProfit*-1;
 		}
-		endText += String.format("\nYou toiled on your farm for %d days, and %s a total of %.2f", game.getCurrentDays(), profitOrLoss, farmProfit);
+		endText += String.format("\nYou toiled on your farm for %d days, and %s a total of %.2f", game.getCurrentDays()-1, profitOrLoss, farmProfit);
 		
 		textPane.setText(endText);
 		textPane.setBackground(UIManager.getColor("Button.background"));

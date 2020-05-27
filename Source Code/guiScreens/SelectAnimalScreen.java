@@ -15,6 +15,7 @@ import gameLogic.ScreenManager;
 import java.awt.Font;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -87,6 +88,7 @@ public class SelectAnimalScreen {
 		
 		/**
 		 * Create the list model for the Jlist, then create the JList itself.
+		 * Add the JList to a ScrollPane
 		 */
 		DefaultListModel<Animal> animalListModel = new DefaultListModel<Animal>();
 		ArrayList<Animal> animals = game.getFarm().getAnimals();
@@ -94,8 +96,10 @@ public class SelectAnimalScreen {
 		
 		JList<Animal> animalList = new JList<Animal>(animalListModel);
 		animalList.setCellRenderer(new AnimalMainListCellRenderer());
-		animalList.setBounds(140, 70, 470, 320);
-		frame.getContentPane().add(animalList);
+		JScrollPane animalScroll = new JScrollPane();
+		animalScroll.setViewportView(animalList);
+		animalScroll.setBounds(140, 70, 470, 320);
+		frame.getContentPane().add(animalScroll);
 		
 		/**
 		 * Button allowing the player to confirm their selection. Checks that an animal has been selected before moving on.
